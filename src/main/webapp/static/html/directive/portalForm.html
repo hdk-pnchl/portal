@@ -1,0 +1,12 @@
+<form>
+	<fieldset>
+		<!-- Form Name -->
+		<legend>{{formData.formDesc}}</legend>
+		<div  class="form-group" ng-repeat="field in formData.fieldAry">
+			<label for="{{field.name}}">{{field.label}}</label>
+			<input class="form-control" type="{{field.type}}" name="{{field.name}}" dynamicmodel="field.modalData">
+		</div>
+	</fieldset>
+	<button type="button" class="btn btn-success" ng-click="submitForm()">Submit</button>
+</form>
+

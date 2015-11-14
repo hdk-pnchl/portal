@@ -1,0 +1,36 @@
+{
+	"projectData": {
+		"projectName": "Portal",
+		"defaultPath": "/home"	
+	},
+	"navData": {
+		"mainNavData": [{
+				"title": "Patients",
+				"active": true,
+				"disabled": false,
+				"hidden": false,
+				"path": "/patients"		
+			},{
+				"title": "Add patient",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/addPatient"		
+			},{
+				"title": "Patient summary",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/patientSummary"		
+			}
+		],
+		"configNavData": [{
+				"title": "Sign In",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/register"		
+			}		
+		]
+	}
+}

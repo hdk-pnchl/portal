@@ -1,0 +1,61 @@
+<div>
+	<div>
+		Current search : {{searchRow}}
+		<br>
+		Showing {{ filtered_rows.length }} / {{ data.rowData.length }} result!
+		<br>
+		No. of rows selected {{ selectedRows.length }} / {{ data.rowData.length }}!
+	</div>
+	<div>
+		<div id="tblData" ng-hide="summary.active" class="row">
+			<div class="neo-horizontal-scroll">
+				<div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th ng-repeat="column in data.columnData" id="{{column.id}}">
+									<a href="" ng-click="sort(column.id)">{{column.label}}</a>
+									<br>		
+						    		<input type="text" ng-model="searchRow[column.id]">
+								</th>
+							</tr>		
+						</thead>
+						<tbody>
+							<tr ng-repeat="row in filtered_rows = (data.rowData | filter:searchRow | orderBy:sortCol:sortOrder)" 
+								ng-click="selectRow(row)" 
+								ng-class="{active : row.selected}">
+								<td>
+									<a href="" ng-click="fetchSummary(row)">{{ $index + 1 }}</a>
+								</td>
+								<td ng-repeat="column in data.columnData">
+									{{row[column.id]}}
+								</td>		
+							</tr>	
+						</tbody>
+					</table>
+				</div>	
+				<div>
+					<ul class="pagination">
+					  <li class="disabled"><a href="#">&laquo;</a></li>
+					  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+					</ul>				
+				</div>			
+			</div>	
+		</div>
+		<div id="rowSummary" ng-show="summary.active" class="row">
+			<div class="col-md-12">
+				<div class="form-horizontal">
+				
+				  	<div class="form-group" ng-repeat="(key, value) in summary.data">
+					    <label class="col-sm-2 control-label">{{key}}</label>
+					    <div class="col-sm-10">
+	    					<p class="form-control-static">{{value}}</p>
+					    </div>
+				  	</div>
+				  	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

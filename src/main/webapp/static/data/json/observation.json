@@ -1,0 +1,44 @@
+{
+	"formDesc": "Enter Observation detail",
+	"isHidden": true,
+	"name": "observation",
+	"modalDataObj": "observation",
+	"fieldAry": [
+		{
+			"name": "posture",
+			"label": "Posture",
+			"modalData": "observation.posture",
+			"type": "text"		
+		},{
+			"name": "bodyLanguage",
+			"label": "Body Language",
+			"modalData": "observation.bodyLanguage",
+			"type": "text"		
+		},{
+			"name": "eyeContact",
+			"label": "Eye Contact",
+			"modalData": "observation.eyeContact",
+			"type": "text"		
+		},{
+			"name": "headBalance",
+			"label": "Head Balance",
+			"modalData": "observation.headBallance",
+			"type": "text"		
+		},{
+			"name": "speedOfSpeach",
+			"label": "Speed Of Speech",
+			"modalData": "observation.speedOfSpeach",
+			"type": "text"		
+		},{
+			"name": "memory",
+			"label": "Memory",
+			"modalData": "observation.memory",
+			"type": "text"		
+		},{
+			"name": "orientation",
+			"label": "Orientation",
+			"modalData": "observation.orientation",
+			"type": "text"		
+		}
+	]
+}

@@ -1,0 +1,21 @@
+<div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header" ng-click="selectHome()">
+              <a class="navbar-brand" href="#{{bannerData.projectData.defaultPath}}">{{bannerData.projectData.projectName}}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li ng-repeat="tab in bannerData.navData.mainNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
+                  <a href="#{{tab.path}}">{{tab.title}}</a>
+                </li>
+              </ul>             
+              <ul class="nav navbar-nav navbar-right">
+                <li ng-repeat="tab in bannerData.navData.configNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
+                  <a href="#{{tab.path}}">{{tab.title}}</a>
+                </li>              
+              </ul>
+            </div>
+        </div>
+    </nav>      
+</div>

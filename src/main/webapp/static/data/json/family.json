@@ -1,0 +1,29 @@
+{
+	"formDesc": "Enter Family detail",
+	"isHidden": true,
+	"name": "family",
+	"modalDataObj": "family",
+	"fieldAry": [
+		{
+			"name": "relation",
+			"label": "Relation",
+			"modalData": "family.relation",
+			"type": "text"		
+		},{
+			"name": "durationOfStay",
+			"label": "Duration Of Stay",
+			"modalData": "family.durationOfStay",
+			"type": "text"		
+		},{
+			"name": "ability",
+			"label": "Ability",
+			"modalData": "family.ability",
+			"type": "text"		
+		},{
+			"name": "concern",
+			"label": "Concern",
+			"modalData": "family.concern",
+			"type": "text"		
+		}
+	]
+}

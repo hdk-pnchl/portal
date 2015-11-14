@@ -1,0 +1,387 @@
+{
+	"wizzardStepAry": [
+		{
+			"name": "basic",
+			"label": "Basic",
+			"active": true
+		},{
+			"name": "address",
+			"label": "Address",
+			"active": false
+		},{
+			"name": "family",
+			"label": "Family",
+			"active": false
+		},{
+			"name": "observation",
+			"label": "Observation",
+			"active": false
+		},{
+			"name": "interrogate",
+			"label": "Interrogate",
+			"active": false
+		}
+	],
+	"wizzardData":{
+		"basic": {
+			"formDesc": "Enter Patient's basic detail",
+			"isHidden": false,
+			"name": "basic",
+			"modalDataObj": "basic",
+			"fieldAry": [
+				{
+					"name": "name",
+					"label": "Name",
+					"modalData": "basic.name",
+					"type": "text"
+				},{
+					"name": "emailId",
+					"label": "EmailId",
+					"modalData": "basic.emailId",
+					"type": "email"
+				},{
+					"name": "regNo",
+					"label": "Reg. No",
+					"modalData": "basic.regNo",
+					"type": "number"
+				},{
+					"name": "age",
+					"label": "Age",
+					"modalData": "basic.age",
+					"type": "number"
+				},{
+					"name": "isMarried",
+					"label": "Is Married",
+					"modalData": "basic.isMarried",
+					"type": "boolean"
+				},{
+					"name": "education",
+					"label": "Education",
+					"modalData": "basic.education",
+					"type": "text"
+				},{
+					"name": "occupation",
+					"label": "Occupation",
+					"modalData": "basic.occupation",
+					"type": "text"
+				}
+			]
+		},
+		"address": {
+			"formDesc": "Enter Address detail",
+			"isHidden": true,
+			"name": "address",
+			"modalDataObj": "address",
+			"fieldAry": [
+				{
+					"name": "country",
+					"label": "Country",
+					"modalData": "address.country",
+					"type": "text"			
+				},{
+					"name": "state",
+					"label": "State",
+					"modalData": "address.state",
+					"type": "text"			
+				},{
+					"name": "city",
+					"label": "City",
+					"modalData": "address.city",
+					"type": "text"			
+				},{
+					"name": "pincode",
+					"label": "Pincode",
+					"modalData": "address.pincode",
+					"type": "number"			
+				},{
+					"name": "addressLine1",
+					"label": "Address Line 1",
+					"modalData": "address.addressLine1",
+					"type": "text"			
+				},{
+					"name": "addressLine2",
+					"label": "Address Line 2",
+					"modalData": "address.addressLine2",
+					"type": "text"			
+				},{
+					"name": "addressLine3",
+					"label": "Address Line 3",
+					"modalData": "address.addressLine3",
+					"type": "text"			
+				}
+			]
+		},
+		"observation": {
+			"formDesc": "Enter Observation detail",
+			"isHidden": true,
+			"name": "observation",
+			"modalDataObj": "observation",
+			"fieldAry": [
+				{
+					"name": "posture",
+					"label": "Posture",
+					"modalData": "observation.posture",
+					"type": "text"		
+				},{
+					"name": "bodyLanguage",
+					"label": "Body Language",
+					"modalData": "observation.bodyLanguage",
+					"type": "text"		
+				},{
+					"name": "eyeContact",
+					"label": "Eye Contact",
+					"modalData": "observation.eyeContact",
+					"type": "text"		
+				},{
+					"name": "headBalance",
+					"label": "Head Balance",
+					"modalData": "observation.headBallance",
+					"type": "text"		
+				},{
+					"name": "speedOfSpeach",
+					"label": "Speed Of Speech",
+					"modalData": "observation.speedOfSpeach",
+					"type": "text"		
+				},{
+					"name": "memory",
+					"label": "Memory",
+					"modalData": "observation.memory",
+					"type": "text"		
+				},{
+					"name": "orientation",
+					"label": "Orientation",
+					"modalData": "observation.orientation",
+					"type": "text"		
+				}
+			]
+		},
+		"interrogate": {
+			"formDesc": "Enter Interrogate detail",
+			"isHidden": true,
+			"name": "interrogate",
+			"modalDataObj": "interrogate",
+			"fieldAry": [
+				{
+					"name": "income",
+					"label": "income",
+					"modalData": "interrogate.income",
+					"type": "number"	
+				},{
+					"name": "familyTree",
+					"label": "Family Tree",
+					"modalData": "interrogate.familyTree",
+					"type": "text"	
+				},{
+					"name": "religion",
+					"label": "Religion",
+					"modalData": "interrogate.religion",
+					"type": "text"	
+				},{
+					"name": "socioEco",
+					"label": "Socio Eco",
+					"modalData": "interrogate.socioEco",
+					"type": "text"	
+				},{
+					"name": "problem",
+					"label": "Problem",
+					"modalData": "interrogate.problem",
+					"type": "text"	
+				},{
+					"name": "onset",
+					"label": "Onset",
+					"modalData": "interrogate.onset",
+					"type": "text"	
+				},{
+					"name": "duration",
+					"label": "Duration",
+					"modalData": "interrogate.duration",
+					"type": "text"	
+				},{
+					"name": "medication",
+					"label": "Medication",
+					"modalData": "interrogate.medication",
+					"type": "text"	
+				},{
+					"name": "predisposingFact",
+					"label": "Predisposing Fact",
+					"modalData": "interrogate.predesposingFact",
+					"type": "text"	
+				},{
+					"name": "participating",
+					"label": "Participating",
+					"modalData": "interrogate.participating",
+					"type": "text"	
+				},{
+					"name": "relaxing",
+					"label": "Relaxing",
+					"modalData": "interrogate.relaxing",
+					"type": "text"	
+				},{
+					"name": "pastHistory",
+					"label": "Past History",
+					"modalData": "interrogate.pastHistory",
+					"type": "text"	
+				},{
+					"name": "medicalHistory",
+					"label": "Medical History",
+					"modalData": "interrogate.medicalHistory",
+					"type": "text"	
+				},{
+					"name": "treatmentHistory",
+					"label": "Treatment History",
+					"modalData": "interrogate.treatmentHistory",
+					"type": "text"	
+				},{
+					"name": "substanceUse",
+					"label": "Substance Use",
+					"modalData": "interrogate.substanceUse",
+					"type": "text"	
+				},{
+					"name": "delivery",
+					"label": "Delivery",
+					"modalData": "interrogate.delivery",
+					"type": "text"	
+				},{
+					"name": "maternityFacility",
+					"label": "Maternity Facility",
+					"modalData": "interrogate.meternityFacility",
+					"type": "text"	
+				},{
+					"name": "breastFeeding",
+					"label": "Breast Feeding",
+					"modalData": "interrogate.breastFeeding",
+					"type": "text"	
+				},{
+					"name": "toiletTraining",
+					"label": "Toilet Training",
+					"modalData": "interrogate.toiletTraining",
+					"type": "text"	
+				},{
+					"name": "stammering",
+					"label": "Stammering",
+					"modalData": "interrogate.stammering",
+					"type": "text"	
+				},{
+					"name": "ticks",
+					"label": "Ticks",
+					"modalData": "interrogate.ticks",
+					"type": "text"	
+				},{
+					"name": "habits",
+					"label": "Habits",
+					"modalData": "interrogate.habits",
+					"type": "text"	
+				},{
+					"name": "academicAchievement",
+					"label": "Academic Achievement",
+					"modalData": "interrogate.ecadamicAchievement",
+					"type": "text"	
+				},{
+					"name": "phobia",
+					"label": "Phobia",
+					"modalData": "interrogate.phobia",
+					"type": "text"	
+				},{
+					"name": "playHistory",
+					"label": "Play History",
+					"modalData": "interrogate.playHistory",
+					"type": "text"	
+				},{
+					"name": "puberty",
+					"label": "Puberty",
+					"modalData": "interrogate.puberty",
+					"type": "text"	
+				},{
+					"name": "workSatisfaction",
+					"label": "Work Satisfaction",
+					"modalData": "interrogate.workSatisfaction",
+					"type": "text"	
+				},{
+					"name": "ambition",
+					"label": "Ambition",
+					"modalData": "interrogate.ambition",
+					"type": "text"	
+				},{
+					"name": "masterbation",
+					"label": "Masterbation",
+					"modalData": "interrogate.masterbation",
+					"type": "text"	
+				},{
+					"name": "sexualLife",
+					"label": "Sexual Life",
+					"modalData": "interrogate.sexualLife",
+					"type": "text"	
+				},{
+					"name": "marriageWithParentConsent",
+					"label": "Marriage With Parent Consent",
+					"modalData": "interrogate.marriageWithParentConsent",
+					"type": "text"	
+				},{
+					"name": "remper",
+					"label": "Remper",
+					"modalData": "interrogate.remper",
+					"type": "text"	
+				},{
+					"name": "interpersonalRelation",
+					"label": "Interpersonal Relation",
+					"modalData": "interrogate.interpersonalRelation",
+					"type": "text"	
+				},{
+					"name": "hobbies",
+					"label": "Hobbies",
+					"modalData": "interrogate.hobbies",
+					"type": "text"	
+				},{
+					"name": "mood",
+					"label": "Mood",
+					"modalData": "interrogate.mood",
+					"type": "text"	
+				},{
+					"name": "attitudeToWork",
+					"label": "Attitude To Work",
+					"modalData": "interrogate.attitudeToWork",
+					"type": "text"	
+				},{
+					"name": "attitudeToSelf",
+					"label": "Attitude To Self",
+					"modalData": "interrogate.attitudeToSelf",
+					"type": "text"	
+				},{
+					"name": "religiousBelieve",
+					"label": "Religious Believe",
+					"modalData": "interrogate.religiousBelieve",
+					"type": "text"	
+				}
+			]
+		},
+		"family": {
+			"formDesc": "Enter Family detail",
+			"isHidden": true,
+			"name": "family",
+			"modalDataObj": "family",
+			"fieldAry": [
+				{
+					"name": "relation",
+					"label": "Relation",
+					"modalData": "family.relation",
+					"type": "text"		
+				},{
+					"name": "durationOfStay",
+					"label": "Duration Of Stay",
+					"modalData": "family.durationOfStay",
+					"type": "text"		
+				},{
+					"name": "ability",
+					"label": "Ability",
+					"modalData": "family.ability",
+					"type": "text"		
+				},{
+					"name": "concern",
+					"label": "Concern",
+					"modalData": "family.concern",
+					"type": "text"		
+				}
+			]
+		}
+	}
+}

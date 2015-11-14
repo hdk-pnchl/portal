@@ -1,0 +1,44 @@
+{
+	"formDesc": "Enter Address detail",
+	"isHidden": true,
+	"name": "address",
+	"modalDataObj": "address",
+	"fieldAry": [
+		{
+			"name": "country",
+			"label": "Country",
+			"modalData": "address.country",
+			"type": "text"			
+		},{
+			"name": "state",
+			"label": "State",
+			"modalData": "address.state",
+			"type": "text"			
+		},{
+			"name": "city",
+			"label": "City",
+			"modalData": "address.city",
+			"type": "text"			
+		},{
+			"name": "pincode",
+			"label": "Pincode",
+			"modalData": "address.pincode",
+			"type": "number"			
+		},{
+			"name": "addressLine1",
+			"label": "Address Line 1",
+			"modalData": "address.addressLine1",
+			"type": "text"			
+		},{
+			"name": "addressLine2",
+			"label": "Address Line 2",
+			"modalData": "address.addressLine2",
+			"type": "text"			
+		},{
+			"name": "addressLine3",
+			"label": "Address Line 3",
+			"modalData": "address.addressLine3",
+			"type": "text"			
+		}
+	]
+}

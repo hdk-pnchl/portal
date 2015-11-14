@@ -1,0 +1,44 @@
+{
+	"formDesc": "Enter Patient detail",
+	"isHidden": false,
+	"name": "basic",
+	"modalDataObj": "basic",
+	"fieldAry": [
+		{
+			"name": "name",
+			"label": "Name",
+			"modalData": "basic.name",
+			"type": "text"
+		},{
+			"name": "emailId",
+			"label": "EmailId",
+			"modalData": "basic.emailId",
+			"type": "email"
+		},{
+			"name": "regNo",
+			"label": "Reg. No",
+			"modalData": "basic.regNo",
+			"type": "number"
+		},{
+			"name": "age",
+			"label": "Age",
+			"modalData": "basic.age",
+			"type": "number"
+		},{
+			"name": "isMarried",
+			"label": "Is Married",
+			"modalData": "basic.isMarried",
+			"type": "boolean"
+		},{
+			"name": "education",
+			"label": "Education",
+			"modalData": "basic.education",
+			"type": "text"
+		},{
+			"name": "occupation",
+			"label": "Occupation",
+			"modalData": "basic.occupation",
+			"type": "text"
+		}
+	]
+}
