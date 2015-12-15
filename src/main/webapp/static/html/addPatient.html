@@ -142,9 +142,9 @@
     <div class="brand">Portal</div>
 	<div class="menu-list">
 		<ul id="menu-content" class="menu-content collapse out">
-             <li ng-repeat="step in patientWizzard.wizzardStepAry" ng-class="step.class" ng-click="selectWizzardStep(step)">
-             	<a href="">{{step.label}}</a>
-             </li>		    
+      <li ng-repeat="step in patientWizzard.wizzardStepAry" ng-class="step.class" ng-click="selectWizzardStep(step)">
+        <a href="">{{step.label}}</a>
+      </li>		    
 		</ul>
 	</div>
 </div>
@@ -153,7 +153,7 @@
      <div class="col-md-2">
     </div>
     <div class="col-md-10" ng-repeat="(key, value) in patientWizzard.wizzardData" ng-hide="value.isHidden">
-		<portal-form form-data="value" actionfn="submitPatientForm(patientDataType, patientData)"/>
+		  <portal-form form-data="value" actionfn="submitPatientForm(patientDataType, patientData)"/>
     </div>
 </div>
 

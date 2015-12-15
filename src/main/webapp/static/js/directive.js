@@ -5,34 +5,77 @@ directiveM.directive("portalTable",function(){
         restrict: "E",
         templateUrl: "html/directive/portalTable.html",
         scope: {
-            data: "="
+            data: "=",
+            editfn: '&',
+            viewfn: '&',
+            deletefn: '&'
         },
         controller: function($scope) {
             $scope.searchRow=   {};
+            $scope.selectedRow = null;
+            $scope.summary= {};
+            //$scope.active=   false;            
             $scope.sort= function(sortCol) {
                 $scope.sortCol = sortCol;
                 $scope.sortOrder = !$scope.sortOrder;
-            }        
-            $scope.selectedRows = [];
-            $scope.selectRow = function(row){
-                if(row.selected){
-                    row.selected = false;       
-                    var index = $scope.selectedRows.indexOf(row);
-                    $scope.selectedRows.splice(index-1, 1);
-                }else{
-                    row.selected = true;    
-                    $scope.selectedRows.push(row);
-                }
-            }
-            $scope.summary=   {};
-            $scope.active=   false;
+            };        
+            $scope.selectRow = function(selectedRow){
+                $scope.selectedRow= selectedRow;
+                angular.forEach($scope.data.rowData, function(currentRow){
+                  currentRow.selected = false;
+                });
+                selectedRow.selected = true;
+            };
             $scope.fetchSummary= function(row) {
                 $scope.summary.data= row;
                 $scope.summary.active= true;
                 $scope.summary.size= Object.keys(row).length;
                 $scope.summary.colSize= Object.keys(row).length;
-            }
-        }
+            }           
+            //--row actions 
+            $scope.rowSelectionCheck= function(){
+                if(!$scope.selectedRow){
+                    alert("Please select 1 row!");
+                    return false;
+                }
+                return true;
+            };               
+            $scope.editRow= function(){
+                if($scope.rowSelectionCheck()){
+                    $scope.editRowUpdate($scope.selectedRow);
+                }
+            };
+            $scope.viewRow= function(){
+                if($scope.rowSelectionCheck()){
+                    $scope.viewRowUpdate($scope.selectedRow);
+                }
+            };
+            $scope.deleteRow= function(){
+                if($scope.rowSelectionCheck()){
+                    $scope.deleteRowUpdate($scope.selectedRow);
+                }
+            };                        
+        },
+        link: function($scope, element, attrs, controllers){
+            $scope.editRowUpdate = function(editRow) {
+                //alert("editRowUpdate");
+                $scope.editfn({
+                    "editRow": editRow,
+                });
+            };
+             $scope.viewRowUpdate = function(viewRow) {
+                //alert("viewRowUpdate");
+                $scope.viewfn({
+                    "viewRow":viewRow,
+                });
+            };
+            $scope.deleteRowUpdate = function(deleteRow) {
+                //alert("deleteRowUpdate");
+                $scope.deletefn({
+                    "deleteRow":deleteRow,
+                });
+            };                       
+        }        
     }; 
 });
 
@@ -103,7 +146,27 @@ directiveM.directive('portalForm', ['$compile', '$parse', function ($compile, $p
                     "patientDataType":patientDataType,
                     "patientData":patientData
                 });
+            };
+        }
+    };
+}]);
+
+directiveM.directive('portalSummaryPage', ['$compile', '$parse', function ($compile, $parse) {
+    return {
+        restrict: 'E',
+        templateUrl: 'html/directive/portalSummaryPage.html',
+        scope: {
+            summaryData: '=',
+            actionfn: '&'
+        },
+        controller: function($scope, $element, $attrs, $transclude) {
+            $scope.someVal= "djhdfjhdjfhjhfjdf";
+            $scope.isObjProp= function(val){
+                var isObj= angular.isObject(val);
+                return isObj;
             }
+        },
+        link: function($scope, element, attrs, controllers){
         }
     };
 }]);

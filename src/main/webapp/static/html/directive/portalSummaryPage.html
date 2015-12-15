@@ -1,9 +1,57 @@
-<div ng-repeat="(summaryObjKey, summaryObjVal) in summaryData" class="form-horizontal">
-	<h3>summaryObjKey</h3>
-	<div ng-repeat="(key, value) in summaryObjVal" class="form-group">
+
+<div class="form-horizontal">
+	
+	<div ng-repeat="(key, val) in summaryData" class="form-group">
 		<label class="col-sm-2 control-label">{{key}}</label>
 		<div class="col-sm-10">
-			<p class="form-control-static">{{value}}</p>
+			<p class="form-control-static">{{val}}</p>
 		</div>
 	</div>
+	
 </div>
+
+<!--
+<div class="form-horizontal">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">key</label>
+		<div class="col-sm-10">
+			<p class="form-control-static">value</p>
+		</div>
+	</div>
+	
+</div>
+-->
+<!-- 
+
+{{summaryData}}
+
+	<div ng-if="isObjProp(null)">
+		this is obj
+	</div>
+
+<div ng-repeat="(key, value) in summaryData" class="form-horizontal">
+
+
+{{key}}
+	<div ng-if="isObjProp(value)">
+		this is obj
+	</div>
+
+	<div ng-if="!isObjProp(value)">
+		this is not obj 
+		
+	</div>
+
+	<h3>{{key}}</h3>{{value}}
+
+	
+	<div ng-repeat="(k, v) in value" class="form-group">
+		<label class="col-sm-2 control-label">{{k}}</label>
+		<div class="col-sm-10">
+			<p class="form-control-static">{{v}}</p>
+		</div>
+	</div>
+	
+</div>
+-->

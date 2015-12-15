@@ -11,9 +11,11 @@ public interface PatientService {
 
     PatientEntity getPatient(long patientId);
 
-    List<PatientEntity> loadAllPatient();
+    List<PatientEntity> getAllPatients();
 
     void deletePatient(PatientEntity patient);
 
     void deletePatientPermanently(PatientEntity patient);
+
+	PatientEntity getFullPatient(long patientId);
 }

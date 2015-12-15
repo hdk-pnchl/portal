@@ -4,7 +4,12 @@
 		<br>
 		Showing {{ filtered_rows.length }} / {{ data.rowData.length }} result!
 		<br>
-		No. of rows selected {{ selectedRows.length }} / {{ data.rowData.length }}!
+		row selected {{ selectedRow }}
+	</div>
+	<div>
+		<button class="btn btn-primary btn-xs" type="submit" ng-click="viewRow()" >View</button>
+		<button class="btn btn-success btn-xs" type="submit" ng-click="editRow()">Edit</button>
+		<button class="btn btn-danger btn-xs" type="submit" ng-click="deleteRow()">Delete</button>
 	</div>
 	<div>
 		<div id="tblData" ng-hide="summary.active" class="row">
