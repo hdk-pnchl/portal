@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="localhost@apache-tomcat-7.0.64"/>
+  <runtime name="apache-tomcat-7.0.65@localhost"/>
   <fixed facet="wst.jsdt.web"/>
   <installed facet="jst.web" version="3.0"/>
   <installed facet="wst.jsdt.web" version="1.0"/>

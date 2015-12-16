@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 public class InterrogateEntity
@@ -59,6 +61,7 @@ public class InterrogateEntity
     private String attitudeToSelf;
     private String religiousBelieve;
 
+    @JsonIgnore 
     @OneToOne(mappedBy = "interrogate")
     private PatientEntity patient;
 
@@ -358,6 +361,7 @@ public class InterrogateEntity
         this.religiousBelieve = religiousBelieve;
     }
 
+    @JsonIgnore
     public PatientEntity getPatient() {
         return patient;
     }

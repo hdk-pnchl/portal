@@ -161,7 +161,7 @@ directiveM.directive('portalSummaryPage', ['$compile', '$parse', function ($comp
         },
         controller: function($scope, $element, $attrs, $transclude) {
             $scope.someVal= "djhdfjhdjfhjhfjdf";
-            $scope.isObjProp= function(val){
+            $scope.isObjProp= function(key, val){
                 var isObj= angular.isObject(val);
                 return isObj;
             }

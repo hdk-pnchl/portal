@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 public class FamilyEntity
@@ -25,6 +27,7 @@ public class FamilyEntity
     private String ability;
     private String concern;
 
+    @JsonIgnore 
     @OneToOne(mappedBy="family")
     private PatientEntity patient;
 
@@ -60,6 +63,7 @@ public class FamilyEntity
         this.concern = concern;
     }
 
+    @JsonIgnore
     public PatientEntity getPatient() {
         return patient;
     }

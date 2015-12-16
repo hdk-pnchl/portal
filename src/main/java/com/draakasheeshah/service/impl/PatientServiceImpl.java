@@ -20,8 +20,9 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public void saveOrUpdatePatient(PatientEntity patient) {
-		patientDAO.saveOrUpdatePatient(patient);
+	public PatientEntity saveOrUpdatePatient(PatientEntity patient) {
+		patient = patientDAO.saveOrUpdatePatient(patient);
+		return patient;
 	}
 
 	@Override

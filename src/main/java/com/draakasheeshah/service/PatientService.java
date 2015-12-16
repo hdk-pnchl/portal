@@ -7,7 +7,7 @@ import com.draakasheeshah.bo.PatientEntity;
 public interface PatientService {
     PatientEntity savePatient(PatientEntity patient);
 
-    void saveOrUpdatePatient(PatientEntity patient);
+    PatientEntity saveOrUpdatePatient(PatientEntity patient);
 
     PatientEntity getPatient(long patientId);
 

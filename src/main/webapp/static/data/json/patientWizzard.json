@@ -1,27 +1,41 @@
 {
-	"wizzardStepAry": [
-		{
+	"wizzardStepData": {
+		"basic": {
 			"name": "basic",
 			"label": "Basic",
-			"active": true
-		},{
+			"active": true,
+			"class": "active",
+			"submitted": false,
+			"next": "address"
+		},
+		"address": {
 			"name": "address",
 			"label": "Address",
-			"active": false
-		},{
+			"active": false,
+			"submitted": false,
+			"next": "family"
+		},
+		"family": {
 			"name": "family",
 			"label": "Family",
-			"active": false
-		},{
+			"active": false,
+			"submitted": false,
+			"next": "observation"			
+		},
+		"observation":{
 			"name": "observation",
 			"label": "Observation",
-			"active": false
-		},{
+			"active": false,
+			"submitted": false,
+			"next": "interrogate"			
+		},
+		"interrogate":{
 			"name": "interrogate",
 			"label": "Interrogate",
-			"active": false
+			"active": false,
+			"submitted": false			
 		}
-	],
+	},
 	"wizzardData":{
 		"basic": {
 			"formDesc": "Enter Patient's basic detail",

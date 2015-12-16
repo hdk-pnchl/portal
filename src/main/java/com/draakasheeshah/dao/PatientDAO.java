@@ -10,7 +10,7 @@ public interface PatientDAO {
 
     PatientEntity savePatient(PatientEntity patient);
 
-    void saveOrUpdatePatient(PatientEntity patient);
+    PatientEntity saveOrUpdatePatient(PatientEntity patient);
 
     PatientEntity getPatient(long patientId);
 

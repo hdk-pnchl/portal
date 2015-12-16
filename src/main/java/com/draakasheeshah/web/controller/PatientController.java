@@ -36,7 +36,7 @@ public class PatientController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public @ResponseBody PatientEntity savePatient(@RequestBody PatientEntity patient) {
 		System.out.println("/patient" + " : " + "/saveOrUpdate");
-		patient = patientService.savePatient(patient);
+		patient = patientService.saveOrUpdatePatient(patient);
 		return patient;
 	}
 

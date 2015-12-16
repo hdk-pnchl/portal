@@ -1,0 +1,14 @@
+1.
+	Fix banner
+		-banner should update it self with view
+			-may we need add listener to URL to know curent view and accordingly switch the banner tab.
+2.
+	fix the patient summary
+		-find out best way sho the summary.
+		-implement patient summary
+
+3.
+	fix patients prop types in entiry
+		-text vs textbox
+	boolean types
+		

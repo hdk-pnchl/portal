@@ -47,10 +47,16 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
     }); 
  
     $scope.selectWizzardStep= function(selectedWizzardStep){
-        angular.forEach($scope.patientWizzard.wizzardStepAry, function(wizzardStep){
+        if(selectedWizzardStep.name != $scope.patientWizzard.wizzardStepData.basic.name && !$scope.patientWizzard.wizzardStepData.basic.submitted){
+            alert("Please enter the basic detail first.");
+            return;
+        }
+        angular.forEach($scope.patientWizzard.wizzardStepData, function(wizzardStep){
             wizzardStep.active = false;
+            wizzardStep.class = '';
         });    
         selectedWizzardStep.active= true;
+        selectedWizzardStep.class = 'active';
 
         angular.forEach($scope.patientWizzard.wizzardData, function(value, key){
             value.isHidden = true;
@@ -59,14 +65,23 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
     };
     
     $scope.submitPatientForm = function(patientDataType, patientData){        
-        //console.log(patientDataType);
-        //console.log(patientData);
-        
-        patientService.save({patienAction:"save"}, patientData, function(){
-            $location.path('/patients')
+        if(patientDataType == "basic"){
+            $scope.patientData= patientData;
+        }else{
+            $scope.patientData[patientDataType]= patientData
+        }
+        patientService.save({patienAction:"save"}, $scope.patientData, function(persistedPatientData){
+            if(patientDataType == "interrogate"){
+                $location.path('/patients');
+            }else{
+                var currentWizzardStep= $scope.patientWizzard.wizzardStepData[patientDataType];
+                currentWizzardStep.submitted= true;
+                $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);
+                $scope.patientData= persistedPatientData;                
+            }    
         },function(){
             alert("patients save failure");
-        });          
+        });      
     };
 }]);
 

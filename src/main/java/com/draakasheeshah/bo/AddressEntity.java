@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 public class AddressEntity
@@ -28,6 +30,7 @@ public class AddressEntity
     private String addressLine2;
     private String addressLine3;
 
+    @JsonIgnore 
     @OneToOne(mappedBy="address")
     private PatientEntity patient;
 
@@ -87,6 +90,7 @@ public class AddressEntity
         this.addressLine3 = addressLine3;
     }
 
+    @JsonIgnore
     public PatientEntity getPatient() {
         return patient;
     }

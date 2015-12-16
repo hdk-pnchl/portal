@@ -23,8 +23,10 @@ public class PatientDAOImpl implements PatientDAO {
 	}
 
 	@Override
-	public void saveOrUpdatePatient(PatientEntity patient) {
+	public PatientEntity saveOrUpdatePatient(PatientEntity patient) {
+		patient= hibernateTemplate.merge(patient);
 		hibernateTemplate.saveOrUpdate(patient);
+		return patient;
 	}
 
 	@Override
