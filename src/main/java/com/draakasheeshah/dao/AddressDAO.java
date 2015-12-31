@@ -6,17 +6,17 @@ import com.draakasheeshah.bo.AddressEntity;
 
 public interface AddressDAO {
 
-    // -----Address
+	// -----Address
 
-    AddressEntity saveAddress(AddressEntity address);
+	AddressEntity saveOrUpdate(AddressEntity address);
 
-    void saveOrUpdateAddress(AddressEntity address);
+	AddressEntity get(long addressId);
 
-    AddressEntity getAddress(long addressId);
+	List<AddressEntity> loadAll();
 
-    List<AddressEntity> loadAllAddress();
+	void delete(AddressEntity address);
 
-    void deleteAddress(AddressEntity address);
+	void deletePermanently(AddressEntity address);
 
-    void deleteAddressPermanently(AddressEntity address);
+	AddressEntity save(AddressEntity address, long patentId);
 }

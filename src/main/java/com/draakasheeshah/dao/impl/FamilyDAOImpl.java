@@ -7,44 +7,46 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.draakasheeshah.bo.FamilyEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.FamilyDAO;
 
 @Repository
-public class FamilyDAOImpl
-    implements FamilyDAO
-{
-    @Autowired
-    private HibernateTemplate hibernateTemplate;
+public class FamilyDAOImpl implements FamilyDAO {
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-    @Override
-    public FamilyEntity saveFamily(FamilyEntity family) {
-        return (FamilyEntity)hibernateTemplate.save(family);
-    }
+	@Override
+	public FamilyEntity save(FamilyEntity family, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		family.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(family);
+		return family;
+	}
 
-    @Override
-    public void saveOrUpdateFamily(FamilyEntity family) {
-        hibernateTemplate.saveOrUpdate(family);
+	@Override
+	public FamilyEntity saveOrUpdate(FamilyEntity family) {
+		hibernateTemplate.saveOrUpdate(family);
+		return family;
+	}
 
-    }
+	@Override
+	public FamilyEntity get(long familyId) {
+		return hibernateTemplate.get(FamilyEntity.class, familyId);
+	}
 
-    @Override
-    public FamilyEntity getFamily(long familyId) {
-        return hibernateTemplate.get(FamilyEntity.class, familyId);
-    }
+	@Override
+	public List<FamilyEntity> loadAll() {
+		return hibernateTemplate.loadAll(FamilyEntity.class);
+	}
 
-    @Override
-    public List<FamilyEntity> loadAllFamily() {
-        return hibernateTemplate.loadAll(FamilyEntity.class);
-    }
+	@Override
+	public void delete(FamilyEntity family) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public void deleteFamily(FamilyEntity family) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void deleteFamilyPermanently(FamilyEntity family) {
-        hibernateTemplate.delete(family);
-    }
+	@Override
+	public void deletePermanently(FamilyEntity family) {
+		hibernateTemplate.delete(family);
+	}
 
 }

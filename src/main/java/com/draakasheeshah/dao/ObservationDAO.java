@@ -6,17 +6,17 @@ import com.draakasheeshah.bo.ObservationEntity;
 
 public interface ObservationDAO {
 
-    // -----Observation
+	// -----Observation
 
-    ObservationEntity saveObservation(ObservationEntity observationEntity);
+	ObservationEntity save(ObservationEntity observationEntity, long patientId);
 
-    void saveOrUpdateObservation(ObservationEntity observationEntity);
+	ObservationEntity saveOrUpdate(ObservationEntity observationEntity);
 
-    ObservationEntity getObservation(long observationId);
+	ObservationEntity get(long observationId);
 
-    List<ObservationEntity> loadAllObservation();
+	List<ObservationEntity> loadAll();
 
-    void deleteObservation(ObservationEntity observationEntity);
+	void delete(ObservationEntity observationEntity);
 
-    void deleteObservationPermanently(ObservationEntity observationEntity);
+	void deletePermanently(ObservationEntity observationEntity);
 }

@@ -5,44 +5,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.draakasheeshah.bo.AddressEntity;
-import com.draakasheeshah.dao.AddressDAO;
-import com.draakasheeshah.service.AddressService;
+import com.draakasheeshah.bo.FamilyEntity;
+import com.draakasheeshah.dao.FamilyDAO;
+import com.draakasheeshah.service.FamilyService;
 
 @Service
-public class FamilyServiceImpl
-    implements AddressService
-{
-    @Autowired
-    AddressDAO addressDAO;
+public class FamilyServiceImpl implements FamilyService {
+	@Autowired
+	FamilyDAO familyDAO;
 
-    @Override
-    public AddressEntity saveAddress(AddressEntity address) {
-        return addressDAO.saveAddress(address);
-    }
+	@Override
+	public FamilyEntity save(FamilyEntity  family, long patientId) {
+		return familyDAO.save(family, patientId);
+	}
 
-    @Override
-    public void saveOrUpdateAddress(AddressEntity address) {
-        addressDAO.saveOrUpdateAddress(address);
-    }
+	@Override
+	public FamilyEntity saveOrUpdate(FamilyEntity family) {
+		family = familyDAO.saveOrUpdate(family);
+		return family;
+	}
 
-    @Override
-    public AddressEntity getAddress(long addressId) {
-        return addressDAO.getAddress(addressId);
-    }
+	@Override
+	public FamilyEntity get(long familyId) {
+		return familyDAO.get(familyId);
+	}
 
-    @Override
-    public List<AddressEntity> loadAllAddress() {
-        return addressDAO.loadAllAddress();
-    }
+	@Override
+	public List<FamilyEntity> loadAll() {
+		return familyDAO.loadAll();
+	}
 
-    @Override
-    public void deleteAddress(AddressEntity address) {
-        addressDAO.deleteAddress(address);
-    }
+	@Override
+	public void delete(FamilyEntity family) {
+		familyDAO.delete(family);
+	}
 
-    @Override
-    public void deleteAddressPermanently(AddressEntity address) {
-        addressDAO.deleteAddressPermanently(address);
-    }
+	@Override
+	public void deletePermanently(FamilyEntity family) {
+		familyDAO.deletePermanently(family);
+	}
 }

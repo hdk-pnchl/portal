@@ -7,42 +7,45 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.draakasheeshah.bo.InterrogateEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.InterrogateDAO;
 
 @Repository
-public class InterrogateDAOImp
-    implements InterrogateDAO
-{
-    @Autowired
-    private HibernateTemplate hibernateTemplate;
+public class InterrogateDAOImp implements InterrogateDAO {
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-    @Override
-    public InterrogateEntity saveInterrogate(InterrogateEntity interrogate) {
-        return (InterrogateEntity)hibernateTemplate.save(interrogate);
-    }
+	@Override
+	public InterrogateEntity save(InterrogateEntity interrogate, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		interrogate.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(interrogate);
+		return interrogate;
+	}
 
-    @Override
-    public void saveOrUpdateInterrogate(InterrogateEntity interrogate) {
-        hibernateTemplate.saveOrUpdate(interrogate);
-    }
+	@Override
+	public InterrogateEntity saveOrUpdate(InterrogateEntity interrogate) {
+		hibernateTemplate.saveOrUpdate(interrogate);
+		return interrogate;
+	}
 
-    @Override
-    public InterrogateEntity getInterrogate(long interrogateId) {
-        return hibernateTemplate.get(InterrogateEntity.class, interrogateId);
-    }
+	@Override
+	public InterrogateEntity get(long interrogateId) {
+		return hibernateTemplate.get(InterrogateEntity.class, interrogateId);
+	}
 
-    @Override
-    public List<InterrogateEntity> loadAllInterrogate() {
-        return hibernateTemplate.loadAll(InterrogateEntity.class);
-    }
+	@Override
+	public List<InterrogateEntity> loadAll() {
+		return hibernateTemplate.loadAll(InterrogateEntity.class);
+	}
 
-    @Override
-    public void deleteInterrogate(InterrogateEntity interrogate) {
-        // TODO Auto-generated method stub
-    }
+	@Override
+	public void delete(InterrogateEntity interrogate) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public void deleteInterrogatePermanently(InterrogateEntity interrogate) {
-        hibernateTemplate.delete(interrogate);
-    }
+	@Override
+	public void deletePermanently(InterrogateEntity interrogate) {
+		hibernateTemplate.delete(interrogate);
+	}
 }

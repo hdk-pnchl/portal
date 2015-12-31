@@ -10,39 +10,38 @@ import com.draakasheeshah.dao.ObservationDAO;
 import com.draakasheeshah.service.ObservationService;
 
 @Service
-public class ObservationServiceImpl
-    implements ObservationService
-{
-    @Autowired
-    ObservationDAO observationDAO;
+public class ObservationServiceImpl implements ObservationService {
+	@Autowired
+	ObservationDAO observationDAO;
 
-    @Override
-    public ObservationEntity saveObservation(ObservationEntity observationEntity) {
-        return observationDAO.saveObservation(observationEntity);
-    }
+	@Override
+	public ObservationEntity save(ObservationEntity  observationEntity, long patientId) {
+		return observationDAO.save(observationEntity, patientId);
+	}
 
-    @Override
-    public void saveOrUpdateObservation(ObservationEntity observationEntity) {
-        observationDAO.saveOrUpdateObservation(observationEntity);
-    }
+	@Override
+	public ObservationEntity saveOrUpdate(ObservationEntity observationEntity) {
+		observationEntity = observationDAO.saveOrUpdate(observationEntity);
+		return observationEntity;
+	}
 
-    @Override
-    public ObservationEntity getObservation(long observationId) {
-        return observationDAO.getObservation(observationId);
-    }
+	@Override
+	public ObservationEntity get(long observationId) {
+		return observationDAO.get(observationId);
+	}
 
-    @Override
-    public List<ObservationEntity> loadAllObservation() {
-        return observationDAO.loadAllObservation();
-    }
+	@Override
+	public List<ObservationEntity> loadAll() {
+		return observationDAO.loadAll();
+	}
 
-    @Override
-    public void deleteObservation(ObservationEntity observationEntity) {
-        observationDAO.deleteObservation(observationEntity);
-    }
+	@Override
+	public void delete(ObservationEntity observationEntity) {
+		observationDAO.delete(observationEntity);
+	}
 
-    @Override
-    public void deleteObservationPermanently(ObservationEntity observationEntity) {
-        observationDAO.deleteObservationPermanently(observationEntity);
-    }
+	@Override
+	public void deletePermanently(ObservationEntity observationEntity) {
+		observationDAO.deletePermanently(observationEntity);
+	}
 }

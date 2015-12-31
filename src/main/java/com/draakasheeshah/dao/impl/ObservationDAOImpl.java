@@ -7,42 +7,45 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.draakasheeshah.bo.ObservationEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.ObservationDAO;
 
 @Repository
-public class ObservationDAOImpl
-    implements ObservationDAO
-{
-    @Autowired
-    private HibernateTemplate hibernateTemplate;
+public class ObservationDAOImpl implements ObservationDAO {
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-    @Override
-    public ObservationEntity saveObservation(ObservationEntity observation) {
-        return (ObservationEntity)hibernateTemplate.save(observation);
-    }
+	@Override
+	public ObservationEntity save(ObservationEntity observation, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		observation.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(observation);
+		return observation;
+	}
 
-    @Override
-    public void saveOrUpdateObservation(ObservationEntity observation) {
-        hibernateTemplate.save(observation);
-    }
+	@Override
+	public ObservationEntity saveOrUpdate(ObservationEntity observation) {
+		hibernateTemplate.save(observation);
+		return observation;
+	}
 
-    @Override
-    public ObservationEntity getObservation(long observationId) {
-        return hibernateTemplate.get(ObservationEntity.class, observationId);
-    }
+	@Override
+	public ObservationEntity get(long observationId) {
+		return hibernateTemplate.get(ObservationEntity.class, observationId);
+	}
 
-    @Override
-    public List<ObservationEntity> loadAllObservation() {
-        return hibernateTemplate.loadAll(ObservationEntity.class);
-    }
+	@Override
+	public List<ObservationEntity> loadAll() {
+		return hibernateTemplate.loadAll(ObservationEntity.class);
+	}
 
-    @Override
-    public void deleteObservation(ObservationEntity observationEntity) {
-        // TODO Auto-generated method stub
-    }
+	@Override
+	public void delete(ObservationEntity observationEntity) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public void deleteObservationPermanently(ObservationEntity observationEntity) {
-        hibernateTemplate.delete(observationEntity);
-    }
+	@Override
+	public void deletePermanently(ObservationEntity observationEntity) {
+		hibernateTemplate.delete(observationEntity);
+	}
 }

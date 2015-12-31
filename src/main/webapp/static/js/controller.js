@@ -2,17 +2,29 @@ var controllersM= angular.module('controllersM', ['servicesM']);
 
 //------------------------------------CoreController
 
-controllersM.controller('CoreController', ['$scope', '$http', function($scope, $http){
+controllersM.controller('CoreController', ['$scope', '$http','$location', function($scope, $http, $location){
+    $scope.absUrlCore = $location.absUrl();
+    $scope.urlCore = $location.url();
+    $scope.protocolCore = $location.protocol();
+    $scope.hostCore = $location.host();
+    $scope.portCore = $location.port();
+    $scope.searchObjectCore = $location.search();
+    $scope.hashCore = $location.hash();
 }]);
 
 //------------------------------------BannerController
 
-controllersM.controller('BannerController', ['$scope', '$http', function($scope, $http){
+controllersM.controller('BannerController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location){
 	$http.get('data/json/bannerData.json').then(function(response){
     	$scope.bannerdata = response.data;
   	}, function(response){
     	alert('something wrong with: /nowstatic/data/json/bannerData.json');
   	});	    
+
+    $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
+        console.log("newUrl:" + newUrl); 
+        console.log("$location.path:" + $location.path()); 
+    });
 }]);
 
 //------------------------------------PatientsController
@@ -21,17 +33,17 @@ controllersM.controller('PatientsController', ['$scope', '$http','PatientService
     $http.get('data/json/patientColumnData.json').then(function(response){
         $scope.patientGridtData= {};
         $scope.patientGridtData.columnData = response.data;
-        $scope.patientGridtData.rowData= patientService.query({patienAction:"getAll"}); 
+        $scope.patientGridtData.rowData= patientService.basic.query({action:"getAll"}); 
         //console.log($scope.patientGridtData);
     }, function(response){
         alert('something wrong with: /nowstatic/data/json/patientColumnData.json');
     });
     $scope.editPatient = function(editRow){  
-        var summaryPath= '/patientSummary/'+editRow.id;
-        $location.path(summaryPath);
         //alert("editPatient");   
     };
-    $scope.viewPatient = function(viewRow){   
+    $scope.viewPatient = function(viewRow){ 
+        var summaryPath= '/patientSummary/'+viewRow.id;
+        $location.path(summaryPath);      
         //alert("viewPatient");      
     };
     $scope.deletePatient = function(deleteRow){ 
@@ -41,7 +53,7 @@ controllersM.controller('PatientsController', ['$scope', '$http','PatientService
 
 //------------------------------------AddPatientController
 
-controllersM.controller('AddPatientController', ['$scope', '$http','PatientService', '$location', function($scope, $http, patientService, $location){
+controllersM.controller('AddPatientController', ['$scope', '$http','PatientService', '$location', function($scope, $http, $patientService, $location){
     $http.get('data/json/patientWizzard.json').then(function(response){
         $scope.patientWizzard = response.data;
     }); 
@@ -63,23 +75,34 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
         });    
         $scope.patientWizzard.wizzardData[selectedWizzardStep.name].isHidden=false;
     };
-    
-    $scope.submitPatientForm = function(patientDataType, patientData){        
-        if(patientDataType == "basic"){
-            $scope.patientData= patientData;
-        }else{
-            $scope.patientData[patientDataType]= patientData
-        }
-        patientService.save({patienAction:"save"}, $scope.patientData, function(persistedPatientData){
+
+    $scope.patientData= {};    
+    $scope.submitPatientForm = function(patientDataType, patientData){     
+        var service= $patientService[patientDataType];
+        if(patientDataType != "basic"){
+            patientData.patient= $scope.patientData;
+        }              
+        service.save({
+            action: "save",
+            patientId: $scope.patientData.id
+        }, 
+        patientData, 
+        function(persistedPatientData){
+            if(patientDataType == "basic"){
+                $scope.patientData= persistedPatientData;
+            }           
+            //if, its last step, show added patients view
             if(patientDataType == "interrogate"){
                 $location.path('/patients');
             }else{
+                //mark current stpe done
                 var currentWizzardStep= $scope.patientWizzard.wizzardStepData[patientDataType];
-                currentWizzardStep.submitted= true;
-                $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);
-                $scope.patientData= persistedPatientData;                
-            }    
-        },function(){
+                currentWizzardStep.submitted= true;                  
+                //move to next step in the wizzard
+                $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);                  
+            }          
+        }, 
+        function(){
             alert("patients save failure");
         });      
     };
@@ -95,8 +118,8 @@ controllersM.controller('PatientSummaryController', ['$scope', '$route', '$route
     $scope.patientDetail= {};
 
     if($scope.routeParams.patientId){
-         patientService.get({
-            patienAction: "getFull",
+         patientService.basic.get({
+            action: "getFull",
             patientid: $scope.routeParams.patientId
         }, function(patientDataResp){
             $scope.patientDetail= patientDataResp;
@@ -107,13 +130,13 @@ controllersM.controller('PatientSummaryController', ['$scope', '$route', '$route
 }]);
 
 /*
-patientService.get({patienAction:"test"},function(){
+patientService.get({action:"test"},function(){
     alert("test success");
 },function(){
     alert("failure");
 });
 
-patientService.query({patienAction:"save"},{
+patientService.query({action:"save"},{
     age: 232,
     basic: "fdf",
     education: "fdf",

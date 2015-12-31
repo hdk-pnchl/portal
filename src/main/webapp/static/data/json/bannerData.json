@@ -4,26 +4,29 @@
 		"defaultPath": "/home"	
 	},
 	"navData": {
-		"mainNavData": [{
+		"mainNavData": {
+			"patients": {
 				"title": "Patients",
 				"active": true,
 				"disabled": false,
 				"hidden": false,
 				"path": "/patients"		
-			},{
+			},
+			"addPatient": {
 				"title": "Add patient",
 				"active": false,
 				"disabled": false,
 				"hidden": false,
 				"path": "/addPatient"		
-			},{
+			},
+			"patientSummary": {
 				"title": "Patient summary",
 				"active": false,
 				"disabled": false,
 				"hidden": false,
 				"path": "/patientSummary"		
 			}
-		],
+		}, 
 		"configNavData": [{
 				"title": "Sign In",
 				"active": false,

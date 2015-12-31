@@ -17,27 +17,27 @@ public class PatientDAOImpl implements PatientDAO {
 	private HibernateTemplate hibernateTemplate;
 
 	@Override
-	public PatientEntity savePatient(PatientEntity patient) {
+	public PatientEntity save(PatientEntity patient) {
 		hibernateTemplate.save(patient);
 		return patient;
 	}
 
 	@Override
-	public PatientEntity saveOrUpdatePatient(PatientEntity patient) {
-		patient= hibernateTemplate.merge(patient);
+	public PatientEntity saveOrUpdate(PatientEntity patient) {
 		hibernateTemplate.saveOrUpdate(patient);
+		//patient= hibernateTemplate.merge(patient);
 		return patient;
 	}
 
 	@Override
-	public PatientEntity getPatient(long patientId) {
+	public PatientEntity get(long patientId) {
 		PatientEntity patientEntity = hibernateTemplate.get(PatientEntity.class, patientId);
 		return patientEntity;
 	}
 
 	@Override
-	public PatientEntity getFullPatient(long patientId) {
-		PatientEntity patientEntity = this.getPatient(patientId);
+	public PatientEntity getFull(long patientId) {
+		PatientEntity patientEntity = this.get(patientId);
 		patientEntity.getAddress();
 		patientEntity.getFamily();
 		patientEntity.getInterrogate();
@@ -46,17 +46,17 @@ public class PatientDAOImpl implements PatientDAO {
 	}
 
 	@Override
-	public List<PatientEntity> getAllPatients() {
+	public List<PatientEntity> getAll() {
 		return hibernateTemplate.loadAll(PatientEntity.class);
 	}
 
 	@Override
-	public void deletePatient(PatientEntity patient) {
+	public void delete(PatientEntity patient) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void deletePatientPermanently(PatientEntity patient) {
+	public void deletePermanently(PatientEntity patient) {
 		hibernateTemplate.delete(patient);
 	}
 }

@@ -8,16 +8,16 @@ public interface FamilyDAO {
 
     // -----Family
 
-    FamilyEntity saveFamily(FamilyEntity family);
+    FamilyEntity save(FamilyEntity family, long patientId);
 
-    void saveOrUpdateFamily(FamilyEntity family);
+    FamilyEntity saveOrUpdate(FamilyEntity family);
 
-    FamilyEntity getFamily(long familyId);
+    FamilyEntity get(long familyId);
 
-    List<FamilyEntity> loadAllFamily();
+    List<FamilyEntity> loadAll();
 
-    void deleteFamily(FamilyEntity family);
+    void delete(FamilyEntity family);
 
-    void deleteFamilyPermanently(FamilyEntity family);
+    void deletePermanently(FamilyEntity family);
 
 }

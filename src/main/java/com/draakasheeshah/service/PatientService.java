@@ -5,17 +5,17 @@ import java.util.List;
 import com.draakasheeshah.bo.PatientEntity;
 
 public interface PatientService {
-    PatientEntity savePatient(PatientEntity patient);
+    PatientEntity save(PatientEntity patient);
 
-    PatientEntity saveOrUpdatePatient(PatientEntity patient);
+    PatientEntity saveOrUpdate(PatientEntity patient);
 
-    PatientEntity getPatient(long patientId);
+    PatientEntity get(long patientId);
 
-    List<PatientEntity> getAllPatients();
+    List<PatientEntity> getAll();
 
-    void deletePatient(PatientEntity patient);
+    void delete(PatientEntity patient);
 
-    void deletePatientPermanently(PatientEntity patient);
+    void deletePermanently(PatientEntity patient);
 
-	PatientEntity getFullPatient(long patientId);
+	PatientEntity getFull(long patientId);
 }

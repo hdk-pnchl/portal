@@ -5,15 +5,16 @@ import java.util.List;
 import com.draakasheeshah.bo.FamilyEntity;
 
 public interface FamilyService {
-    FamilyEntity saveFamily(FamilyEntity family);
+	FamilyEntity save(FamilyEntity  address, long patientId);
 
-    void saveOrUpdateFamily(FamilyEntity family);
+	FamilyEntity saveOrUpdate(FamilyEntity family);
 
-    FamilyEntity getFamily(long familyId);
+	FamilyEntity get(long familyId);
 
-    List<FamilyEntity> loadAllFamily();
+	List<FamilyEntity> loadAll();
 
-    void deleteFamily(FamilyEntity family);
+	void delete(FamilyEntity family);
 
-    void deleteFamilyPermanently(FamilyEntity family);
+	void deletePermanently(FamilyEntity family);
+
 }

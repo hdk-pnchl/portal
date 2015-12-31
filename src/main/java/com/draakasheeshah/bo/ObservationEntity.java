@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,8 +46,9 @@ public class ObservationEntity implements Serializable {
 	private String memory;
 	private String orientation;
 
-	@JsonIgnore 
-	@OneToOne(mappedBy = "observation")
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "patient")
 	private PatientEntity patient;
 
 	public String getPosture() {
@@ -97,4 +99,13 @@ public class ObservationEntity implements Serializable {
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }

@@ -10,39 +10,38 @@ import com.draakasheeshah.dao.InterrogateDAO;
 import com.draakasheeshah.service.InterrogateService;
 
 @Service
-public class InterrogateServiceImpl
-    implements InterrogateService
-{
-    @Autowired
-    InterrogateDAO interrogateDAO;
+public class InterrogateServiceImpl implements InterrogateService {
+	@Autowired
+	InterrogateDAO interrogateDAO;
 
-    @Override
-    public InterrogateEntity saveInterrogate(InterrogateEntity interrogate) {
-        return interrogateDAO.saveInterrogate(interrogate);
-    }
+	@Override
+	public InterrogateEntity save(InterrogateEntity interrogate, long patientId) {
+		return interrogateDAO.save(interrogate, patientId);
+	}
 
-    @Override
-    public void saveOrUpdateInterrogate(InterrogateEntity interrogate) {
-        interrogateDAO.saveOrUpdateInterrogate(interrogate);
-    }
+	@Override
+	public InterrogateEntity saveOrUpdate(InterrogateEntity interrogate) {
+		interrogate = interrogateDAO.saveOrUpdate(interrogate);
+		return interrogate;
+	}
 
-    @Override
-    public InterrogateEntity getInterrogate(long interrogateId) {
-        return interrogateDAO.getInterrogate(interrogateId);
-    }
+	@Override
+	public InterrogateEntity get(long interrogateId) {
+		return interrogateDAO.get(interrogateId);
+	}
 
-    @Override
-    public List<InterrogateEntity> loadAllInterrogate() {
-        return interrogateDAO.loadAllInterrogate();
-    }
+	@Override
+	public List<InterrogateEntity> loadAll() {
+		return interrogateDAO.loadAll();
+	}
 
-    @Override
-    public void deleteInterrogate(InterrogateEntity interrogate) {
-        interrogateDAO.deleteInterrogate(interrogate);
-    }
+	@Override
+	public void delete(InterrogateEntity interrogate) {
+		interrogateDAO.delete(interrogate);
+	}
 
-    @Override
-    public void deleteInterrogatePermanently(InterrogateEntity interrogate) {
-        interrogateDAO.deleteInterrogatePermanently(interrogate);
-    }
+	@Override
+	public void deletePermanently(InterrogateEntity interrogate) {
+		interrogateDAO.deletePermanently(interrogate);
+	}
 }

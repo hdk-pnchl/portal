@@ -26,3 +26,10 @@ portalM.config(['$routeProvider',function($routeProvider){
         redirectTo: '/patients'
 	});
 }]);
+
+portalM.config(['$locationProvider', function($locationProvider){
+	//$locationProvider.html5Mode({ enabled: true });	
+	// $locationProvider.html5Mode(true);
+}]);
+
+

@@ -6,7 +6,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li ng-repeat="tab in bannerData.navData.mainNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
+                <li ng-repeat="(tabName, tab) in bannerData.navData.mainNavData" ng-class="{active: tab.active}" ng-hide="tab.hidden">
                   <a href="#{{tab.path}}">{{tab.title}}</a>
                 </li>
               </ul>             

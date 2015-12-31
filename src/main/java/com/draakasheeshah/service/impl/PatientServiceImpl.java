@@ -15,38 +15,38 @@ public class PatientServiceImpl implements PatientService {
 	PatientDAO patientDAO;
 
 	@Override
-	public PatientEntity savePatient(PatientEntity patient) {
-		return patientDAO.savePatient(patient);
+	public PatientEntity save(PatientEntity patient) {
+		return patientDAO.save(patient);
 	}
 
 	@Override
-	public PatientEntity saveOrUpdatePatient(PatientEntity patient) {
-		patient = patientDAO.saveOrUpdatePatient(patient);
+	public PatientEntity saveOrUpdate(PatientEntity patient) {
+		patient = patientDAO.saveOrUpdate(patient);
 		return patient;
 	}
 
 	@Override
-	public PatientEntity getPatient(long patientId) {
-		return patientDAO.getPatient(patientId);
+	public PatientEntity get(long patientId) {
+		return patientDAO.get(patientId);
 	}
 
 	@Override
-	public PatientEntity getFullPatient(long patientId) {
-		return patientDAO.getFullPatient(patientId);
+	public PatientEntity getFull(long patientId) {
+		return patientDAO.getFull(patientId);
 	}
 
 	@Override
-	public List<PatientEntity> getAllPatients() {
-		return patientDAO.getAllPatients();
+	public List<PatientEntity> getAll() {
+		return patientDAO.getAll();
 	}
 
 	@Override
-	public void deletePatient(PatientEntity patient) {
-		patientDAO.deletePatient(patient);
+	public void delete(PatientEntity patient) {
+		patientDAO.delete(patient);
 	}
 
 	@Override
-	public void deletePatientPermanently(PatientEntity patient) {
-		patientDAO.deletePatientPermanently(patient);
+	public void deletePermanently(PatientEntity patient) {
+		patientDAO.deletePermanently(patient);
 	}
 }

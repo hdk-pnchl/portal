@@ -1,5 +1,7 @@
 var directiveM= angular.module('directiveM', []);
 
+/* -----------------TABLE-----------------*/
+
 directiveM.directive("portalTable",function(){
     return {
         restrict: "E",
@@ -79,6 +81,8 @@ directiveM.directive("portalTable",function(){
     }; 
 });
 
+/* -----------------BANNER-----------------*/
+
 directiveM.directive('banner', function(){
   	return {
   		restrict: 'E',
@@ -86,7 +90,7 @@ directiveM.directive('banner', function(){
 	    scope: {
 	      	bannerData: '='
 	    },
-	    controller: function($scope) {
+	    controller: function($scope, $rootScope, $location) {
 	      	$scope.selectTab = function(tab) {
 		        angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
 		          tab.active = false;
@@ -96,6 +100,16 @@ directiveM.directive('banner', function(){
 		        });		        
 		        tab.active = true;
 	      	};
+
+            $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
+                console.log("newUrl:" + newUrl); 
+                console.log("$location.path:" + $location.path()); 
+
+                var xTabName= $location.path().split("/")[1];
+                var xTab= $scope.bannerData.navData.mainNavData[xTabName];
+                $scope.selectTab(xTab);
+            });
+
 	      	$scope.selectHome = function() {
 		        angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
 		          tab.active = false;
@@ -112,6 +126,8 @@ directiveM.directive('banner', function(){
   	};
 });
 
+/* -----------------DYNAMIC MODEL-----------------*/
+
 directiveM.directive('dynamicmodel', ['$compile', '$parse', function ($compile, $parse) {
     return {
         restrict: 'A',
@@ -125,6 +141,8 @@ directiveM.directive('dynamicmodel', ['$compile', '$parse', function ($compile, 
         }
     };
 }]);
+
+/* -----------------FORM-----------------*/
 
 directiveM.directive('portalForm', ['$compile', '$parse', function ($compile, $parse) {
     return {
@@ -151,6 +169,8 @@ directiveM.directive('portalForm', ['$compile', '$parse', function ($compile, $p
     };
 }]);
 
+/* -----------------SUMMARY-----------------*/
+
 directiveM.directive('portalSummaryPage', ['$compile', '$parse', function ($compile, $parse) {
     return {
         restrict: 'E',
@@ -160,8 +180,7 @@ directiveM.directive('portalSummaryPage', ['$compile', '$parse', function ($comp
             actionfn: '&'
         },
         controller: function($scope, $element, $attrs, $transclude) {
-            $scope.someVal= "djhdfjhdjfhjhfjdf";
-            $scope.isObjProp= function(key, val){
+            $scope.isObjProp= function(val){
                 var isObj= angular.isObject(val);
                 return isObj;
             }

@@ -6,17 +6,17 @@ import com.draakasheeshah.bo.InterrogateEntity;
 
 public interface InterrogateDAO {
 
-    // -----Interogate
+	// -----Interogate
 
-    InterrogateEntity saveInterrogate(InterrogateEntity interrogate);
+	InterrogateEntity save(InterrogateEntity interrogate, long patientId);
 
-    void saveOrUpdateInterrogate(InterrogateEntity interrogate);
+	InterrogateEntity saveOrUpdate(InterrogateEntity interrogate);
 
-    InterrogateEntity getInterrogate(long interrogateId);
+	InterrogateEntity get(long interrogateId);
 
-    List<InterrogateEntity> loadAllInterrogate();
+	List<InterrogateEntity> loadAll();
 
-    void deleteInterrogate(InterrogateEntity interrogate);
+	void delete(InterrogateEntity interrogate);
 
-    void deleteInterrogatePermanently(InterrogateEntity interrogate);
+	void deletePermanently(InterrogateEntity interrogate);
 }

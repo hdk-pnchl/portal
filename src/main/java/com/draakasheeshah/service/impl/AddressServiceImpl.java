@@ -5,44 +5,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.draakasheeshah.bo.FamilyEntity;
-import com.draakasheeshah.dao.FamilyDAO;
-import com.draakasheeshah.service.FamilyService;
+import com.draakasheeshah.bo.AddressEntity;
+import com.draakasheeshah.dao.AddressDAO;
+import com.draakasheeshah.service.AddressService;
 
 @Service
-public class AddressServiceImpl
-    implements FamilyService
-{
-    @Autowired
-    FamilyDAO familyDAO;
+public class AddressServiceImpl implements AddressService {
 
-    @Override
-    public FamilyEntity saveFamily(FamilyEntity family) {
-        return familyDAO.saveFamily(family);
-    }
+	@Autowired
+	AddressDAO addressDAO;
 
-    @Override
-    public void saveOrUpdateFamily(FamilyEntity family) {
-        familyDAO.saveOrUpdateFamily(family);
-    }
+	@Override
+	public AddressEntity save(AddressEntity address, long patientId) {
+		return addressDAO.save(address, patientId);
+	}
 
-    @Override
-    public FamilyEntity getFamily(long familyId) {
-        return familyDAO.getFamily(familyId);
-    }
+	@Override
+	public AddressEntity saveOrUpdate(AddressEntity address) {
+		addressDAO.saveOrUpdate(address);
+		return address;
+	}
 
-    @Override
-    public List<FamilyEntity> loadAllFamily() {
-        return familyDAO.loadAllFamily();
-    }
+	@Override
+	public AddressEntity get(long addressId) {
+		return addressDAO.get(addressId);
+	}
 
-    @Override
-    public void deleteFamily(FamilyEntity family) {
-        familyDAO.deleteFamily(family);
-    }
+	@Override
+	public List<AddressEntity> loadAll() {
+		return addressDAO.loadAll();
+	}
 
-    @Override
-    public void deleteFamilyPermanently(FamilyEntity family) {
-        familyDAO.deleteFamilyPermanently(family);
-    }
+	@Override
+	public void delete(AddressEntity address) {
+		addressDAO.delete(address);
+	}
+
+	@Override
+	public void deletePermanently(AddressEntity address) {
+		addressDAO.deletePermanently(address);
+	}
 }

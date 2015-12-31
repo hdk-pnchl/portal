@@ -15,13 +15,17 @@
 		<jackson.version>2.3.3</jackson.version>
 		<dbcp.version>1.4</dbcp.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -33,7 +37,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
 		</dependency>
-		
+
 		<!-- Hibernet -->
 
 		<dependency>
@@ -46,7 +50,7 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
-		
+
 		<!-- spring -->
 
 		<dependency>
@@ -54,11 +58,11 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 			<exclusions>
-			  <exclusion>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-			  </exclusion>
-			</exclusions>			
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -92,7 +96,7 @@
 		</dependency>
 
 		<!-- Spring ORM integration, e.g Hibernate -->
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -105,38 +109,33 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-		
+
 		<!-- database pool -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>${dbcp.version}</version>
-		</dependency>		
-		
+		</dependency>
+
 		<!-- commnons -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
-		</dependency>		
-		
-		<!-- jackson 
-	
+		</dependency>
+
+		<!-- jackson <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+			<version>${jackson.version}</version> </dependency> -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
 			<version>${jackson.version}</version>
-		</dependency>-->
-	    <dependency>
-	        <groupId>com.fasterxml.jackson.core</groupId>
-	        <artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>com.fasterxml.jackson.core</groupId>
-	        <artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-	    </dependency>							
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -157,22 +156,13 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<!-- 
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<url>http://localhost:8080/manager/text</url>
-					<server>TomcatServer</server>
-			        <username>admin</username>
-			        <password>admin</password>
-					<path>/portal</path>
-				</configuration>
-			</plugin>	
-			 -->		
-			<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <configuration> <descriptors> <descriptor>src/main/assembly/assembly.xml</descriptor> 
-				</descriptors> </configuration> <executions> <execution> <id>make-assembly</id> <phase>package</phase> 
+			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
+				<version>2.2</version> <configuration> <url>http://localhost:8080/manager/text</url> 
+				<server>TomcatServer</server> <username>admin</username> <password>admin</password> 
+				<path>/portal</path> </configuration> </plugin> -->
+			<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <configuration> 
+				<descriptors> <descriptor>src/main/assembly/assembly.xml</descriptor> </descriptors> 
+				</configuration> <executions> <execution> <id>make-assembly</id> <phase>package</phase> 
 				<goals> <goal>single</goal> </goals> </execution> </executions> </plugin> -->
 		</plugins>
 	</build>

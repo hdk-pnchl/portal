@@ -12,3 +12,7 @@
 		-text vs textbox
 	boolean types
 		
+
+http://localhost:8080/portal-static/#/patients
+
+http://localhost:8080/portal-static/#/patients		

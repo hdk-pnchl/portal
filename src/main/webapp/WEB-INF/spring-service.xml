@@ -20,8 +20,10 @@
         http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-<!--  
-    <bean id="userDAO" class="com.draakasheeshah.dao.impl.UserDAOImpl"></bean>
-    <bean id="userService" class="com.draakasheeshah.service.impl.UserServiceImpl"></bean>
--->
+        
+        <import resource="classpath:spring-datasource-test.xml" />
+		<!--  
+		    <bean id="userDAO" class="com.draakasheeshah.dao.impl.UserDAOImpl"></bean>
+		    <bean id="userService" class="com.draakasheeshah.service.impl.UserServiceImpl"></bean>
+		-->
 </beans>

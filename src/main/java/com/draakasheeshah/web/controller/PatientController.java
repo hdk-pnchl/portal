@@ -18,16 +18,16 @@ import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.service.PatientService;
 
 @Controller
-@RequestMapping("/patients")
+@RequestMapping("/patients/basic")
 public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("/patient" + " : " + "/test");
+		System.out.println("/patient  kjdjdhdksjdhkdshdjshdskdkd" + " : " + "/test");
 		try {
-			response.getWriter().write("Yes, It works");
+			response.getWriter().write("Patient saied: Yes, It works");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +36,7 @@ public class PatientController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public @ResponseBody PatientEntity savePatient(@RequestBody PatientEntity patient) {
 		System.out.println("/patient" + " : " + "/saveOrUpdate");
-		patient = patientService.saveOrUpdatePatient(patient);
+		patient = patientService.saveOrUpdate(patient);
 		return patient;
 	}
 
@@ -45,7 +45,7 @@ public class PatientController {
 
 		System.out.println("/patient" + " : " + "/get" + "/" + patientId);
 
-		PatientEntity patient = patientService.getFullPatient(patientId);
+		PatientEntity patient = patientService.getFull(patientId);
 		return patient;
 	}
 
@@ -54,7 +54,7 @@ public class PatientController {
 
 		System.out.println("/patient" + " : " + "/getFull" + "/" + patientId);
 
-		PatientEntity patient = patientService.getFullPatient(patientId);
+		PatientEntity patient = patientService.getFull(patientId);
 		return patient;
 	}
 
@@ -63,7 +63,7 @@ public class PatientController {
 
 		System.out.println("/patient" + " : " + "/getAll");
 
-		List<PatientEntity> patientList = patientService.getAllPatients();
+		List<PatientEntity> patientList = patientService.getAll();
 		return patientList;
 	}
 }
