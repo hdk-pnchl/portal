@@ -1,5 +1,50 @@
 var directiveM= angular.module('directiveM', []);
 
+/* -----------------BANNER-----------------*/
+
+directiveM.directive('banner', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'html/directive/banner.html',
+        scope: {
+            bannerData: '='
+        },
+        controller: function($scope, $rootScope, $location) {
+            $scope.selectTab = function(tab) {
+                angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
+                  tab.active = false;
+                });
+                angular.forEach($scope.bannerData.navData.configNavData, function(tab){
+                  tab.active = false;
+                });             
+                tab.active = true;
+            };
+
+            $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
+                console.log("newUrl:" + newUrl); 
+                console.log("$location.path:" + $location.path()); 
+
+                var xTabName= $location.path().split("/")[1];
+                var xTab= $scope.bannerData.navData.mainNavData[xTabName];
+                $scope.selectTab(xTab);
+            });
+
+            $scope.selectHome = function() {
+                angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
+                  tab.active = false;
+                });
+                angular.forEach($scope.bannerData.navData.configNavData, function(tab){
+                  tab.active = false;
+                });             
+                $scope.bannerData.navData.mainNavData[0].active = true;
+            };          
+        },
+        link: function(scope, element, attrs, controllers){
+            //console.log("scope: "+scope.bannerData);
+        }
+    };
+});
+
 /* -----------------TABLE-----------------*/
 
 directiveM.directive("portalTable",function(){
@@ -29,10 +74,9 @@ directiveM.directive("portalTable",function(){
                 selectedRow.selected = true;
             };
             $scope.fetchSummary= function(row) {
-                $scope.summary.data= row;
-                $scope.summary.active= true;
-                $scope.summary.size= Object.keys(row).length;
-                $scope.summary.colSize= Object.keys(row).length;
+                //if($scope.rowSelectionCheck()){
+                $scope.viewRowUpdate($scope.selectedRow);
+                //}
             }           
             //--row actions 
             $scope.rowSelectionCheck= function(){
@@ -80,67 +124,6 @@ directiveM.directive("portalTable",function(){
         }        
     }; 
 });
-
-/* -----------------BANNER-----------------*/
-
-directiveM.directive('banner', function(){
-  	return {
-  		restrict: 'E',
-  		templateUrl: 'html/directive/banner.html',
-	    scope: {
-	      	bannerData: '='
-	    },
-	    controller: function($scope, $rootScope, $location) {
-	      	$scope.selectTab = function(tab) {
-		        angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
-		          tab.active = false;
-		        });
-		        angular.forEach($scope.bannerData.navData.configNavData, function(tab){
-		          tab.active = false;
-		        });		        
-		        tab.active = true;
-	      	};
-
-            $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
-                console.log("newUrl:" + newUrl); 
-                console.log("$location.path:" + $location.path()); 
-
-                var xTabName= $location.path().split("/")[1];
-                var xTab= $scope.bannerData.navData.mainNavData[xTabName];
-                $scope.selectTab(xTab);
-            });
-
-	      	$scope.selectHome = function() {
-		        angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
-		          tab.active = false;
-		        });
-		        angular.forEach($scope.bannerData.navData.configNavData, function(tab){
-		          tab.active = false;
-		        });		        
-		        $scope.bannerData.navData.mainNavData[0].active = true;
-	      	};	      	
-	    },
-	    link: function(scope, element, attrs, controllers){
-	    	//console.log("scope: "+scope.bannerData);
-	    }
-  	};
-});
-
-/* -----------------DYNAMIC MODEL-----------------*/
-
-directiveM.directive('dynamicmodel', ['$compile', '$parse', function ($compile, $parse) {
-    return {
-        restrict: 'A',
-        terminal: true,
-        priority: 100000,
-        link: function (scope, elem){
-            var name = $parse(elem.attr('dynamicmodel'))(scope);
-            elem.removeAttr('dynamicmodel');
-            elem.attr('ng-model', name);
-            $compile(elem)(scope);
-        }
-    };
-}]);
 
 /* -----------------FORM-----------------*/
 
@@ -190,5 +173,22 @@ directiveM.directive('portalSummaryPage', ['$compile', '$parse', function ($comp
     };
 }]);
 
+/* ---------------------------------------------------COMMON---------------------------------------------------*/
+
+/* -----------------DYNAMIC MODEL-----------------*/
+
+directiveM.directive('dynamicmodel', ['$compile', '$parse', function ($compile, $parse) {
+    return {
+        restrict: 'A',
+        terminal: true,
+        priority: 100000,
+        link: function (scope, elem){
+            var name = $parse(elem.attr('dynamicmodel'))(scope);
+            elem.removeAttr('dynamicmodel');
+            elem.attr('ng-model', name);
+            $compile(elem)(scope);
+        }
+    };
+}]);
 
 

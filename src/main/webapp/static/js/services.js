@@ -27,3 +27,8 @@ serviceM.factory('PatientService', ['$resource', function($resource){
 
     return patientResouce;
 }])
+
+serviceM.factory('PatientGlobleDataService', ['$resource', function($resource){
+    var patientGlobleDataService= {};
+    return patientGlobleDataService;
+}])

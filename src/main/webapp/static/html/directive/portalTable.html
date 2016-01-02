@@ -1,5 +1,5 @@
 <div>
-	<div>
+	<div style="display:none;" >
 		Current search : {{searchRow}}
 		<br>
 		Showing {{ filtered_rows.length }} / {{ data.rowData.length }} result!
@@ -12,7 +12,7 @@
 		<button class="btn btn-danger btn-xs" type="submit" ng-click="deleteRow()">Delete</button>
 	</div>
 	<div>
-		<div id="tblData" ng-hide="summary.active" class="row">
+		<div id="tblData" ng-hide="summary.active" >
 			<div class="neo-horizontal-scroll">
 				<div>
 					<table class="table">
@@ -31,7 +31,7 @@
 								ng-click="selectRow(row)" 
 								ng-class="{active : row.selected}">
 								<td>
-									<a href="" ng-click="fetchSummary(row)">{{ $index + 1 }}</a>
+									{{ $index + 1 }}.
 								</td>
 								<td ng-repeat="column in data.columnData">
 									{{row[column.id]}}

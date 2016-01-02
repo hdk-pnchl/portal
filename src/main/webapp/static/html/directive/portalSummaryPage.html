@@ -1,15 +1,11 @@
-
 <div class="form-horizontal">
-
 	<div ng-repeat="(key, val) in summaryData" class="form-group">		
-
 		<div ng-if="!isObjProp(val)">
 			<label class="col-sm-3 control-label">{{key}}</label>
 			<div class="col-sm-9">
 				<p class="form-control-static">{{val}}</p>
 			</div>
 		</div>
-
 		<div ng-if="isObjProp(val)">	
 			<h3>
 				<label class="col-sm-3 control-label">{{key}}</label>
@@ -25,8 +21,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
+		</div>		
+	</div>
+	<div ng-hide="summaryData">
+		<h1>Either no patient is selected from patient-grid or no summary is available for selected patient.</h1>
 	</div>
 </div>
 

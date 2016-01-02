@@ -81,51 +81,50 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
         var service= $patientService[patientDataType];
         if(patientDataType != "basic"){
             patientData.patient= $scope.patientData;
-        }              
+        } 
+        //server call          
         service.save({
-            action: "save",
-            patientId: $scope.patientData.id
-        }, 
-        patientData, 
-        function(persistedPatientData){
-            if(patientDataType == "basic"){
-                $scope.patientData= persistedPatientData;
-            }           
-            //if, its last step, show added patients view
-            if(patientDataType == "interrogate"){
-                $location.path('/patients');
-            }else{
-                //mark current stpe done
-                var currentWizzardStep= $scope.patientWizzard.wizzardStepData[patientDataType];
-                currentWizzardStep.submitted= true;                  
-                //move to next step in the wizzard
-                $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);                  
-            }          
-        }, 
-        function(){
-            alert("patients save failure");
+                action: "save",
+                patientId: $scope.patientData.id
+            }, 
+            patientData, 
+            function(persistedPatientData){
+                if(patientDataType == "basic"){
+                    $scope.patientData= persistedPatientData;
+                }           
+                //if, its last step, redirect to patient-grid
+                if(patientDataType == "interrogate"){
+                    $location.path('/patients');
+                }else{
+                    //mark current step as complete
+                    var currentWizzardStep= $scope.patientWizzard.wizzardStepData[patientDataType];
+                    currentWizzardStep.submitted= true;                  
+                    //move to next step in the wizzard
+                    $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);                  
+                }          
+            }, 
+            function(){
+                alert("patients save failure");
         });      
     };
 }]);
 
 //------------------------------------PatientSummaryController
 
-controllersM.controller('PatientSummaryController', ['$scope', '$route', '$routeParams', '$location','PatientService', function($scope, $route, $routeParams, $location, patientService){
-    $scope.route= $route;
-    $scope.location= $location;
-    $scope.routeParams= $routeParams;
-    
+controllersM.controller('PatientSummaryController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService', function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService){
     $scope.patientDetail= {};
-
-    if($scope.routeParams.patientId){
+    if($routeParams.patientId){
          patientService.basic.get({
             action: "getFull",
-            patientid: $scope.routeParams.patientId
+            patientid: $routeParams.patientId
         }, function(patientDataResp){
             $scope.patientDetail= patientDataResp;
+            PatientGlobleDataService['patientDetail']= patientDataResp;
         }, function(){
             alert("patient get failure");
         });          
+    } else{
+        $scope.patientDetail= PatientGlobleDataService['patientDetail'];
     }
 }]);
 
