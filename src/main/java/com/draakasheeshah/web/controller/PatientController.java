@@ -18,7 +18,7 @@ import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.service.PatientService;
 
 @Controller
-@RequestMapping("/patients/basic")
+@RequestMapping("/patients/patient")
 public class PatientController {
 	@Autowired
 	private PatientService patientService;
@@ -59,7 +59,7 @@ public class PatientController {
 	}
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
-	public @ResponseBody List<PatientEntity> getAllPatients() {
+	public @ResponseBody List<PatientEntity> getAll() {
 
 		System.out.println("/patient" + " : " + "/getAll");
 

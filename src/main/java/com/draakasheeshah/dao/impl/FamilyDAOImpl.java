@@ -16,6 +16,14 @@ public class FamilyDAOImpl implements FamilyDAO {
 	private HibernateTemplate hibernateTemplate;
 
 	@Override
+	public PatientEntity saveWithPatient(FamilyEntity family, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		family.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(family);
+		return patient;
+	}
+
+	@Override
 	public FamilyEntity save(FamilyEntity family, long patientId) {
 		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
 		family.setPatient(patient);

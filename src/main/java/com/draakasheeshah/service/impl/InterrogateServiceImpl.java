@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.draakasheeshah.bo.InterrogateEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.InterrogateDAO;
 import com.draakasheeshah.service.InterrogateService;
 
@@ -13,6 +14,11 @@ import com.draakasheeshah.service.InterrogateService;
 public class InterrogateServiceImpl implements InterrogateService {
 	@Autowired
 	InterrogateDAO interrogateDAO;
+
+	@Override
+	public PatientEntity saveWithPatient(InterrogateEntity interrogate, long patientId) {
+		return interrogateDAO.saveWithPatient(interrogate, patientId);
+	}
 
 	@Override
 	public InterrogateEntity save(InterrogateEntity interrogate, long patientId) {

@@ -59,6 +59,7 @@
 				<value>com.draakasheeshah.bo.FamilyEntity</value>
 				<value>com.draakasheeshah.bo.AddressEntity</value>
 				<value>com.draakasheeshah.bo.InterrogateEntity</value>
+				<value>com.draakasheeshah.bo.BasicDetailEntity</value>				
 			</list>
 		</property>
 	</bean>

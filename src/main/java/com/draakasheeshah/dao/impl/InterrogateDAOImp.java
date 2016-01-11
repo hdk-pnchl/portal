@@ -16,6 +16,14 @@ public class InterrogateDAOImp implements InterrogateDAO {
 	private HibernateTemplate hibernateTemplate;
 
 	@Override
+	public PatientEntity saveWithPatient(InterrogateEntity interrogate, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		interrogate.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(interrogate);
+		return patient;
+	}
+	
+	@Override
 	public InterrogateEntity save(InterrogateEntity interrogate, long patientId) {
 		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
 		interrogate.setPatient(patient);

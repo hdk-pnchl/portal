@@ -16,6 +16,13 @@ public class AddressDAOImpl implements AddressDAO {
 	private HibernateTemplate hibernateTemplate;
 
 	@Override
+	public PatientEntity saveWithPatient(AddressEntity address, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		address.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(address);
+		return patient;
+	}
+	@Override
 	public AddressEntity save(AddressEntity address, long patientId) {
 		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
 		address.setPatient(patient);

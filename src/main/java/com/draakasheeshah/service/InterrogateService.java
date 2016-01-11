@@ -8,6 +8,8 @@ import com.draakasheeshah.bo.PatientEntity;
 public interface InterrogateService {
 	// -----Interogate
 
+	PatientEntity saveWithPatient(InterrogateEntity interrogate, long patientId);
+
 	InterrogateEntity save(InterrogateEntity interrogate, long patientId);
 
 	InterrogateEntity saveOrUpdate(InterrogateEntity interrogate);

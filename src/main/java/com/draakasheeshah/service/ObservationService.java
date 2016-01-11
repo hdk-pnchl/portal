@@ -3,20 +3,23 @@ package com.draakasheeshah.service;
 import java.util.List;
 
 import com.draakasheeshah.bo.ObservationEntity;
+import com.draakasheeshah.bo.PatientEntity;
 
 public interface ObservationService {
 	// -----Observation
 
-	ObservationEntity save(ObservationEntity  observationEntity, long patientId);
+	public PatientEntity saveWithPatient(ObservationEntity observation, long patientId);
 
-	ObservationEntity saveOrUpdate(ObservationEntity observationEntity);
+	ObservationEntity save(ObservationEntity observation, long patientId);
+
+	ObservationEntity saveOrUpdate(ObservationEntity observation);
 
 	ObservationEntity get(long observationId);
 
 	List<ObservationEntity> loadAll();
 
-	void delete(ObservationEntity observationEntity);
+	void delete(ObservationEntity observation);
 
-	void deletePermanently(ObservationEntity observationEntity);
+	void deletePermanently(ObservationEntity observation);
 
 }

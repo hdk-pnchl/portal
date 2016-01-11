@@ -3,6 +3,7 @@ package com.draakasheeshah.dao;
 import java.util.List;
 
 import com.draakasheeshah.bo.AddressEntity;
+import com.draakasheeshah.bo.PatientEntity;
 
 public interface AddressDAO {
 
@@ -19,4 +20,6 @@ public interface AddressDAO {
 	void deletePermanently(AddressEntity address);
 
 	AddressEntity save(AddressEntity address, long patentId);
+
+	PatientEntity saveWithPatient(AddressEntity address, long patientId);
 }

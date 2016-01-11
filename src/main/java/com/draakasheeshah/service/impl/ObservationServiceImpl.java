@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.draakasheeshah.bo.ObservationEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.ObservationDAO;
 import com.draakasheeshah.service.ObservationService;
 
@@ -15,7 +16,12 @@ public class ObservationServiceImpl implements ObservationService {
 	ObservationDAO observationDAO;
 
 	@Override
-	public ObservationEntity save(ObservationEntity  observationEntity, long patientId) {
+	public PatientEntity saveWithPatient(ObservationEntity observation, long patientId) {
+		return observationDAO.saveWithPatient(observation, patientId);
+	}
+
+	@Override
+	public ObservationEntity save(ObservationEntity observationEntity, long patientId) {
 		return observationDAO.save(observationEntity, patientId);
 	}
 

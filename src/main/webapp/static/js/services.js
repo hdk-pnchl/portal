@@ -5,7 +5,11 @@ serviceM.factory('PatientService', ['$resource', function($resource){
     //portal/ctrl/patient/test
     var patientResouce= {};
 
-    patientResouce.basic= $resource('/portal/ctrl/patients/basic/:action',{
+    patientResouce.patient= $resource('/portal/ctrl/patients/patient/:action',{
+        action: '@action'
+    });
+
+    patientResouce.basicDetail= $resource('/portal/ctrl/patients/basicDetail/:action',{
         action: '@action'
     });
 

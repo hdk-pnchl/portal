@@ -3,6 +3,7 @@ package com.draakasheeshah.dao;
 import java.util.List;
 
 import com.draakasheeshah.bo.InterrogateEntity;
+import com.draakasheeshah.bo.PatientEntity;
 
 public interface InterrogateDAO {
 
@@ -19,4 +20,6 @@ public interface InterrogateDAO {
 	void delete(InterrogateEntity interrogate);
 
 	void deletePermanently(InterrogateEntity interrogate);
+
+	PatientEntity saveWithPatient(InterrogateEntity observation, long patientId);
 }

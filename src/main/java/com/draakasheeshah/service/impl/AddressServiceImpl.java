@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.draakasheeshah.bo.AddressEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.AddressDAO;
 import com.draakasheeshah.service.AddressService;
 
@@ -14,6 +15,11 @@ public class AddressServiceImpl implements AddressService {
 
 	@Autowired
 	AddressDAO addressDAO;
+
+	@Override
+	public PatientEntity saveWithPatient(AddressEntity address, long patientId) {
+		return addressDAO.saveWithPatient(address, patientId);
+	}
 
 	@Override
 	public AddressEntity save(AddressEntity address, long patientId) {

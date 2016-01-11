@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.draakasheeshah.bo.ObservationEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.service.ObservationService;
 
 @Controller
@@ -34,11 +35,11 @@ public class ObservationController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody ObservationEntity save(@RequestBody ObservationEntity address,
+	public @ResponseBody PatientEntity save(@RequestBody ObservationEntity address,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Observation" + " : " + "/save");
-		address = observationService.save(address, patientId);
-		return address;
+		PatientEntity patientEntity = observationService.saveWithPatient(address, patientId);
+		return patientEntity;
 	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)

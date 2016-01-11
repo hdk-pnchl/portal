@@ -3,9 +3,13 @@ package com.draakasheeshah.service;
 import java.util.List;
 
 import com.draakasheeshah.bo.FamilyEntity;
+import com.draakasheeshah.bo.PatientEntity;
 
 public interface FamilyService {
-	FamilyEntity save(FamilyEntity  address, long patientId);
+
+	public PatientEntity saveWithPatient(FamilyEntity family, long patientId);
+
+	FamilyEntity save(FamilyEntity family, long patientId);
 
 	FamilyEntity saveOrUpdate(FamilyEntity family);
 

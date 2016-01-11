@@ -20,11 +20,6 @@ controllersM.controller('BannerController', ['$scope', '$http', '$rootScope','$l
   	}, function(response){
     	alert('something wrong with: /nowstatic/data/json/bannerData.json');
   	});	    
-
-    $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
-        console.log("newUrl:" + newUrl); 
-        console.log("$location.path:" + $location.path()); 
-    });
 }]);
 
 //------------------------------------PatientsController
@@ -33,12 +28,13 @@ controllersM.controller('PatientsController', ['$scope', '$http','PatientService
     $http.get('data/json/patientColumnData.json').then(function(response){
         $scope.patientGridtData= {};
         $scope.patientGridtData.columnData = response.data;
-        $scope.patientGridtData.rowData= patientService.basic.query({action:"getAll"}); 
-        //console.log($scope.patientGridtData);
+        $scope.patientGridtData.rowData= patientService.basicDetail.query({action:"getAll"}); 
     }, function(response){
         alert('something wrong with: /nowstatic/data/json/patientColumnData.json');
     });
     $scope.editPatient = function(editRow){  
+        var summaryPath= '/addPatient/'+editRow.id;
+        $location.path(summaryPath);  
         //alert("editPatient");   
     };
     $scope.viewPatient = function(viewRow){ 
@@ -47,22 +43,48 @@ controllersM.controller('PatientsController', ['$scope', '$http','PatientService
         //alert("viewPatient");      
     };
     $scope.deletePatient = function(deleteRow){ 
-        //alert("deletePatient");        
+        alert("delete not possible");        
     };    
 }]);
 
 //------------------------------------AddPatientController
 
-controllersM.controller('AddPatientController', ['$scope', '$http','PatientService', '$location', function($scope, $http, $patientService, $location){
+controllersM.controller('AddPatientController', ['$scope', '$route', '$routeParams', '$location', '$http','PatientService', function($scope, $route, $routeParams, $location, $http, patientService){
     $http.get('data/json/patientWizzard.json').then(function(response){
         $scope.patientWizzard = response.data;
+        
+        $scope.patientDetail= {};
+        if($routeParams.patientId){
+             patientService.patient.get({
+                action: "getFull",
+                patientid: $routeParams.patientId
+            }, function(patientDataResp){
+                $scope.patientDetail= patientDataResp;
+                angular.forEach($scope.patientWizzard.wizzardData, function(formIpData, formName){
+                    formIpData.data= $scope.patientDetail[formName];
+                });                
+            }, function(){
+                alert("patient get failure");
+            });          
+        }else{
+            angular.forEach($scope.patientWizzard.wizzardData, function(formIpData, formName){
+                $scope.patientDetail[formName]= {};
+                angular.forEach(formIpData.fieldAry, function(field){
+                    $scope.patientDetail[formName][field.name]= "";
+                });   
+                formIpData.data= $scope.patientDetail[formName];
+            });             
+        }
+        $scope.patientDetail.isReady= true;
     }); 
  
     $scope.selectWizzardStep= function(selectedWizzardStep){
+        /*
         if(selectedWizzardStep.name != $scope.patientWizzard.wizzardStepData.basic.name && !$scope.patientWizzard.wizzardStepData.basic.submitted){
             alert("Please enter the basic detail first.");
             return;
         }
+        */
         angular.forEach($scope.patientWizzard.wizzardStepData, function(wizzardStep){
             wizzardStep.active = false;
             wizzardStep.class = '';
@@ -76,22 +98,17 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
         $scope.patientWizzard.wizzardData[selectedWizzardStep.name].isHidden=false;
     };
 
-    $scope.patientData= {};    
     $scope.submitPatientForm = function(patientDataType, patientData){     
-        var service= $patientService[patientDataType];
-        if(patientDataType != "basic"){
-            patientData.patient= $scope.patientData;
-        } 
+        var service= patientService[patientDataType];
         //server call          
         service.save({
                 action: "save",
-                patientId: $scope.patientData.id
+                patientId: $scope.patientDetail.id
             }, 
             patientData, 
             function(persistedPatientData){
-                if(patientDataType == "basic"){
-                    $scope.patientData= persistedPatientData;
-                }           
+                $scope.patientDetail= persistedPatientData;
+                $scope.patientDetail[patientDataType]= persistedPatientData;
                 //if, its last step, redirect to patient-grid
                 if(patientDataType == "interrogate"){
                     $location.path('/patients');
@@ -105,7 +122,8 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
             }, 
             function(){
                 alert("patients save failure");
-        });      
+            }
+        );      
     };
 }]);
 
@@ -114,7 +132,7 @@ controllersM.controller('AddPatientController', ['$scope', '$http','PatientServi
 controllersM.controller('PatientSummaryController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService', function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService){
     $scope.patientDetail= {};
     if($routeParams.patientId){
-         patientService.basic.get({
+         patientService.patient.get({
             action: "getFull",
             patientid: $routeParams.patientId
         }, function(patientDataResp){

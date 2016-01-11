@@ -15,6 +15,15 @@ public class ObservationDAOImpl implements ObservationDAO {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
+
+	@Override
+	public PatientEntity saveWithPatient(ObservationEntity observation, long patientId) {
+		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);
+		observation.setPatient(patient);
+		hibernateTemplate.saveOrUpdate(observation);
+		return patient;
+	}
+	
 	@Override
 	public ObservationEntity save(ObservationEntity observation, long patientId) {
 		PatientEntity patient = hibernateTemplate.get(PatientEntity.class, patientId);

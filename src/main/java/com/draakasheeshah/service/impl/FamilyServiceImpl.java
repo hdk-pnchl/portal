@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.draakasheeshah.bo.FamilyEntity;
+import com.draakasheeshah.bo.PatientEntity;
 import com.draakasheeshah.dao.FamilyDAO;
 import com.draakasheeshah.service.FamilyService;
 
@@ -15,7 +16,12 @@ public class FamilyServiceImpl implements FamilyService {
 	FamilyDAO familyDAO;
 
 	@Override
-	public FamilyEntity save(FamilyEntity  family, long patientId) {
+	public PatientEntity saveWithPatient(FamilyEntity family, long patientId) {
+		return familyDAO.saveWithPatient(family, patientId);
+	}
+
+	@Override
+	public FamilyEntity save(FamilyEntity family, long patientId) {
 		return familyDAO.save(family, patientId);
 	}
 

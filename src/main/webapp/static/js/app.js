@@ -9,10 +9,16 @@ portalM.config(['$routeProvider',function($routeProvider){
 		templateUrl: 'html/patients.html',
 		controller: 'PatientsController'
 	});
+	
 	$routeProvider.when('/addPatient', {
 		templateUrl: 'html/addPatient.html',
 		controller: 'AddPatientController'
 	});
+	$routeProvider.when('/addPatient/:patientId', {
+		templateUrl: 'html/addPatient.html',
+		controller: 'AddPatientController'
+	});
+
 	$routeProvider.when('/patientSummary', {
 		templateUrl: 'html/patientSummary.html',
 		controller: 'PatientSummaryController'

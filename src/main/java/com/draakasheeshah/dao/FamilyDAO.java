@@ -3,6 +3,7 @@ package com.draakasheeshah.dao;
 import java.util.List;
 
 import com.draakasheeshah.bo.FamilyEntity;
+import com.draakasheeshah.bo.PatientEntity;
 
 public interface FamilyDAO {
 
@@ -19,5 +20,7 @@ public interface FamilyDAO {
     void delete(FamilyEntity family);
 
     void deletePermanently(FamilyEntity family);
+
+	PatientEntity saveWithPatient(FamilyEntity family, long patientId);
 
 }

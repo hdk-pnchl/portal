@@ -1,7 +1,7 @@
 {
 	"wizzardStepData": {
-		"basic": {
-			"name": "basic",
+		"basicDetail": {
+			"name": "basicDetail",
 			"label": "Basic",
 			"active": true,
 			"class": "active",
@@ -37,10 +37,10 @@
 		}
 	},
 	"wizzardData":{
-		"basic": {
+		"basicDetail": {
 			"formDesc": "Enter Patient's basic detail",
 			"isHidden": false,
-			"name": "basic",
+			"name": "basicDetail",
 			"modalDataObj": "basic",
 			"fieldAry": [
 				{
@@ -57,12 +57,12 @@
 					"name": "regNo",
 					"label": "Reg. No",
 					"modalData": "basic.regNo",
-					"type": "number"
+					"type": "text"
 				},{
 					"name": "age",
 					"label": "Age",
 					"modalData": "basic.age",
-					"type": "number"
+					"type": "text"
 				},{
 					"name": "isMarried",
 					"label": "Is Married",
@@ -106,7 +106,7 @@
 					"name": "pincode",
 					"label": "Pincode",
 					"modalData": "address.pincode",
-					"type": "number"			
+					"type": "text"			
 				},{
 					"name": "addressLine1",
 					"label": "Address Line 1",
@@ -179,7 +179,7 @@
 					"name": "income",
 					"label": "income",
 					"modalData": "interrogate.income",
-					"type": "number"	
+					"type": "text"	
 				},{
 					"name": "familyTree",
 					"label": "Family Tree",

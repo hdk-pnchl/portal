@@ -21,9 +21,6 @@ directiveM.directive('banner', function(){
             };
 
             $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
-                console.log("newUrl:" + newUrl); 
-                console.log("$location.path:" + $location.path()); 
-
                 var xTabName= $location.path().split("/")[1];
                 var xTab= $scope.bannerData.navData.mainNavData[xTabName];
                 $scope.selectTab(xTab);
@@ -137,17 +134,13 @@ directiveM.directive('portalForm', ['$compile', '$parse', function ($compile, $p
         },
         controller: function($scope, $element, $attrs, $transclude) {
             $scope.submitForm= function(){
-                $scope.callUpdate($scope.formData.name, $scope[$scope.formData.modalDataObj])
+                $scope.actionfn({
+                    "patientDataType": $scope.formData.name,
+                    "patientData": $scope.formData.data
+                });                
             }
         },
         link: function($scope, element, attrs, controllers){
-            $scope[$scope.formData.modalDataObj]= {}; 
-            $scope.callUpdate = function(patientDataType, patientData) {
-                $scope.actionfn({
-                    "patientDataType":patientDataType,
-                    "patientData":patientData
-                });
-            };
         }
     };
 }]);

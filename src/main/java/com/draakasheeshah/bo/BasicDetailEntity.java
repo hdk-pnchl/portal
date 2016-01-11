@@ -2,22 +2,23 @@ package com.draakasheeshah.bo;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.draakasheeshah.enums.Sex;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
-public class PatientEntity implements Serializable {
+public class BasicDetailEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6375406330820935381L;
+	private static final long serialVersionUID = 2513263582847293133L;
 	@Id
 	@GeneratedValue
 	private long id;
@@ -31,20 +32,10 @@ public class PatientEntity implements Serializable {
 	private String education;
 	private String occupation;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
-	private AddressEntity address;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
-	private ObservationEntity observation;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
-	private FamilyEntity family;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
-	private InterrogateEntity interrogate;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
-	private BasicDetailEntity basicDetail;
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "patient")
+	private PatientEntity patient;
 
 	public long getId() {
 		return id;
@@ -118,44 +109,16 @@ public class PatientEntity implements Serializable {
 		this.occupation = occupation;
 	}
 
-	public AddressEntity getAddress() {
-		return address;
+	public PatientEntity getPatient() {
+		return patient;
 	}
 
-	public void setAddress(AddressEntity address) {
-		this.address = address;
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
 	}
 
-	public ObservationEntity getObservation() {
-		return observation;
-	}
-
-	public void setObservation(ObservationEntity observation) {
-		this.observation = observation;
-	}
-
-	public FamilyEntity getFamily() {
-		return family;
-	}
-
-	public void setFamily(FamilyEntity family) {
-		this.family = family;
-	}
-
-	public InterrogateEntity getInterrogate() {
-		return interrogate;
-	}
-
-	public void setInterrogate(InterrogateEntity interrogate) {
-		this.interrogate = interrogate;
-	}
-
-	public BasicDetailEntity getBasicDetail() {
-		return basicDetail;
-	}
-
-	public void setBasicDetail(BasicDetailEntity basicDetail) {
-		this.basicDetail = basicDetail;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }
