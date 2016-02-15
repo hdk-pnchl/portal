@@ -8,27 +8,29 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
-import com.draakasheeshah.bo.AddressEntity;
-import com.draakasheeshah.bo.ObservationEntity;
-import com.draakasheeshah.bo.PatientEntity;
+import com.draakasheeshah.business.bo.AddressEntity;
+import com.draakasheeshah.business.bo.ObservationEntity;
+import com.draakasheeshah.business.bo.PatientEntity;
 
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class TestAllDAO {
 	private ApplicationContext ctx;
 	private HibernateTemplate HibernateTemplate;
 
-	@Before
+	// @Before
 	public void setup() {
-		//ctx = new ClassPathXmlApplicationContext("spring-datasource-test.xml");
-		//HibernateTemplate = (HibernateTemplate) ctx.getBean("hibernateTemplate");
+		// ctx = new
+		// ClassPathXmlApplicationContext("spring-datasource-test.xml");
+		// HibernateTemplate = (HibernateTemplate)
+		// ctx.getBean("hibernateTemplate");
 	}
 
-	@Test
+	// @Test
 	public void emptyTest() {
 		System.out.println("all good.");
 	}
 
-	//@Test
+	// @Test
 	public void testPatient() {
 		PatientEntity patientEntity = new PatientEntity();
 		System.out.println(patientEntity.getId());
@@ -43,7 +45,7 @@ public class TestAllDAO {
 
 	}
 
-	//@Test
+	// @Test
 	public void testNotPatient() {
 		ObservationEntity observationEntity = new ObservationEntity();
 		// long observationId = (long)
@@ -55,7 +57,7 @@ public class TestAllDAO {
 		HibernateTemplate.saveOrUpdate(patientEntity);
 	}
 
-	//@Test
+	// @Test
 	public void testObservation() {
 
 		ObservationEntity observationEntity = HibernateTemplate.get(ObservationEntity.class, 1l);

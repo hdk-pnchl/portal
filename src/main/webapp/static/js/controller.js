@@ -97,20 +97,31 @@ controllersM.controller('AddPatientController', ['$scope', '$route', '$routePara
         });    
         $scope.patientWizzard.wizzardData[selectedWizzardStep.name].isHidden=false;
     };
+ 
+    $scope.isLastStep= function(step) {
+       if(step == $scope.patientWizzard.commonData.lastStep){
+            return true;
+       }
+       return false;
+    }
 
     $scope.submitPatientForm = function(patientDataType, patientData){     
         var service= patientService[patientDataType];
+        var action= "save";
+        if($scope.patientDetail[patientDataType] && $scope.patientDetail[patientDataType].id){
+            action= "update";
+            patientData["id"]= $scope.patientDetail[patientDataType]["id"];
+        }
         //server call          
         service.save({
-                action: "save",
+                action: action,
                 patientId: $scope.patientDetail.id
             }, 
             patientData, 
             function(persistedPatientData){
                 $scope.patientDetail= persistedPatientData;
-                $scope.patientDetail[patientDataType]= persistedPatientData;
                 //if, its last step, redirect to patient-grid
-                if(patientDataType == "interrogate"){
+                if($scope.isLastStep(patientDataType)){
                     $location.path('/patients');
                 }else{
                     //mark current step as complete

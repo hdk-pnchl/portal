@@ -7,22 +7,28 @@
 
 	<!-- spring -->
 
-	<!-- ContextLoaderListener -->
+	<!-- ContextLoaderListener
+	Loads Spring Security config file  -->
+	<!-- -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!-- Loads Spring Security config file -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-            /WEB-INF/spring-datasource.xml,
-            /WEB-INF/spring-service.xml
+            classpath:spring/spring-datasource.xml,
+            classpath:spring/spring-service.xml
         </param-value>
 	</context-param>
+
 	<!-- DispatcherServlet -->
 	<servlet>
 		<servlet-name>spring-mvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-mvc-servlet.xml</param-value>
+        </init-param>		
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

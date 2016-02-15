@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.draakasheeshah.bo.AddressEntity;
-import com.draakasheeshah.bo.PatientEntity;
-import com.draakasheeshah.service.AddressService;
+import com.draakasheeshah.business.bo.AddressEntity;
+import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.service.AddressService;
 
 @Controller
 @RequestMapping("/patients/address")
@@ -39,6 +39,14 @@ public class AddressController {
 		System.out.println("/Address" + " : " + "/saveOrUpdate");
 		PatientEntity patientEntity = addressService.saveWithPatient(address, patientId);
 		return patientEntity;
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public @ResponseBody PatientEntity update(@RequestBody AddressEntity address,
+			@RequestParam("patientId") long patientId) {
+		System.out.println("/Address" + " : " + "/saveOrUpdate");
+		PatientEntity patient = addressService.update(address,patientId );
+		return patient;
 	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)

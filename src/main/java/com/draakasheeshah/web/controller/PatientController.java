@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.draakasheeshah.bo.PatientEntity;
-import com.draakasheeshah.service.PatientService;
+import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.service.PatientService;
 
 @Controller
 @RequestMapping("/patients/patient")

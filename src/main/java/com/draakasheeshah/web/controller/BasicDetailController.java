@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.draakasheeshah.bo.BasicDetailEntity;
-import com.draakasheeshah.bo.PatientEntity;
-import com.draakasheeshah.service.BasicDetailService;
-import com.draakasheeshah.service.PatientService;
+import com.draakasheeshah.business.bo.BasicDetailEntity;
+import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.service.BasicDetailService;
+import com.draakasheeshah.business.service.PatientService;
 
 @Controller
 @RequestMapping("/patients/basicDetail")
@@ -39,19 +39,26 @@ public class BasicDetailController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public @ResponseBody PatientEntity save(@RequestBody BasicDetailEntity basicDetail) {
-		System.out.println("/basicDetail" + " : " + "/saveOrUpdate");
-		PatientEntity patientEntity = new PatientEntity();
-		patientEntity = patientService.save(patientEntity);
-		basicDetail = basicDetailService.save(basicDetail, patientEntity.getId());
-		patientEntity.setBasicDetail(basicDetail);
+		System.out.println("/basicDetail" + " : " + "/save");
+		PatientEntity patientEntity = basicDetailService.saveWithPatient(basicDetail);
 		return patientEntity;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody BasicDetailEntity update(@RequestBody BasicDetailEntity basicDetail,
+	public @ResponseBody PatientEntity update(@RequestBody BasicDetailEntity basicDetail,
+			@RequestParam("patientId") long patientId) {
+		System.out.println("/basicDetail" + " : " + "/update");
+		PatientEntity patient = basicDetailService.update(basicDetail, patientId);
+		return patient;
+	}
+
+	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
+	public @ResponseBody BasicDetailEntity saveOrUpdate(@RequestBody BasicDetailEntity basicDetail,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/basicDetail" + " : " + "/saveOrUpdate");
 		basicDetail = basicDetailService.saveOrUpdate(basicDetail);
+		PatientEntity patientEntity = patientService.get(patientId);
+		patientEntity.setBasicDetail(basicDetail);
 		return basicDetail;
 	}
 

@@ -397,5 +397,9 @@
 				}
 			]
 		}
+	},
+	"commonData": {
+		"firstStep": "basicDetail",
+		"lastStep": "interrogate"
 	}
 }

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.draakasheeshah.bo.FamilyEntity;
-import com.draakasheeshah.bo.PatientEntity;
-import com.draakasheeshah.service.FamilyService;
+import com.draakasheeshah.business.bo.FamilyEntity;
+import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.service.FamilyService;
 
 @Controller
 @RequestMapping("/patients/family")
@@ -34,20 +34,25 @@ public class FamilyController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity save(@RequestBody FamilyEntity address,
+	public @ResponseBody PatientEntity save(@RequestBody FamilyEntity family,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Family" + " : " + "/save");
-		PatientEntity patientEntity = familyService.saveWithPatient(address, patientId);
+		PatientEntity patientEntity = familyService.saveWithPatient(family, patientId);
 		return patientEntity;
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public @ResponseBody PatientEntity update(@RequestBody FamilyEntity family,
+			@RequestParam("patientId") long patientId) {
+		System.out.println("/Family" + " : " + "/update");
+		PatientEntity patient = familyService.update(family, patientId);
+		return patient;
 	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public @ResponseBody FamilyEntity get(@RequestParam("familyId") long familyId) {
-
 		System.out.println("/Family" + " : " + "/get" + "/" + familyId);
-
 		FamilyEntity family = familyService.get(familyId);
 		return family;
 	}
-
 }
