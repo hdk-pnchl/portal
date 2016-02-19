@@ -54,20 +54,15 @@
 					"modalData": "basic.emailId",
 					"type": "email"
 				},{
-					"name": "regNo",
-					"label": "Reg. No",
-					"modalData": "basic.regNo",
-					"type": "text"
-				},{
 					"name": "age",
 					"label": "Age",
 					"modalData": "basic.age",
-					"type": "text"
+					"type": "number"
 				},{
-					"name": "isMarried",
+					"name": "marriageFlag",
 					"label": "Is Married",
-					"modalData": "basic.isMarried",
-					"type": "boolean"
+					"modalData": "basic.marriageFlag",
+					"type": "radio"
 				},{
 					"name": "education",
 					"label": "Education",
@@ -106,7 +101,7 @@
 					"name": "pincode",
 					"label": "Pincode",
 					"modalData": "address.pincode",
-					"type": "text"			
+					"type": "number"			
 				},{
 					"name": "addressLine1",
 					"label": "Address Line 1",

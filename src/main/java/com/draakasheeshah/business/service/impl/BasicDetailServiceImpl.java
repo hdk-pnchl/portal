@@ -25,23 +25,27 @@ public class BasicDetailServiceImpl implements BasicDetailService {
 
 	@Override
 	public BasicDetailEntity save(BasicDetailEntity basicDetail, long basicDetailId) {
+		basicDetail.processInternalData();
 		return basicDetailDAO.save(basicDetail, basicDetailId);
 	}
 
 	@Override
 	public BasicDetailEntity update(BasicDetailEntity basicDetail) {
+		basicDetail.processInternalData();
 		basicDetailDAO.update(basicDetail);
 		return basicDetail;
 	}
 
 	@Override
 	public PatientEntity update(BasicDetailEntity basicDetail, long basicDetailId) {
+		basicDetail.processInternalData();
 		PatientEntity patientEntity = basicDetailDAO.update(basicDetail, basicDetailId);
 		return patientEntity;
 	}
 
 	@Override
 	public BasicDetailEntity saveOrUpdate(BasicDetailEntity basicDetail) {
+		basicDetail.processInternalData();
 		basicDetailDAO.saveOrUpdate(basicDetail);
 		return basicDetail;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.deaakasheeshah.business.util.CommonUtil;
 import com.draakasheeshah.business.enums.Sex;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,7 +29,7 @@ public class BasicDetailEntity implements Serializable {
 
 	private int age;
 	private Sex sex;
-	private boolean isMarried;
+	private int marriageFlag;
 	private String education;
 	private String occupation;
 
@@ -36,6 +37,10 @@ public class BasicDetailEntity implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "patient")
 	private PatientEntity patient;
+
+	public BasicDetailEntity() {
+		this.populateRegNo();
+	}
 
 	public long getId() {
 		return id;
@@ -85,14 +90,6 @@ public class BasicDetailEntity implements Serializable {
 		this.sex = sex;
 	}
 
-	public boolean isMarried() {
-		return isMarried;
-	}
-
-	public void setMarried(boolean isMarried) {
-		this.isMarried = isMarried;
-	}
-
 	public String getEducation() {
 		return education;
 	}
@@ -121,4 +118,34 @@ public class BasicDetailEntity implements Serializable {
 		return serialVersionUID;
 	}
 
+	// ---------------
+
+	public int getMarriageFlag() {
+		return marriageFlag;
+	}
+
+	public void setMarriageFlag(int marriageFlag) {
+		this.marriageFlag = marriageFlag;
+	}
+
+	/**
+	 * This should not be used from anywhere other then BasicDetailEntity
+	 * constructor
+	 */
+	private void populateRegNo() {
+		this.setRegNo(CommonUtil.nextRegNo());
+	}
+
+	public boolean isMarried() {
+		boolean isMarried = false;
+		if (this.getMarriageFlag() == 1) {
+			isMarried = true;
+		}
+		return isMarried;
+	}
+
+	public void processInternalData() {
+		// this.populateIsMarried();
+		// System.out.println("isMarried: " + this.isMarried());
+	}
 }

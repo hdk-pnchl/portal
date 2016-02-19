@@ -4,7 +4,17 @@
 		<legend>{{formData.formDesc}}</legend>
 		<div class="form-group" ng-repeat="field in formData.fieldAry">
 			<label for="{{field.name}}">{{field.label}}</label>
-			<input class="form-control" type="{{field.type}}" name="{{field.name}}" ng-model="formData.data[field.name]">
+			<div ng-if="field.type=='radio'">
+				<label class="radio-inline">
+					<input type="radio" name="{{field.name}}" value="1" checked="" ng-model="formData.data[field.name]">True
+				</label>
+				<label class="radio-inline">
+				  	<input type="radio" name="{{field.name}}" value="0" ng-model="formData.data[field.name]">False
+				</label>			
+			</div>
+			<div ng-if="field.type=='text' || field.type=='number' || field.type=='email'">
+				<input class="form-control" type="{{field.type}}" name="{{field.name}}" ng-model="formData.data[field.name]">			
+			</div>
 		</div>
 	</fieldset>
 	<button type="button" class="btn btn-success" ng-click="submitForm()">Submit</button>
