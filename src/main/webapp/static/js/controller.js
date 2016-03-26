@@ -15,7 +15,7 @@ controllersM.controller('CoreController', ['$scope', '$http','$location', functi
 //------------------------------------BannerController
 
 controllersM.controller('BannerController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location){
-	$http.get('data/json/bannerData.json').then(function(response){
+	$http.get('http://localhost:8080/portal/ctrl/core/getBanner').then(function(response){
     	$scope.bannerdata = response.data;
   	}, function(response){
     	alert('something wrong with: /nowstatic/data/json/bannerData.json');
