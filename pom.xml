@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dr-aakashee-shah</groupId>
 	<artifactId>portal</artifactId>
@@ -8,14 +7,22 @@
 	<name>portal Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
+	<!--  -->
+	<repositories>
+		<repository>
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>http://mvnrepository.com</url>
+		</repository>
+	</repositories>
+	
 	<properties>
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<spring.security.version>4.0.1.RELEASE</spring.security.version>
 		<jstl.version>1.2</jstl.version>
-		<jackson.version>2.3.3</jackson.version>
+		<jackson.version>2.3.0</jackson.version>		
 		<dbcp.version>1.4</dbcp.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -37,9 +44,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
 		</dependency>
-
 		<!-- Hibernet -->
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -50,9 +55,7 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
-
 		<!-- spring -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -74,9 +77,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<!-- Spring Security -->
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -87,57 +88,57 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-
 		<!-- Spring + aspects -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<!-- Spring ORM integration, e.g Hibernate -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<!-- JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-
 		<!-- database pool -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>${dbcp.version}</version>
 		</dependency>
-
 		<!-- commnons -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
-		<!-- jackson <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
-			<version>${jackson.version}</version> </dependency> -->
+		<!-- jackson 
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		-->
+		<!-- 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		 
 	</dependencies>
-
 	<build>
 		<finalName>portal</finalName>
 		<resources>
@@ -156,14 +157,8 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
-				<version>2.2</version> <configuration> <url>http://localhost:8080/manager/text</url> 
-				<server>TomcatServer</server> <username>admin</username> <password>admin</password> 
-				<path>/portal</path> </configuration> </plugin> -->
-			<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <configuration> 
-				<descriptors> <descriptor>src/main/assembly/assembly.xml</descriptor> </descriptors> 
-				</configuration> <executions> <execution> <id>make-assembly</id> <phase>package</phase> 
-				<goals> <goal>single</goal> </goals> </execution> </executions> </plugin> -->
+			<!-- <plugin><groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version><configuration><url>http://localhost:8080/manager/text</url><server>TomcatServer</server><username>admin</username><password>admin</password><path>/portal</path></configuration></plugin>-->
+			<!-- <plugin><artifactId>maven-assembly-plugin</artifactId><configuration><descriptors><descriptor>src/main/assembly/assembly.xml</descriptor></descriptors></configuration><executions><execution><id>make-assembly</id><phase>package</phase><goals><goal>single</goal></goals></execution></executions></plugin>-->
 		</plugins>
 	</build>
 </project>

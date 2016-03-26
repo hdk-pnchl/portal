@@ -1,4 +1,5 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jee="http://www.springframework.org/schema/jee" 
 	xmlns:lang="http://www.springframework.org/schema/lang"
@@ -45,5 +46,8 @@
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	
+	<!--  -->
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"></bean>
 	
 </beans>

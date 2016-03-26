@@ -67,12 +67,12 @@
 					"name": "education",
 					"label": "Education",
 					"modalData": "basic.education",
-					"type": "text"
+					"type": "textarea"
 				},{
 					"name": "occupation",
 					"label": "Occupation",
 					"modalData": "basic.occupation",
-					"type": "text"
+					"type": "textarea"
 				}
 			]
 		},
@@ -106,17 +106,17 @@
 					"name": "addressLine1",
 					"label": "Address Line 1",
 					"modalData": "address.addressLine1",
-					"type": "text"			
+					"type": "textarea"			
 				},{
 					"name": "addressLine2",
 					"label": "Address Line 2",
 					"modalData": "address.addressLine2",
-					"type": "text"			
+					"type": "textarea"			
 				},{
 					"name": "addressLine3",
 					"label": "Address Line 3",
 					"modalData": "address.addressLine3",
-					"type": "text"			
+					"type": "textarea"			
 				}
 			]
 		},
@@ -130,37 +130,37 @@
 					"name": "posture",
 					"label": "Posture",
 					"modalData": "observation.posture",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "bodyLanguage",
 					"label": "Body Language",
 					"modalData": "observation.bodyLanguage",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "eyeContact",
 					"label": "Eye Contact",
 					"modalData": "observation.eyeContact",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "headBalance",
 					"label": "Head Balance",
 					"modalData": "observation.headBallance",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "speedOfSpeach",
 					"label": "Speed Of Speech",
 					"modalData": "observation.speedOfSpeach",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "memory",
 					"label": "Memory",
 					"modalData": "observation.memory",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "orientation",
 					"label": "Orientation",
 					"modalData": "observation.orientation",
-					"type": "text"		
+					"type": "textarea"		
 				}
 			]
 		},
@@ -174,192 +174,192 @@
 					"name": "income",
 					"label": "income",
 					"modalData": "interrogate.income",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "familyTree",
 					"label": "Family Tree",
 					"modalData": "interrogate.familyTree",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "religion",
 					"label": "Religion",
 					"modalData": "interrogate.religion",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "socioEco",
 					"label": "Socio Eco",
 					"modalData": "interrogate.socioEco",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "problem",
 					"label": "Problem",
 					"modalData": "interrogate.problem",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "onset",
 					"label": "Onset",
 					"modalData": "interrogate.onset",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "duration",
 					"label": "Duration",
 					"modalData": "interrogate.duration",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "medication",
 					"label": "Medication",
 					"modalData": "interrogate.medication",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "predisposingFact",
 					"label": "Predisposing Fact",
 					"modalData": "interrogate.predesposingFact",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "participating",
 					"label": "Participating",
 					"modalData": "interrogate.participating",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "relaxing",
 					"label": "Relaxing",
 					"modalData": "interrogate.relaxing",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "pastHistory",
 					"label": "Past History",
 					"modalData": "interrogate.pastHistory",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "medicalHistory",
 					"label": "Medical History",
 					"modalData": "interrogate.medicalHistory",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "treatmentHistory",
 					"label": "Treatment History",
 					"modalData": "interrogate.treatmentHistory",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "substanceUse",
 					"label": "Substance Use",
 					"modalData": "interrogate.substanceUse",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "delivery",
 					"label": "Delivery",
 					"modalData": "interrogate.delivery",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "maternityFacility",
 					"label": "Maternity Facility",
 					"modalData": "interrogate.meternityFacility",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "breastFeeding",
 					"label": "Breast Feeding",
 					"modalData": "interrogate.breastFeeding",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "toiletTraining",
 					"label": "Toilet Training",
 					"modalData": "interrogate.toiletTraining",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "stammering",
 					"label": "Stammering",
 					"modalData": "interrogate.stammering",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "ticks",
 					"label": "Ticks",
 					"modalData": "interrogate.ticks",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "habits",
 					"label": "Habits",
 					"modalData": "interrogate.habits",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "academicAchievement",
 					"label": "Academic Achievement",
 					"modalData": "interrogate.ecadamicAchievement",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "phobia",
 					"label": "Phobia",
 					"modalData": "interrogate.phobia",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "playHistory",
 					"label": "Play History",
 					"modalData": "interrogate.playHistory",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "puberty",
 					"label": "Puberty",
 					"modalData": "interrogate.puberty",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "workSatisfaction",
 					"label": "Work Satisfaction",
 					"modalData": "interrogate.workSatisfaction",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "ambition",
 					"label": "Ambition",
 					"modalData": "interrogate.ambition",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "masterbation",
 					"label": "Masterbation",
 					"modalData": "interrogate.masterbation",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "sexualLife",
 					"label": "Sexual Life",
 					"modalData": "interrogate.sexualLife",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "marriageWithParentConsent",
 					"label": "Marriage With Parent Consent",
 					"modalData": "interrogate.marriageWithParentConsent",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "remper",
 					"label": "Remper",
 					"modalData": "interrogate.remper",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "interpersonalRelation",
 					"label": "Interpersonal Relation",
 					"modalData": "interrogate.interpersonalRelation",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "hobbies",
 					"label": "Hobbies",
 					"modalData": "interrogate.hobbies",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "mood",
 					"label": "Mood",
 					"modalData": "interrogate.mood",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "attitudeToWork",
 					"label": "Attitude To Work",
 					"modalData": "interrogate.attitudeToWork",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "attitudeToSelf",
 					"label": "Attitude To Self",
 					"modalData": "interrogate.attitudeToSelf",
-					"type": "text"	
+					"type": "textarea"	
 				},{
 					"name": "religiousBelieve",
 					"label": "Religious Believe",
 					"modalData": "interrogate.religiousBelieve",
-					"type": "text"	
+					"type": "textarea"	
 				}
 			]
 		},
@@ -373,22 +373,22 @@
 					"name": "relation",
 					"label": "Relation",
 					"modalData": "family.relation",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "durationOfStay",
 					"label": "Duration Of Stay",
 					"modalData": "family.durationOfStay",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "ability",
 					"label": "Ability",
 					"modalData": "family.ability",
-					"type": "text"		
+					"type": "textarea"		
 				},{
 					"name": "concern",
 					"label": "Concern",
 					"modalData": "family.concern",
-					"type": "text"		
+					"type": "textarea"		
 				}
 			]
 		}

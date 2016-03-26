@@ -15,6 +15,9 @@
 			<div ng-if="field.type=='text' || field.type=='number' || field.type=='email'">
 				<input class="form-control" type="{{field.type}}" name="{{field.name}}" ng-model="formData.data[field.name]">			
 			</div>
+			<div ng-if="field.type=='textarea'">
+				<textarea class="form-control" rows="3" name="{{field.name}}" ng-model="formData.data[field.name]"></textarea>
+			</div>			
 		</div>
 	</fieldset>
 	<button type="button" class="btn btn-success" ng-click="submitForm()">Submit</button>

@@ -9,9 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.deaakasheeshah.business.util.CommonUtil;
-import com.draakasheeshah.business.enums.Sex;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.draakasheeshah.business.enums.Sex;
+import com.draakasheeshah.business.util.CommonUtil;
 
 @Entity
 @Table
