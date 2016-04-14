@@ -17,7 +17,7 @@ public interface BasicDetailDAO {
 
 	BasicDetailEntity get(long basicDetailId);
 
-	List<BasicDetailEntity> getAll();
+	List<BasicDetailEntity> loadAll();
 
 	void delete(BasicDetailEntity basicDetail);
 
@@ -26,5 +26,7 @@ public interface BasicDetailDAO {
 	BasicDetailEntity update(BasicDetailEntity basicDetail);
 
 	PatientEntity update(BasicDetailEntity basicDetail, long patientId);
+
+	BasicDetailEntity get(String emailId);
 
 }

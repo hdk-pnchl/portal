@@ -5,11 +5,13 @@ portalM.config(function($resourceProvider) {
 });
 
 portalM.config(['$routeProvider',function($routeProvider){
+	//all patients
 	$routeProvider.when('/patients', {
 		templateUrl: 'html/patients.html',
 		controller: 'PatientsController'
 	});
 	
+	//add patient
 	$routeProvider.when('/addPatient', {
 		templateUrl: 'html/addPatient.html',
 		controller: 'AddPatientController'
@@ -19,6 +21,7 @@ portalM.config(['$routeProvider',function($routeProvider){
 		controller: 'AddPatientController'
 	});
 
+	//patient summary
 	$routeProvider.when('/patientSummary', {
 		templateUrl: 'html/patientSummary.html',
 		controller: 'PatientSummaryController'
@@ -28,8 +31,31 @@ portalM.config(['$routeProvider',function($routeProvider){
 		controller: 'PatientSummaryController'
 	});
 	
+	//signIn
+	$routeProvider.when('/signIn', {
+		templateUrl: 'html/core/signIn.html',
+		controller: 'SignInController'
+	});
+	//signUp	
+	$routeProvider.when('/signUp', {
+		templateUrl: 'html/core/signUp.html',
+		controller: 'SignUpController'
+	});
+	//signOut
+	$routeProvider.when('/signOut', {
+		templateUrl: '/',
+		controller: 'SignOutController'
+	});
+
+	//Home
+	$routeProvider.when('/home', {
+		templateUrl: 'html/core/processing.html',
+		controller: 'HomeController'
+	});
+
+	//otherwise
 	$routeProvider.otherwise({
-        redirectTo: '/patients'
+        redirectTo: '/home'
 	});
 }]);
 

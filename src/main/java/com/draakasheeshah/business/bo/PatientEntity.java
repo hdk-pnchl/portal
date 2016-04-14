@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -31,7 +32,7 @@ public class PatientEntity implements Serializable {
 	private String education;
 	private String occupation;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.EAGER)
 	private AddressEntity address;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
@@ -157,5 +158,4 @@ public class PatientEntity implements Serializable {
 	public void setBasicDetail(BasicDetailEntity basicDetail) {
 		this.basicDetail = basicDetail;
 	}
-
 }

@@ -22,8 +22,8 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientEntity saveOrUpdate(PatientEntity patient) {
-		patient = patientDAO.saveOrUpdate(patient);
+	public PatientEntity update(PatientEntity patient) {
+		patient = patientDAO.update(patient);
 		return patient;
 	}
 
@@ -39,7 +39,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public List<PatientEntity> getAll() {
-		return patientDAO.getAll();
+		return patientDAO.loadAll();
 	}
 
 	@Override
@@ -51,4 +51,5 @@ public class PatientServiceImpl implements PatientService {
 	public void deletePermanently(PatientEntity patient) {
 		patientDAO.deletePermanently(patient);
 	}
+
 }

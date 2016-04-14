@@ -20,7 +20,7 @@ public class PatientDAOImpl extends AbstractDAO implements PatientDAO {
 	}
 
 	@Override
-	public PatientEntity saveOrUpdate(PatientEntity patient) {
+	public PatientEntity update(PatientEntity patient) {
 		this.getSession().update(patient);
 		return patient;
 	}
@@ -47,7 +47,7 @@ public class PatientDAOImpl extends AbstractDAO implements PatientDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PatientEntity> getAll() {
+	public List<PatientEntity> loadAll() {
 		Criteria criteria = getSession().createCriteria(PatientEntity.class);
 		return (List<PatientEntity>) criteria.list();
 	}

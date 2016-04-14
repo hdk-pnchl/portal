@@ -15,42 +15,42 @@ controllersM.controller('CoreController', ['$scope', '$http','$location', functi
 //------------------------------------BannerController
 
 controllersM.controller('BannerController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location){
-	$http.get('http://localhost:8080/portal/ctrl/core/getBanner').then(function(response){
+	$http.get('http://localhost:8080/portal/ctrl/core/getBannerData').then(function(response){
     	$scope.bannerdata = response.data;
   	}, function(response){
-    	alert('something wrong with: /nowstatic/data/json/bannerData.json');
-  	});	    
+    	alert('something wrong with: http://localhost:8080/portal/ctrl/core/getBannerData');
+  	});
 }]);
 
 //------------------------------------PatientsController
 
-controllersM.controller('PatientsController', ['$scope', '$http','PatientService', '$location', function($scope, $http, patientService, $location){    
-    $http.get('data/json/patientColumnData.json').then(function(response){
+controllersM.controller('PatientsController', ['$scope', '$http', 'PatientService', '$location', function($scope, $http, patientService, $location){    
+    $http.get('http://localhost:8080/portal/ctrl/core/getPatientColumnData').then(function(response){
         $scope.patientGridtData= {};
         $scope.patientGridtData.columnData = response.data;
         $scope.patientGridtData.rowData= patientService.basicDetail.query({action:"getAll"}); 
     }, function(response){
-        alert('something wrong with: /nowstatic/data/json/patientColumnData.json');
+        alert('something wrong with: http://localhost:8080/portal/ctrl/core/getPatientColumnData');
     });
-    $scope.editPatient = function(editRow){  
+    $scope.editPatient = function(editRow){
         var summaryPath= '/addPatient/'+editRow.id;
-        $location.path(summaryPath);  
-        //alert("editPatient");   
+        $location.path(summaryPath);
+        //alert("editPatient");   b
     };
     $scope.viewPatient = function(viewRow){ 
         var summaryPath= '/patientSummary/'+viewRow.id;
-        $location.path(summaryPath);      
+        $location.path(summaryPath);
         //alert("viewPatient");      
     };
     $scope.deletePatient = function(deleteRow){ 
-        alert("delete not possible");        
-    };    
+        alert("delete not possible");
+    };
 }]);
 
 //------------------------------------AddPatientController
 
 controllersM.controller('AddPatientController', ['$scope', '$route', '$routeParams', '$location', '$http','PatientService', function($scope, $route, $routeParams, $location, $http, patientService){
-    $http.get('data/json/patientWizzard.json').then(function(response){
+    $http.get('http://localhost:8080/portal/ctrl/core/getPatientWizzardData').then(function(response){
         $scope.patientWizzard = response.data;
         
         $scope.patientDetail= {};
@@ -105,7 +105,7 @@ controllersM.controller('AddPatientController', ['$scope', '$route', '$routePara
        return false;
     }
 
-    $scope.submitPatientForm = function(patientDataType, patientData){     
+    $scope.submitPatientForm = function(patientDataType, patientData){
         var service= patientService[patientDataType];
         var action= "save";
         if($scope.patientDetail[patientDataType] && $scope.patientDetail[patientDataType].id){
@@ -126,15 +126,15 @@ controllersM.controller('AddPatientController', ['$scope', '$route', '$routePara
                 }else{
                     //mark current step as complete
                     var currentWizzardStep= $scope.patientWizzard.wizzardStepData[patientDataType];
-                    currentWizzardStep.submitted= true;                  
+                    currentWizzardStep.submitted= true;
                     //move to next step in the wizzard
-                    $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);                  
-                }          
-            }, 
+                    $scope.selectWizzardStep($scope.patientWizzard.wizzardStepData[currentWizzardStep.next]);
+                }
+            },
             function(){
                 alert("patients save failure");
             }
-        );      
+        );
     };
 }]);
 
@@ -151,11 +151,58 @@ controllersM.controller('PatientSummaryController', ['$scope', '$route', '$route
             PatientGlobleDataService['patientDetail']= patientDataResp;
         }, function(){
             alert("patient get failure");
-        });          
+        });
     } else{
         $scope.patientDetail= PatientGlobleDataService['patientDetail'];
     }
 }]);
+
+//------------------------------------SignIN
+
+controllersM.controller('SignInController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService', function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService){
+    $scope.signIp= function(){
+    }
+}]);
+
+//------------------------------------SignUP
+
+controllersM.controller('SignUpController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
+    function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
+        $scope.signUp= function(){
+            if($scope.basicDetail.patientPassword != $scope.basicDetail.patientPasswordConfirm){
+                alert("Please match the password");
+            }else{
+                //server call          
+                patientService.core.save({
+                        action: "signUp"
+                    }, 
+                    $scope.basicDetail, 
+                    function(persistedPatientBasicDetail){
+                       $location.path('/signIn');
+                    }, 
+                    function(){
+                        alert("patients save failure");
+                    }
+                );
+            }
+        }
+    }
+]);
+
+//------------------------------------SignOut
+
+controllersM.controller('SignOutController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
+    function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
+    $window.location.href="/portal/logout";
+}]);
+
+//------------------------------------Home
+
+controllersM.controller('HomeController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
+    function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
+    //$window.location.href="/portal/logout";
+}]);
+
 
 /*
 patientService.get({action:"test"},function(){

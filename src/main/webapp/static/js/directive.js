@@ -16,8 +16,10 @@ directiveM.directive('banner', function(){
                 });
                 angular.forEach($scope.bannerData.navData.configNavData, function(tab){
                   tab.active = false;
-                });             
-                tab.active = true;
+                });
+                if(tab){
+                    tab.active = true;
+                }
             };
 
             $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
@@ -32,9 +34,9 @@ directiveM.directive('banner', function(){
                 });
                 angular.forEach($scope.bannerData.navData.configNavData, function(tab){
                   tab.active = false;
-                });             
+                });
                 $scope.bannerData.navData.mainNavData[0].active = true;
-            };          
+            };
         },
         link: function(scope, element, attrs, controllers){
             //console.log("scope: "+scope.bannerData);
@@ -55,7 +57,7 @@ directiveM.directive("portalTable",function(){
             deletefn: '&'
         },
         controller: function($scope) {
-            $scope.searchRow=   {};
+            $scope.searchRow= {};
             $scope.selectedRow = null;
             $scope.summary= {};
             //$scope.active=   false;            

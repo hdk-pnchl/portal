@@ -1,0 +1,54 @@
+<div class="container">
+	<div id="logbox">
+		<form id="signUp" method="" action="">
+			<h1>create an account</h1>
+			<input 
+				name="username"
+				ng-model="basicDetail.name" 
+				type="text"
+				placeholder="What's your username?" 
+				pattern="^[\w]{3,16}$"
+				autofocus="autofocus" 
+				required="required" 
+				class="input pass"
+				value="1" 
+				/> 
+			<input
+				name="patientPassword" 
+				ng-model="basicDetail.password" 
+				type="password"
+				placeholder="Choose a password" 
+				required="required"
+				class="input pass" 
+				value="1" 
+				/> 
+			<input 
+				name="patientPasswordConfirm"
+				ng-model="basicDetail.passwordConfirm" 
+				type="password"
+				placeholder="Confirm password" 
+				required="required"
+				class="input pass" 
+				value="1" 
+				/> 
+			<input 
+				name="email"
+				ng-model="basicDetail.email" 
+				type="email"
+				placeholder="Email address" 
+				class="input pass" 
+				value="1@2.com" 
+				/> 
+			<input
+				type="button" 
+				value="Sign me up!" 
+				class="inputButton" 
+				ng-click="signUp()"/>
+			<div 
+				class="text-center">
+				already have an account? <a href="#" id="login_id">login</a>
+			</div>
+		</form>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="css/signInUp.css">

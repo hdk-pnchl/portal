@@ -3,6 +3,7 @@ package com.draakasheeshah.business.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,9 +75,23 @@ public class BasicDetailDAOImpl extends AbstractDAO implements BasicDetailDAO {
 		return basicDetail;
 	}
 
+	@Override
+	public BasicDetailEntity get(String emailId) {
+		BasicDetailEntity basicDetail = null;
+		Criteria criteria = getSession().createCriteria(BasicDetailEntity.class);
+		if (emailId != null) {
+			criteria.add(Restrictions.eq("emailId", emailId));
+		}
+		Object userObject = criteria.uniqueResult();
+		if (userObject != null) {
+			basicDetail = (BasicDetailEntity) userObject;
+		}
+		return basicDetail;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BasicDetailEntity> getAll() {
+	public List<BasicDetailEntity> loadAll() {
 		Criteria criteria = this.getSession().createCriteria(BasicDetailEntity.class);
 		return criteria.list();
 	}

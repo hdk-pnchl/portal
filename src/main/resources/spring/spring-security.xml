@@ -10,9 +10,23 @@
 
 	<!--  -->
 	<http auto-config="true">
-		<intercept-url pattern="/patients/**" access="hasRole('ROLE_USER')" />
+		<intercept-url 
+			pattern="/ctrl/patients/**" 
+			access="hasRole('ROLE_USER')" />
+		<form-login 
+			login-processing-url="/login" 
+		    login-page="/static/#/signIn" 
+		    default-target-url="/static/#/home" 
+			authentication-failure-url="/static/html/core/signIn.html?error=true" 		    
+			username-parameter="username"
+			password-parameter="password"
+			/>
+		<logout 
+			logout-url="/logout" 
+			logout-success-url="/static/#/home" />	    
 		<!-- enable csrf protection -->
-		<csrf disabled="true"/>	
+		<csrf 
+			disabled="true"/>	
 	</http>
 
 	<authentication-manager>
@@ -23,4 +37,12 @@
 	  </authentication-provider>
 	</authentication-manager>
 
+	<!--
+	<authentication-manager alias="authenticationManager">
+	    <authentication-provider user-service-ref="basicDetailService"></authentication-provider>
+	</authentication-manager>
+	
+
+	<bean id="basicDetailService" class="com.draakasheeshah.business.service.impl.BasicDetailServiceImpl"/>
+	-->
 </beans:beans>

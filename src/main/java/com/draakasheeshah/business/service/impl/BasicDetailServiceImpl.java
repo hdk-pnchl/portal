@@ -3,6 +3,9 @@ package com.draakasheeshah.business.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +16,7 @@ import com.draakasheeshah.business.service.BasicDetailService;
 
 @Service
 @Transactional
-public class BasicDetailServiceImpl implements BasicDetailService {
+public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsService {
 
 	@Autowired
 	BasicDetailDAO basicDetailDAO;
@@ -57,7 +60,7 @@ public class BasicDetailServiceImpl implements BasicDetailService {
 
 	@Override
 	public List<BasicDetailEntity> getAll() {
-		return basicDetailDAO.getAll();
+		return basicDetailDAO.loadAll();
 	}
 
 	@Override
@@ -68,5 +71,11 @@ public class BasicDetailServiceImpl implements BasicDetailService {
 	@Override
 	public void deletePermanently(BasicDetailEntity basicDetail) {
 		basicDetailDAO.deletePermanently(basicDetail);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String emailId) throws UsernameNotFoundException {
+		BasicDetailEntity userDetails = basicDetailDAO.get(emailId);
+		return userDetails;
 	}
 }

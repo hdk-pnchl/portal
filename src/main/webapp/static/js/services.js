@@ -29,6 +29,10 @@ serviceM.factory('PatientService', ['$resource', function($resource){
         action: '@action'
     });
 
+    patientResouce.core= $resource('/portal/ctrl/core/:action',{
+        action: '@action'
+    });
+
     return patientResouce;
 }])
 

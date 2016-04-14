@@ -28,11 +28,11 @@
 			}
 		}, 
 		"configNavData": [{
-				"title": "Sign In",
+				"title": "Sign Out",
 				"active": false,
 				"disabled": false,
 				"hidden": false,
-				"path": "/register"		
+				"path": "/signOut"		
 			}		
 		]
 	}

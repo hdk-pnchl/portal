@@ -1,0 +1,31 @@
+{
+	"projectData": {
+		"projectName": "Portal",
+		"defaultPath": "/home"	
+	},
+	"navData": {
+		"mainNavData": {
+			"home": {
+				"title": "Home",
+				"active": true,
+				"disabled": false,
+				"hidden": false,
+				"path": "/home"		
+			}
+		}, 
+		"configNavData": [{
+				"title": "Sign Up",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/signUp"		
+			},{
+				"title": "Sign In",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/signIn"		
+			}		
+		]
+	}
+}

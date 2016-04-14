@@ -10,11 +10,11 @@ public interface PatientDAO {
 
     PatientEntity save(PatientEntity patient);
 
-    PatientEntity saveOrUpdate(PatientEntity patient);
+    PatientEntity update(PatientEntity patient);
 
     PatientEntity get(long patientId);
 
-    List<PatientEntity> getAll();
+    List<PatientEntity> loadAll();
 
     void delete(PatientEntity patient);
 

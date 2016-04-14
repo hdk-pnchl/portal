@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.draakasheeshah.business.bo.AddressEntity;
-import com.draakasheeshah.business.bo.FamilyEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
 import com.draakasheeshah.business.dao.AbstractDAO;
 import com.draakasheeshah.business.dao.AddressDAO;
