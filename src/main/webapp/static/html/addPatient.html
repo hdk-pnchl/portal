@@ -155,7 +155,9 @@
      <div class="col-md-2">
     </div>
     <div class="col-md-4" ng-repeat="(key, value) in patientWizzard.wizzardData" ng-hide="value.isHidden">
-		  <portal-form form-data="value" actionfn="submitPatientForm(patientDataType, patientData)"/>
+		  <portal-form 
+        form-data="value" 
+        actionfn="submitPatientForm(patientDataType, patientData)"/>
     </div>
 </div>
 

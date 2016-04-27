@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.draakasheeshah.business.enums.Sex;
-
 @Entity
 @Table
 public class PatientEntity implements Serializable {
@@ -22,16 +20,6 @@ public class PatientEntity implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String name;
-	private String emailId;
-	private long regNo;
-
-	private int age;
-	private Sex sex;
-	private boolean isMarried;
-	private String education;
-	private String occupation;
-
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.EAGER)
 	private AddressEntity address;
 
@@ -53,70 +41,6 @@ public class PatientEntity implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public long getRegNo() {
-		return regNo;
-	}
-
-	public void setRegNo(long regNo) {
-		this.regNo = regNo;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public Sex getSex() {
-		return sex;
-	}
-
-	public void setSex(Sex sex) {
-		this.sex = sex;
-	}
-
-	public boolean isMarried() {
-		return isMarried;
-	}
-
-	public void setMarried(boolean isMarried) {
-		this.isMarried = isMarried;
-	}
-
-	public String getEducation() {
-		return education;
-	}
-
-	public void setEducation(String education) {
-		this.education = education;
-	}
-
-	public String getOccupation() {
-		return occupation;
-	}
-
-	public void setOccupation(String occupation) {
-		this.occupation = occupation;
 	}
 
 	public AddressEntity getAddress() {

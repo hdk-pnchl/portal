@@ -2,7 +2,8 @@ var controllersM= angular.module('controllersM', ['servicesM']);
 
 //------------------------------------CoreController
 
-controllersM.controller('CoreController', ['$scope', '$http','$location', function($scope, $http, $location){
+controllersM.controller('CoreController', ['$scope', '$http','$location','$rootScope', function($scope, $http, $location, $rootScope){
+    /*
     $scope.absUrlCore = $location.absUrl();
     $scope.urlCore = $location.url();
     $scope.protocolCore = $location.protocol();
@@ -10,6 +11,16 @@ controllersM.controller('CoreController', ['$scope', '$http','$location', functi
     $scope.portCore = $location.port();
     $scope.searchObjectCore = $location.search();
     $scope.hashCore = $location.hash();
+    */
+    $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
+        var xTabName= $location.path().split("/")[1];
+        if(xTabName == 'home'){
+            $scope.showHome= true;
+        }else{
+            $scope.showHome= false;
+        }
+        
+    });
 }]);
 
 //------------------------------------BannerController
@@ -189,7 +200,7 @@ controllersM.controller('SignUpController', ['$scope', '$route', '$routeParams',
     }
 ]);
 
-//------------------------------------SignOut
+//------------------------------------SignOUT
 
 controllersM.controller('SignOutController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
     function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
@@ -198,32 +209,14 @@ controllersM.controller('SignOutController', ['$scope', '$route', '$routeParams'
 
 //------------------------------------Home
 
-controllersM.controller('HomeController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
-    function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
-    //$window.location.href="/portal/logout";
+controllersM.controller('HomeController', ['$scope', '$http', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
+    function($scope, $http, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
+
+    $http.get('data/json/tileData.json').then(function(response){
+        $scope.tileDataNew= response.data;
+        console.log($scope.tileDataNew);
+    }, function(response){
+        alert('something wrong with: data/json/tileData.json');
+    });
 }]);
-
-
-/*
-patientService.get({action:"test"},function(){
-    alert("test success");
-},function(){
-    alert("failure");
-});
-
-patientService.query({action:"save"},{
-    age: 232,
-    basic: "fdf",
-    education: "fdf",
-    emailId: "sdsd@dd.com",
-    isMarried: "true",
-    occupation: "sdsd",
-    regNo: 334
-},function(){
-    alert("save success");
-},function(){
-    alert("save failure");
-});  
-*/ 
-
 

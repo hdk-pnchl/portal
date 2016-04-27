@@ -5,9 +5,16 @@
 	},
 	"navData": {
 		"mainNavData": {
+			"home": {
+				"title": "Home",
+				"active": true,
+				"disabled": false,
+				"hidden": false,
+				"path": "/home"		
+			},			
 			"patients": {
 				"title": "Patients",
-				"active": true,
+				"active": false,
 				"disabled": false,
 				"hidden": false,
 				"path": "/patients"		

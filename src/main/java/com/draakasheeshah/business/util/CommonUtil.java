@@ -32,4 +32,8 @@ public class CommonUtil {
 		while (!currentTime.compareAndSet(prev, next));
 		return next;
 	}
+
+	public void populateRoles(){
+		
+	}
 }

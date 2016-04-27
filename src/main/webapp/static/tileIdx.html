@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="portalM">
+  <head>
+    <meta charset="ISO-8859-1">
+    <title>Portal</title>
+    
+    <link rel="stylesheet" type="text/css" href="js/resource/bootstrap/bootstrap-3.3.5/css/bootstrap.css">
+    <!--
+    <link rel="stylesheet" type="text/css" href="js/resource/bootstrap/bootstrap-3.3.5/css/bootstrap-theme.css">    
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/aboutus.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    -->
+    <script type="text/javascript" src="js/resource/jquery/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/resource/bootstrap/bootstrap-3.3.5/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/resource/angularjs/angular-1.4.4/angular.js"></script>
+    <script type="text/javascript" src="js/resource/angularjs/angular-1.4.4/angular-route.js"></script>
+    <script type="text/javascript" src="js/resource/angularjs/angular-1.4.4/angular-resource.js"></script>
+    <!--
+    <script type="text/javascript" src="js/resource/angularjs/ui-bootstrap-tpls-0.13.3.js"></script>
+    -->
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/services.js"></script> 
+    <script type="text/javascript" src="js/directive.js"></script>  
+    <script type="text/javascript" src="js/app.js"></script>
+    
+    <script type="text/javascript" src="html/core/home/tile.js"></script>
+    <link rel="stylesheet" type="text/css" href="html/core/home/tile.css">
+
+    <style type="text/css">
+      body {
+        min-height: 2000px;
+        padding-top: 70px;
+        #background: black;
+      }
+    </style>
+</head>
+<body>
+  <div class="container dynamicTile">
+    <div class="row ">
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile1" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/face-2/mark-zuckerberg-harvard-years-young-17-e1430433239817.jpg" class="img-responsive">
+              </div>
+              <div class="item active" style="height: 185px;">
+                <img src="images/picture/face-2/young-mark-zuckerberg.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile2" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel" style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active left" style="height: 185px;">
+                <img src="images/picture/dragon3/dragon-1.jpeg"  class="img-responsive">
+              </div>
+              <div class="item next left" style="height: 185px;">
+                <img src="images/picture/dragon3/dragon-2.jpg" class="img-responsive">
+              </div>
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/dragon3/dragon-3.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile3" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/fb2/fight_club_tyler_durden_brad_pitt_edward_norton_hd-wallpaper-327.jpg" class="img-responsive">
+              </div>
+              <div class="item active" style="height: 185px;">
+                <img src="images/picture/fb2/IMG_20130510_073114.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile4" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/gates2/withJobs.jpg" class="img-responsive">
+              </div>
+              <div class="item active" style="height: 185px;">
+                <img src="images/picture/gates2/younggate.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile5" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/lee2/inspirational-bruce-lee-quotes8.jpg" class="img-responsive">
+              </div>
+              <div class="item active" style="height: 185px;">
+                <img src="images/picture/lee2/sms-6645.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile6" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/newimg/b02219e8-c6da-4e7f-8ee4-e651b2d91b35-medium.png" class="img-responsive">
+              </div>
+              <div class="item active" style="height: 185px;">
+                <img src="images/picture/newimg/smartphonesonadate_145114.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 col-xs-8">
+        <div id="tile7" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" style="height: 185px;">
+                <img src="images/picture/tobby-3/tmaguire.jpg" class="img-responsive">
+              </div>
+              <div class="item active left" style="height: 185px;">
+                <img src="images/picture/tobby-3/Tobey-Maguire-HD-Wallpapers.jpg" class="img-responsive">
+              </div>
+              <div class="item next left" style="height: 185px;">
+                <img src="images/picture/tobby-3/tobey-maguire-net-worth.jpg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <div id="tile8" class="tile" style="height: 185px;">
+          <div class="carousel slide" data-ride="carousel"
+            style="height: 185px;">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active left" style="height: 185px;">
+                <img src="images/picture/sky/750be00b2293fb8dc2775c2765e03ee4.jpg" class="img-responsive">
+              </div>
+              <div class="item next left" style="height: 185px;">
+                <img src="images/picture/sky/night-sky-stars.jpeg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-2 col-xs-4">
+          <div id="tile9" class="tile" style="height: 185px;">
+            <div class="carousel slide" data-ride="carousel"
+              style="height: 185px;">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item next left" style="height: 185px;">
+                  <img src="images/picture/now2/now.jpg" class="img-responsive">
+                </div>
+                <div class="item active left" style="height: 185px;">
+                  <img src="images/picture/now2/scene01.gif" class="img-responsive">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-xs-8">
+          <div id="tile10" class="tile" style="height: 185px;">
+            <div class="carousel slide" data-ride="carousel" style="height: 185px;">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active" style="height: 185px;">
+                  <h3 class="tilecaption">
+                    <i class="fa fa-child fa-4x"></i>
+                  </h3>
+                </div>
+                <div class="item" style="height: 185px;">
+                  <h3 class="tilecaption">Customize your tiles</h3>
+                </div>
+                <div class="item" style="height: 185px;">
+                  <h3 class="tilecaption">Text, Icons, Images</h3>
+                </div>
+                <div class="item" style="height: 185px;">
+                  <h3 class="tilecaption">Combine them and create your metro style</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

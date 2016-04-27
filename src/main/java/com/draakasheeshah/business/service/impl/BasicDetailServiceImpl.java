@@ -2,6 +2,7 @@ package com.draakasheeshah.business.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,10 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.draakasheeshah.business.bo.AuthorityEntity;
 import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
 import com.draakasheeshah.business.dao.BasicDetailDAO;
+import com.draakasheeshah.business.service.AuthorityService;
 import com.draakasheeshah.business.service.BasicDetailService;
+import com.draakasheeshah.business.util.Roles;
 
 @Service
 @Transactional
@@ -20,9 +24,13 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 
 	@Autowired
 	BasicDetailDAO basicDetailDAO;
+	@Autowired
+	AuthorityService authorityService;
 
 	@Override
 	public PatientEntity saveWithPatient(BasicDetailEntity basicDetail) {
+		AuthorityEntity role = authorityService.getAuthorityMap().get(Roles.GUEST);
+		basicDetail.getAuthorities().add(role);
 		return basicDetailDAO.saveWithPatient(basicDetail);
 	}
 
@@ -75,7 +83,7 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 
 	@Override
 	public UserDetails loadUserByUsername(String emailId) throws UsernameNotFoundException {
-		BasicDetailEntity userDetails = basicDetailDAO.get(emailId);
+		UserDetails userDetails = basicDetailDAO.get(emailId);
 		return userDetails;
 	}
 }

@@ -168,6 +168,22 @@ directiveM.directive('portalSummaryPage', ['$compile', '$parse', function ($comp
     };
 }]);
 
+/* -----------------TILE-----------------*/
+
+directiveM.directive('tile', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'html/directive/tile.html',
+        scope: {
+            tileData: '='
+        },
+        controller: function($scope, $rootScope, $location){          
+        },
+        link: function(scope, element, attrs, controllers){
+        }
+    };
+});
+
 /* ---------------------------------------------------COMMON---------------------------------------------------*/
 
 /* -----------------DYNAMIC MODEL-----------------*/
@@ -185,5 +201,7 @@ directiveM.directive('dynamicmodel', ['$compile', '$parse', function ($compile, 
         }
     };
 }]);
+
+
 
 

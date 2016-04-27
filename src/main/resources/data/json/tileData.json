@@ -1,0 +1,30 @@
+{
+	"tileData": [{
+			"id": "tileId",
+			"imgAry":[{
+					"url": "url",
+					"active": "true"
+				},{
+					"url": "url",
+					"active": "false"
+				},{
+					"url": "url",
+					"active": "false"
+				}
+			]
+		},{
+			"id": "tileId1",
+			"imgAry":[{
+					"url": "url",
+					"active": "true"
+				},{
+					"url": "url",
+					"active": "false"
+				},{
+					"url": "url",
+					"active": "false"
+				}
+			]
+		}
+	]
+}

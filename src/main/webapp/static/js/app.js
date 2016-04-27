@@ -49,7 +49,8 @@ portalM.config(['$routeProvider',function($routeProvider){
 
 	//Home
 	$routeProvider.when('/home', {
-		templateUrl: 'html/core/processing.html',
+		//templateUrl: 'html/core/processing.html',
+		templateUrl: 'html/core/home.html',
 		controller: 'HomeController'
 	});
 

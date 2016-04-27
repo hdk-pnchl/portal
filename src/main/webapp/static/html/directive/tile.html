@@ -1,0 +1,36 @@
+<!--  -->
+<script type="text/javascript" src="html/core/home/tile.js"></script>
+<link rel="stylesheet" type="text/css" href="html/core/home/tile.css">
+
+<div class="container dynamicTile">
+	<div class="row ">
+      	<div ng-repeat="tile in tileData.tiles" class="col-sm-2 col-xs-4">
+	        <div id="{{tile.id}}" class="" style="height: 185px;">
+	          	<div class="carousel slide" data-ride="carousel" style="height: 185px;">
+		            <!-- Wrapper for slides -->
+		            <div class="carousel-inner">
+		                <div ng-repeat="img in tile.images"  ng-class="{active: img.active}" class="item" style="height: 185px;">
+		                	<img ng-src="{{img.url}}" class="img-responsive" />
+		                </div>
+		            </div>
+	          	</div>
+	        </div>
+      	</div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

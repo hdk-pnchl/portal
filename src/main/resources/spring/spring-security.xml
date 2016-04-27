@@ -17,7 +17,7 @@
 			login-processing-url="/login" 
 		    login-page="/static/#/signIn" 
 		    default-target-url="/static/#/home" 
-			authentication-failure-url="/static/html/core/signIn.html?error=true" 		    
+			authentication-failure-url="/static/#/signIn" 		    
 			username-parameter="username"
 			password-parameter="password"
 			/>
@@ -29,6 +29,7 @@
 			disabled="true"/>	
 	</http>
 
+<!-- 
 	<authentication-manager>
 	  <authentication-provider>
 	    <user-service>
@@ -36,13 +37,10 @@
 	    </user-service>
 	  </authentication-provider>
 	</authentication-manager>
-
-	<!--
+-->
 	<authentication-manager alias="authenticationManager">
 	    <authentication-provider user-service-ref="basicDetailService"></authentication-provider>
 	</authentication-manager>
 	
-
-	<bean id="basicDetailService" class="com.draakasheeshah.business.service.impl.BasicDetailServiceImpl"/>
-	-->
+	<beans:bean id="basicDetailService" class="com.draakasheeshah.business.service.impl.BasicDetailServiceImpl"></beans:bean>
 </beans:beans>
