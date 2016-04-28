@@ -12,7 +12,7 @@
 	<http auto-config="true">
 		<intercept-url 
 			pattern="/ctrl/patients/**" 
-			access="hasRole('ROLE_USER')" />
+			access="hasRole('ADMIN')" />
 		<form-login 
 			login-processing-url="/login" 
 		    login-page="/static/#/signIn" 

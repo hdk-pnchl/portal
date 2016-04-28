@@ -1,16 +1,17 @@
 package com.draakasheeshah.business.bo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.Assert;
 
 @Entity
 @Table
-public final class AuthorityEntity implements GrantedAuthority {
+public final class RolesEntity implements Serializable {
 
 	/**
 	 * 
@@ -23,18 +24,12 @@ public final class AuthorityEntity implements GrantedAuthority {
 	private long authorityId;
 	private String role;
 
-	public AuthorityEntity() {
+	public RolesEntity() {
 	}
 
-	public AuthorityEntity(String role) {
+	public RolesEntity(String role) {
 		Assert.hasText(role, "A granted authority textual representation is required");
 		this.role = role;
-	}
-
-	// behaviour
-	// @Override
-	public String getAuthority() {
-		return this.getRole();
 	}
 
 	// setter-getter
@@ -59,8 +54,8 @@ public final class AuthorityEntity implements GrantedAuthority {
 			return true;
 		}
 
-		if (obj instanceof AuthorityEntity) {
-			return role.equals(((AuthorityEntity) obj).role);
+		if (obj instanceof RolesEntity) {
+			return role.equals(((RolesEntity) obj).role);
 		}
 
 		return false;

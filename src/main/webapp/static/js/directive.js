@@ -11,13 +11,13 @@ directiveM.directive('banner', function(){
         },
         controller: function($scope, $rootScope, $location) {
             $scope.selectTab = function(tab) {
-                angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
-                  tab.active = false;
-                });
-                angular.forEach($scope.bannerData.navData.configNavData, function(tab){
-                  tab.active = false;
-                });
                 if(tab){
+                    angular.forEach($scope.bannerData.navData.mainNavData, function(tab){
+                      tab.active = false;
+                    });
+                    angular.forEach($scope.bannerData.navData.configNavData, function(tab){
+                      tab.active = false;
+                    });
                     tab.active = true;
                 }
             };

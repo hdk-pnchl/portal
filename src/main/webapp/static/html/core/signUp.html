@@ -11,34 +11,34 @@
 				autofocus="autofocus" 
 				required="required" 
 				class="input pass"
-				value="1" 
 				/> 
+				{{basicDetail.name}}
 			<input
 				name="patientPassword" 
-				ng-model="basicDetail.password" 
+				ng-model="basicDetail.patientPassword" 
 				type="password"
 				placeholder="Choose a password" 
 				required="required"
 				class="input pass" 
-				value="1" 
 				/> 
+				{{basicDetail.patientPassword}}
 			<input 
 				name="patientPasswordConfirm"
-				ng-model="basicDetail.passwordConfirm" 
+				ng-model="basicDetail.patientPasswordConfirm" 
 				type="password"
 				placeholder="Confirm password" 
 				required="required"
 				class="input pass" 
-				value="1" 
 				/> 
+				{{basicDetail.patientPasswordConfirm}}
 			<input 
-				name="email"
-				ng-model="basicDetail.email" 
+				name="emailId"
+				ng-model="basicDetail.emailId" 
 				type="email"
 				placeholder="Email address" 
 				class="input pass" 
-				value="1@2.com" 
 				/> 
+				{{basicDetail.emailId}}
 			<input
 				type="button" 
 				value="Sign me up!" 

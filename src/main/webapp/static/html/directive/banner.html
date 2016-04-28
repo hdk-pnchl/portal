@@ -12,10 +12,11 @@
               </ul>             
               <ul class="nav navbar-nav navbar-right">
                 <li ng-repeat="tab in bannerData.navData.configNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
-                  <a href="#{{tab.path}}">{{tab.title}}</a>
-                </li>              
+                    <a ng-if="tab.isURL" href="{{tab.path}}">{{tab.title}}</a>
+                    <a ng-if="!tab.isURL" href="#{{tab.path}}">{{tab.title}}</a>
+                </li>
               </ul>
             </div>
         </div>
-    </nav>      
+    </nav>
 </div>

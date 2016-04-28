@@ -1,7 +1,6 @@
 package com.draakasheeshah.business.bo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,17 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.draakasheeshah.business.enums.Sex;
 import com.draakasheeshah.business.util.CommonUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
-public class BasicDetailEntity implements Serializable, UserDetails {
+public class BasicDetailEntity implements Serializable {
 	/**
 	 * 
 	 */
@@ -45,14 +40,14 @@ public class BasicDetailEntity implements Serializable, UserDetails {
 	private String education;
 	private String occupation;
 
-	private boolean isAccountExpired;
-	private boolean isAccountLocked;
-	private boolean isAccountEnabled;
-	private boolean isAccountCredentialsExpired;
+	private boolean isAccountExpired = true;
+	private boolean isAccountLocked = true;
+	private boolean isAccountEnabled = true;
+	private boolean isAccountCredentialsExpired = true;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "PATIENT_ROLE", joinColumns = @JoinColumn(name = "patinetId") , inverseJoinColumns = @JoinColumn(name = "authorityId") )
-	private Set<AuthorityEntity> roles = new HashSet<AuthorityEntity>();
+	@JoinTable(name = "PATIENT_ROLE", joinColumns = @JoinColumn(name = "patinetId"), inverseJoinColumns = @JoinColumn(name = "authorityId"))
+	private Set<RolesEntity> roles = new HashSet<RolesEntity>();
 
 	@JsonIgnore
 	@OneToOne
@@ -210,48 +205,11 @@ public class BasicDetailEntity implements Serializable, UserDetails {
 		this.isAccountCredentialsExpired = isAccountCredentialsExpired;
 	}
 
-	public Set<AuthorityEntity> getRoles() {
+	public Set<RolesEntity> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<AuthorityEntity> roles) {
+	public void setRoles(Set<RolesEntity> roles) {
 		this.roles = roles;
-	}
-
-	// -------------
-
-	@Override
-	public Collection<AuthorityEntity> getAuthorities() {
-		return this.getRoles();
-	}
-
-	@Override
-	public String getUsername() {
-		return this.getEmailId();
-	}
-
-	@Override
-	public String getPassword() {
-		return this.getPatientPassword();
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return !this.isAccountExpired();
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return !this.isAccountLocked();
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return this.isAccountCredentialsExpired();
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return this.isAccountEnabled();
 	}
 }

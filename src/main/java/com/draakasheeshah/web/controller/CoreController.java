@@ -122,6 +122,9 @@ public class CoreController implements ResourceLoaderAware {
 	 */
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public @ResponseBody PatientEntity signUp(@RequestBody BasicDetailEntity basicDetail) throws IOException {
+		logger.info("Singup DATA : " + basicDetail.getName() + "::::" + basicDetail.getPatientPassword() + "::::"
+				+ basicDetail.getEmailId());
+
 		PatientEntity patientEntity = basicDetailService.saveWithPatient(basicDetail);
 		logger.info("getPatientWizzardData: " + patientEntity);
 		return patientEntity;

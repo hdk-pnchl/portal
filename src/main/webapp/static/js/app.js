@@ -41,11 +41,6 @@ portalM.config(['$routeProvider',function($routeProvider){
 		templateUrl: 'html/core/signUp.html',
 		controller: 'SignUpController'
 	});
-	//signOut
-	$routeProvider.when('/signOut', {
-		templateUrl: '/',
-		controller: 'SignOutController'
-	});
 
 	//Home
 	$routeProvider.when('/home', {

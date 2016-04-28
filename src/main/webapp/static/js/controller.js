@@ -200,13 +200,6 @@ controllersM.controller('SignUpController', ['$scope', '$route', '$routeParams',
     }
 ]);
 
-//------------------------------------SignOUT
-
-controllersM.controller('SignOutController', ['$scope', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
-    function($scope, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
-    $window.location.href="/portal/logout";
-}]);
-
 //------------------------------------Home
 
 controllersM.controller('HomeController', ['$scope', '$http', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 

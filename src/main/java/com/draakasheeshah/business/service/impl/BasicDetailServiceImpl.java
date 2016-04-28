@@ -1,18 +1,23 @@
 package com.draakasheeshah.business.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.draakasheeshah.business.bo.AuthorityEntity;
 import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.bo.RolesEntity;
 import com.draakasheeshah.business.dao.BasicDetailDAO;
 import com.draakasheeshah.business.service.AuthorityService;
 import com.draakasheeshah.business.service.BasicDetailService;
@@ -26,11 +31,21 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 	BasicDetailDAO basicDetailDAO;
 	@Autowired
 	AuthorityService authorityService;
+	private  double DEFAULT_HEIGHdddT;
 
+	private static double DEFAULT_HEIGHT;
+	
+	BasicDetailServiceImpl(double width, double length){
+		DEFAULT_HEIGHdddT=DEFAULT_HEIGHT;
+	}
 	@Override
 	public PatientEntity saveWithPatient(BasicDetailEntity basicDetail) {
-		AuthorityEntity role = authorityService.getAuthorityMap().get(Roles.GUEST);
-		basicDetail.getAuthorities().add(role);
+		
+		new BasicDetailServiceImpl(10, 20);
+
+
+		RolesEntity role = authorityService.getAuthorityMap().get(Roles.GUEST);
+		basicDetail.getRoles().add(role);
 		return basicDetailDAO.saveWithPatient(basicDetail);
 	}
 
@@ -83,7 +98,28 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 
 	@Override
 	public UserDetails loadUserByUsername(String emailId) throws UsernameNotFoundException {
-		UserDetails userDetails = basicDetailDAO.get(emailId);
-		return userDetails;
+		User user = null;
+		BasicDetailEntity userDetails = basicDetailDAO.get(emailId);
+		if (userDetails != null) {
+			List<GrantedAuthority> roles = this.buildUserAuthority(userDetails.getRoles());
+			user = this.buildUserForAuthentication(userDetails, roles);
+		}
+		return user;
+	}
+
+	private User buildUserForAuthentication(BasicDetailEntity basicDetail, List<GrantedAuthority> authorities) {
+		return new User(basicDetail.getEmailId(), basicDetail.getPatientPassword(), basicDetail.isAccountEnabled(),
+				basicDetail.isAccountExpired(), basicDetail.isAccountCredentialsExpired(),
+				basicDetail.isAccountLocked(), authorities);
+	}
+
+	private List<GrantedAuthority> buildUserAuthority(Set<RolesEntity> roles) {
+		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+		// Build user's authorities
+		for (RolesEntity userRole : roles) {
+			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+		}
+		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
+		return Result;
 	}
 }

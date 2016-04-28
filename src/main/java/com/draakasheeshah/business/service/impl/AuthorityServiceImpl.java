@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.draakasheeshah.business.bo.AuthorityEntity;
+import com.draakasheeshah.business.bo.RolesEntity;
 import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.dao.AuthorityDAO;
 import com.draakasheeshah.business.service.AuthorityService;
@@ -22,70 +22,71 @@ public class AuthorityServiceImpl implements AuthorityService, InitializingBean 
 	@Autowired
 	AuthorityDAO authorityDAO;
 
-	private Map<Roles, AuthorityEntity> authorityMap = new HashMap<Roles, AuthorityEntity>();
+	private Map<Roles, RolesEntity> authorityMap = new HashMap<Roles, RolesEntity>();
 
 	@Override
-	public Map<Roles, AuthorityEntity> getAuthorityMap() {
+	public Map<Roles, RolesEntity> getAuthorityMap() {
 		return authorityMap;
 	}
 
-	public void setAuthorityMap(Map<Roles, AuthorityEntity> authorityMap) {
+	public void setAuthorityMap(Map<Roles, RolesEntity> authorityMap) {
 		this.authorityMap = authorityMap;
 	}
 
 	@Override
-	public AuthorityEntity save(AuthorityEntity authority) {
+	public RolesEntity save(RolesEntity authority) {
 		authority = this.authorityDAO.save(authority);
 		return authority;
 	}
 
 	@Override
-	public AuthorityEntity update(AuthorityEntity authority) {
+	public RolesEntity update(RolesEntity authority) {
 		authority = this.authorityDAO.update(authority);
 		return authority;
 	}
 
 	@Override
-	public BasicDetailEntity addRoleToUser(AuthorityEntity role, long basicDetailId) {
+	public BasicDetailEntity addRoleToUser(RolesEntity role, long basicDetailId) {
 		BasicDetailEntity basicDetail = this.addRoleToUser(role, basicDetailId);
 		return basicDetail;
 	}
 
 	@Override
-	public AuthorityEntity saveOrUpdate(AuthorityEntity role) {
+	public RolesEntity saveOrUpdate(RolesEntity role) {
 		this.authorityDAO.saveOrUpdate(role);
 		return role;
 	}
 
 	@Override
-	public AuthorityEntity get(long roleId) {
-		AuthorityEntity role = this.get(roleId);
+	public RolesEntity get(long roleId) {
+		RolesEntity role = this.get(roleId);
 		return role;
 	}
 
 	@Override
-	public List<AuthorityEntity> loadAll() {
-		List<AuthorityEntity> roles = this.authorityDAO.loadAll();
+	public List<RolesEntity> loadAll() {
+		List<RolesEntity> roles = this.authorityDAO.loadAll();
 		return roles;
 	}
 
 	@Override
-	public void delete(AuthorityEntity family) {
+	public void delete(RolesEntity family) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void deletePermanently(AuthorityEntity family) {
+	public void deletePermanently(RolesEntity family) {
 		this.authorityDAO.delete(family);
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		AuthorityEntity guest = this.save(new AuthorityEntity(Roles.GUEST.getName()));
-		AuthorityEntity admin = this.save(new AuthorityEntity(Roles.ADMIN.getName()));
+		if(this.loadAll().isEmpty()){
+			RolesEntity guest = this.save(new RolesEntity(Roles.GUEST.getName()));
+			RolesEntity admin = this.save(new RolesEntity(Roles.ADMIN.getName()));
 
-		this.getAuthorityMap().put(Roles.GUEST, guest);
-		this.getAuthorityMap().put(Roles.ADMIN, admin);
-
+			this.getAuthorityMap().put(Roles.GUEST, guest);
+			this.getAuthorityMap().put(Roles.ADMIN, admin);			
+		}
 	}
 }

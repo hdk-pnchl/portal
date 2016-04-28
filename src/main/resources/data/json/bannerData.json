@@ -39,7 +39,8 @@
 				"active": false,
 				"disabled": false,
 				"hidden": false,
-				"path": "/signOut"		
+				"isURL": true,
+				"path": "/portal/logout"		
 			}		
 		]
 	}

@@ -2,26 +2,26 @@ package com.draakasheeshah.business.dao;
 
 import java.util.List;
 
-import com.draakasheeshah.business.bo.AuthorityEntity;
+import com.draakasheeshah.business.bo.RolesEntity;
 import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.FamilyEntity;
 
 public interface AuthorityDAO {
 
-	AuthorityEntity save(AuthorityEntity authority);
+	RolesEntity save(RolesEntity authority);
 
-	AuthorityEntity update(AuthorityEntity authority);
+	RolesEntity update(RolesEntity authority);
 
-	AuthorityEntity saveOrUpdate(AuthorityEntity role);
+	RolesEntity saveOrUpdate(RolesEntity role);
 
-	AuthorityEntity get(long roleId);
+	RolesEntity get(long roleId);
 
-	List<AuthorityEntity> loadAll();
+	List<RolesEntity> loadAll();
 
-	void deletePermanently(AuthorityEntity family);
+	void deletePermanently(RolesEntity family);
 
-	BasicDetailEntity addRoleToUser(AuthorityEntity role, long basicDetailId);
+	BasicDetailEntity addRoleToUser(RolesEntity role, long basicDetailId);
 
-	void delete(AuthorityEntity family);
+	void delete(RolesEntity family);
 
 }
