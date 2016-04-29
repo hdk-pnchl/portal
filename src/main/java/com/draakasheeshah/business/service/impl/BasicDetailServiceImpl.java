@@ -31,19 +31,8 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 	BasicDetailDAO basicDetailDAO;
 	@Autowired
 	AuthorityService authorityService;
-	private  double DEFAULT_HEIGHdddT;
-
-	private static double DEFAULT_HEIGHT;
-	
-	BasicDetailServiceImpl(double width, double length){
-		DEFAULT_HEIGHdddT=DEFAULT_HEIGHT;
-	}
 	@Override
 	public PatientEntity saveWithPatient(BasicDetailEntity basicDetail) {
-		
-		new BasicDetailServiceImpl(10, 20);
-
-
 		RolesEntity role = authorityService.getAuthorityMap().get(Roles.GUEST);
 		basicDetail.getRoles().add(role);
 		return basicDetailDAO.saveWithPatient(basicDetail);
