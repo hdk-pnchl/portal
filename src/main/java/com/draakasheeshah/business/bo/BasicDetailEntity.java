@@ -45,6 +45,7 @@ public class BasicDetailEntity implements Serializable {
 	private boolean isAccountEnabled = true;
 	private boolean isAccountCredentialsExpired = true;
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "PATIENT_ROLE", joinColumns = @JoinColumn(name = "patinetId"), inverseJoinColumns = @JoinColumn(name = "authorityId"))
 	private Set<RolesEntity> roles = new HashSet<RolesEntity>();

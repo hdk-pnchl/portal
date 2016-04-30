@@ -1,7 +1,7 @@
 package com.draakasheeshah.business.util;
 
 public enum Roles {
-	GUEST("GUEST"), ADMIN("ADMIN");
+	GUEST("ROLE_GUEST"), ADMIN("ROLE_ADMIN");
 
 	Roles(String name) {
 		this.name = name;

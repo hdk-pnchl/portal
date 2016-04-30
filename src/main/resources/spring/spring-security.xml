@@ -10,9 +10,7 @@
 
 	<!--  -->
 	<http auto-config="true">
-		<intercept-url 
-			pattern="/ctrl/patients/**" 
-			access="hasRole('ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/**" access="hasRole('ROLE_ADMIN')" />
 		<form-login 
 			login-processing-url="/login" 
 		    login-page="/static/#/signIn" 
