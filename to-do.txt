@@ -1,0 +1,18 @@
+forgot pw
+send message
+email
+website contents
+3 logins
+	guest
+		home
+		contact us
+	member
+		dashbord
+		his/her messages
+		contacts us
+	admin
+		dashbord
+		patients
+		add patient
+		summary patient
+		messages

@@ -49,6 +49,30 @@ portalM.config(['$routeProvider',function($routeProvider){
 		controller: 'HomeController'
 	});
 
+	//contactUs
+	$routeProvider.when('/contactUs', {
+		//templateUrl: 'html/core/processing.html',
+		templateUrl: 'html/core/contactUs.html',
+		controller: 'ContactUsController'
+	});
+
+	//contactUs
+	$routeProvider.when('/messages', {
+		//templateUrl: 'html/core/processing.html',
+		templateUrl: 'html/messages.html',
+		controller: 'MessageController'
+	});	
+
+	//answer message
+	$routeProvider.when('/messageSummary', {
+		templateUrl: 'html/messageSummary.html',
+		controller: 'MessageAnswerController'
+	});		
+	$routeProvider.when('/messageSummary/:messageId', {
+		templateUrl: 'html/messageSummary.html',
+		controller: 'MessageAnswerController'
+	});	
+
 	//otherwise
 	$routeProvider.otherwise({
         redirectTo: '/home'

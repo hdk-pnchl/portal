@@ -1,0 +1,37 @@
+<style type="text/css"> 
+	.contact-form {
+	    margin-top:70px;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<h3>Drop us a line!</h3>
+			<hr>
+			<address>
+				<strong>Email:</strong> <a href="mailto:#"> name@domain.com</a><br>
+				<br> <strong>Phone:</strong> (555)123-4567
+			</address>
+		</div>
+
+		<div class="col-sm-8 contact-form">
+			<form id="contact" method="post" class="form" role="form">
+				<div class="row">
+					<div class="col-xs-6 col-md-6 form-group">
+						<input ng-model="message.name" name="name" class="form-control" id="name" placeholder="Name" type="text" required></input>
+					</div>
+					<div class="col-xs-6 col-md-6 form-group">
+						<input ng-model="message.emailId" name="emailId" class="form-control" id="emailId" placeholder="Email Id" type="email" required></input>
+					</div>
+				</div>
+				<textarea ng-model="message.message" name="message" class="form-control" id="message" placeholder="Message" rows="5"></textarea>
+				<br />
+				<div class="row">
+					<div class="col-xs-12 col-md-12 form-group">
+						<button class="btn btn-primary pull-right" ng-click="submitMessage(message)">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

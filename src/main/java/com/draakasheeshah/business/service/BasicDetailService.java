@@ -24,4 +24,6 @@ public interface BasicDetailService {
 
 	PatientEntity update(BasicDetailEntity basicDetail, long basicDetailId);
 
+	BasicDetailEntity get(String emailId);
+
 }

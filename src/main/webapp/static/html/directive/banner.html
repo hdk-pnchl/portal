@@ -11,7 +11,7 @@
                 </li>
               </ul>             
               <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="tab in bannerData.navData.configNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
+                <li ng-repeat="(tabName, tab) in bannerData.navData.configNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
                     <a ng-if="tab.isURL" href="{{tab.path}}">{{tab.title}}</a>
                     <a ng-if="!tab.isURL" href="#{{tab.path}}">{{tab.title}}</a>
                 </li>

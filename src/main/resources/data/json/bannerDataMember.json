@@ -11,6 +11,13 @@
 				"disabled": false,
 				"hidden": false,
 				"path": "/home"		
+			},
+			"messages": {
+				"title": "Messages",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/messages"		
 			},			
 			"contactUs": {
 				"title": "Contact Us",
@@ -21,20 +28,14 @@
 			}
 		}, 
 		"configNavData": {
-			"signUp": {
-				"title": "Sign Up",
+			"signOut": {
+				"title": "Sign Out",
 				"active": false,
 				"disabled": false,
 				"hidden": false,
-				"path": "/signUp"		
-			},
-			"signIn":{
-				"title": "Sign In",
-				"active": false,
-				"disabled": false,
-				"hidden": false,
-				"path": "/signIn"		
-			}		
+				"isURL": true,
+				"path": "/portal/logout"		
+			}
 		}
 	}
 }

@@ -1,7 +1,9 @@
 package com.draakasheeshah.web.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.BasicDetailService;
 import com.draakasheeshah.business.service.PatientService;
+import com.draakasheeshah.business.util.ResponseParam;
 
 @Controller
 @RequestMapping("/patients/basicDetail")
@@ -38,18 +42,31 @@ public class BasicDetailController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity save(@RequestBody BasicDetailEntity basicDetail) {
+	public @ResponseBody ResponseEntity save(@RequestBody BasicDetailEntity basicDetail) {
 		System.out.println("/basicDetail" + " : " + "/save");
-		PatientEntity patientEntity = basicDetailService.saveWithPatient(basicDetail);
-		return patientEntity;
+		ResponseEntity response = new ResponseEntity();
+
+		BasicDetailEntity basicDetailExisting = basicDetailService.get(basicDetail.getEmailId());
+		if (basicDetailExisting == null) {
+			PatientEntity patientEntity = basicDetailService.saveWithPatient(basicDetail);
+			response.setResponseEntity(patientEntity);
+		} else {
+			Map<String, String> respMap = new HashMap<String, String>();
+			respMap.put(ResponseParam.ERROR_MSG.getErrorMessage(), "Email ID already taken");
+			response.setResponseData(respMap);
+		}
+
+		return response;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity update(@RequestBody BasicDetailEntity basicDetail,
+	public @ResponseBody ResponseEntity update(@RequestBody BasicDetailEntity basicDetail,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/basicDetail" + " : " + "/update");
+		ResponseEntity response = new ResponseEntity();
 		PatientEntity patient = basicDetailService.update(basicDetail, patientId);
-		return patient;
+		response.setResponseEntity(patient);
+		return response;
 	}
 
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)

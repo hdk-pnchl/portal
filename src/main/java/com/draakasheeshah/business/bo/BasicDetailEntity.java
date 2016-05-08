@@ -28,7 +28,7 @@ public class BasicDetailEntity implements Serializable {
 	private static final long serialVersionUID = 2513263582847293133L;
 	@Id
 	@GeneratedValue
-	private long patinetId;
+	private long basicDetailId;
 	private String name;
 	private String emailId;
 	private long regNo;
@@ -47,7 +47,7 @@ public class BasicDetailEntity implements Serializable {
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "PATIENT_ROLE", joinColumns = @JoinColumn(name = "patinetId"), inverseJoinColumns = @JoinColumn(name = "authorityId"))
+	@JoinTable(name = "PATIENT_ROLE", joinColumns = @JoinColumn(name = "basicDetailId"), inverseJoinColumns = @JoinColumn(name = "authorityId"))
 	private Set<RolesEntity> roles = new HashSet<RolesEntity>();
 
 	@JsonIgnore
@@ -59,12 +59,12 @@ public class BasicDetailEntity implements Serializable {
 		this.populateRegNo();
 	}
 
-	public long getPatinetId() {
-		return patinetId;
+	public long getBasicDetailId() {
+		return basicDetailId;
 	}
 
-	public void setPatinetId(long patinetId) {
-		this.patinetId = patinetId;
+	public void setBasicDetailId(long basicDetailId) {
+		this.basicDetailId = basicDetailId;
 	}
 
 	public String getName() {

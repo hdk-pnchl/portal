@@ -1,54 +1,68 @@
-<div class="container">
-	<div id="logbox">
-		<form id="signUp" method="" action="">
-			<h1>create an account</h1>
-			<input 
-				name="username"
-				ng-model="basicDetail.name" 
-				type="text"
-				placeholder="What's your username?" 
-				pattern="^[\w]{3,16}$"
-				autofocus="autofocus" 
-				required="required" 
-				class="input pass"
-				/> 
-				{{basicDetail.name}}
-			<input
-				name="patientPassword" 
-				ng-model="basicDetail.patientPassword" 
-				type="password"
-				placeholder="Choose a password" 
-				required="required"
-				class="input pass" 
-				/> 
-				{{basicDetail.patientPassword}}
-			<input 
-				name="patientPasswordConfirm"
-				ng-model="basicDetail.patientPasswordConfirm" 
-				type="password"
-				placeholder="Confirm password" 
-				required="required"
-				class="input pass" 
-				/> 
-				{{basicDetail.patientPasswordConfirm}}
-			<input 
-				name="emailId"
-				ng-model="basicDetail.emailId" 
-				type="email"
-				placeholder="Email address" 
-				class="input pass" 
-				/> 
-				{{basicDetail.emailId}}
-			<input
-				type="button" 
-				value="Sign me up!" 
-				class="inputButton" 
-				ng-click="signUp()"/>
-			<div 
-				class="text-center">
-				already have an account? <a href="#" id="login_id">login</a>
-			</div>
-		</form>
-	</div>
+<!--
+<div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name:</label>
+    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="basicDetail.name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email:</label>
+    <input type="email" class="form-control" id="emailId" placeholder="Email" ng-model="basicDetail.emailId">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Password</label>
+    <input type="password" class="form-control" id="patientPassword" placeholder="Password" ng-model="basicDetail.patientPassword">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Confirm password</label>
+    <input type="password" class="form-control" id="patientPasswordConfirm" placeholder="Confirm password" ng-model="basicDetail.patientPasswordConfirm">
+  </div>    
+  <button type="submit" class="btn btn-default">SingIn</button>
 </div>
-<link rel="stylesheet" type="text/css" href="css/signInUp.css">
+-->
+<form class="form-horizontal">
+	<div class="form-group">
+		<label for="name" class="col-sm-4 control-label">Name</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="name" placeholder="Name" ng-model="basicDetail.name">
+		</div>
+	</div>
+
+	<div class="alert alert-danger alert-dismissible" role="alert" ng-show="isEmailTaken">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>Warning!</strong> ..Email Id already is taken!
+	</div>
+	<div class="form-group">
+		<label for="emailId" class="col-sm-4 control-label">Email</label>
+		<div class="col-sm-4">
+			<input type="email" class="form-control" id="emailId" placeholder="Email" ng-model="basicDetail.emailId">
+		</div>
+	</div>
+
+	<div class="alert alert-danger alert-dismissible" role="alert" ng-hide="isPasswordMatching">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>Warning!</strong> ..Please match the password!
+	</div>	
+	<div class="form-group">
+		<label for="password" class="col-sm-4 control-label">Password</label>
+		<div class="col-sm-4">
+			<input type="password" class="form-control" id="password" placeholder="Password" ng-model="basicDetail.patientPassword">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="patientPasswordConfirm" class="col-sm-4 control-label">Confirm
+			password</label>
+		<div class="col-sm-4">
+			<input type="password" class="form-control" id="patientPasswordConfirm" placeholder="Confirm password" ng-model="basicDetail.patientPasswordConfirm">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-10">
+			<button type="submit" class="btn btn-success" ng-click="signUp()">SignUp</button>
+		</div>
+	</div>
+</form>

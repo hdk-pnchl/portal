@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.draakasheeshah.business.bo.AddressEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.AddressService;
 
 @Controller
@@ -34,19 +35,23 @@ public class AddressController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity save(@RequestBody AddressEntity address,
+	public @ResponseBody ResponseEntity save(@RequestBody AddressEntity address,
 			@RequestParam("patientId") long patientId) {
-		System.out.println("/Address" + " : " + "/saveOrUpdate");
+		System.out.println("/Address" + " : " + "/save");
 		PatientEntity patientEntity = addressService.saveWithPatient(address, patientId);
-		return patientEntity;
+		ResponseEntity response = new ResponseEntity();
+		response.setResponseEntity(patientEntity);
+		return response;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity update(@RequestBody AddressEntity address,
+	public @ResponseBody ResponseEntity update(@RequestBody AddressEntity address,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Address" + " : " + "/saveOrUpdate");
-		PatientEntity patient = addressService.update(address,patientId );
-		return patient;
+		ResponseEntity response = new ResponseEntity();
+		PatientEntity patient = addressService.update(address, patientId);
+		response.setResponseEntity(patient);
+		return response;
 	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)

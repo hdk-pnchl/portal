@@ -33,7 +33,7 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 	AuthorityService authorityService;
 	@Override
 	public PatientEntity saveWithPatient(BasicDetailEntity basicDetail) {
-		RolesEntity role = authorityService.getAuthorityMap().get(Roles.GUEST);
+		RolesEntity role = authorityService.getAuthorityMap().get(Roles.MEMBER);
 		basicDetail.getRoles().add(role);
 		return basicDetailDAO.saveWithPatient(basicDetail);
 	}
@@ -70,6 +70,11 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 		return basicDetailDAO.get(basicDetailId);
 	}
 
+	@Override
+	public BasicDetailEntity get(String emailId) {
+		return basicDetailDAO.get(emailId);
+	}
+	
 	@Override
 	public List<BasicDetailEntity> getAll() {
 		return basicDetailDAO.loadAll();

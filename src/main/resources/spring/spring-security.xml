@@ -11,6 +11,7 @@
 	<!--  -->
 	<http auto-config="true">
 		<intercept-url pattern="/ctrl/patients/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/message/**" access="hasRole('ROLE_MEMBER')" />
 		<form-login 
 			login-processing-url="/login" 
 		    login-page="/static/#/signIn" 

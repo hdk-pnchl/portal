@@ -137,8 +137,8 @@ directiveM.directive('portalForm', ['$compile', '$parse', function ($compile, $p
         controller: function($scope, $element, $attrs, $transclude) {
             $scope.submitForm= function(){
                 $scope.actionfn({
-                    "patientDataType": $scope.formData.name,
-                    "patientData": $scope.formData.data
+                    "dataType": $scope.formData.name,
+                    "data": $scope.formData.data
                 });                
             }
         },

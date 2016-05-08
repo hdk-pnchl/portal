@@ -1,3 +1,4 @@
+<!--
 <div class="container">
 	<div id="logbox">
 		<form id="signin" method="post" action="http://localhost:8080/portal/login">
@@ -26,5 +27,30 @@
 		</form>
 	</div>
 </div>
-<!---->
+
 <link rel="stylesheet" type="text/css" href="css/signInUp.css">
+-->
+<div class="container">
+	<form class="form-horizontal" method="post"
+		action="http://localhost:8080/portal/login">
+		<div class="form-group">
+			<label for="username" class="col-sm-4 control-label">Email</label>
+			<div class="col-sm-4">
+				<input type="email" class="form-control" id="username"
+					name="username" placeholder="Email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password" class="col-sm-4 control-label">Password</label>
+			<div class="col-sm-4">
+				<input type="password" class="form-control" id="password"
+					name="password" placeholder="Email">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-10">
+				<button type="submit" class="btn btn-success">SignIn</button>
+			</div>
+		</div>
+	</form>
+</div>

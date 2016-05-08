@@ -81,12 +81,18 @@ public class AuthorityServiceImpl implements AuthorityService, InitializingBean 
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		if(this.loadAll().isEmpty()){
+		List<RolesEntity> roles = this.loadAll();
+		if (roles.isEmpty()) {
 			RolesEntity guest = this.save(new RolesEntity(Roles.GUEST.getName()));
 			RolesEntity admin = this.save(new RolesEntity(Roles.ADMIN.getName()));
-
+			RolesEntity member = this.save(new RolesEntity(Roles.MEMBER.getName()));
 			this.getAuthorityMap().put(Roles.GUEST, guest);
-			this.getAuthorityMap().put(Roles.ADMIN, admin);			
+			this.getAuthorityMap().put(Roles.ADMIN, admin);
+			this.getAuthorityMap().put(Roles.MEMBER, member);
+		} else {
+			for (RolesEntity role : roles) {
+				this.getAuthorityMap().put(Roles.fetchRoleByName(role.getRole()), role);
+			}
 		}
 	}
 }

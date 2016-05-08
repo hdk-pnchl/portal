@@ -42,8 +42,7 @@
 			"isHidden": false,
 			"name": "basicDetail",
 			"modalDataObj": "basic",
-			"fieldAry": [
-				{
+			"fieldAry": [{
 					"name": "name",
 					"label": "Name",
 					"modalData": "basic.name",
@@ -52,7 +51,8 @@
 					"name": "emailId",
 					"label": "EmailId",
 					"modalData": "basic.emailId",
-					"type": "email"
+					"type": "email",
+					"errorMsg": "..Email Id already is taken!"
 				},{
 					"name": "age",
 					"label": "Age",
@@ -81,8 +81,7 @@
 			"isHidden": true,
 			"name": "address",
 			"modalDataObj": "address",
-			"fieldAry": [
-				{
+			"fieldAry": [{
 					"name": "country",
 					"label": "Country",
 					"modalData": "address.country",
@@ -106,12 +105,12 @@
 					"name": "addressLine1",
 					"label": "Address Line 1",
 					"modalData": "address.addressLine1",
-					"type": "textarea"			
+					"type": "textarea"
 				},{
 					"name": "addressLine2",
 					"label": "Address Line 2",
 					"modalData": "address.addressLine2",
-					"type": "textarea"			
+					"type": "textarea"
 				},{
 					"name": "addressLine3",
 					"label": "Address Line 3",
@@ -125,8 +124,7 @@
 			"isHidden": true,
 			"name": "observation",
 			"modalDataObj": "observation",
-			"fieldAry": [
-				{
+			"fieldAry": [{
 					"name": "posture",
 					"label": "Posture",
 					"modalData": "observation.posture",
@@ -174,7 +172,7 @@
 					"name": "income",
 					"label": "income",
 					"modalData": "interrogate.income",
-					"type": "textarea"	
+					"type": "number"	
 				},{
 					"name": "familyTree",
 					"label": "Family Tree",

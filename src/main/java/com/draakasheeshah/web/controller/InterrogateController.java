@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.draakasheeshah.business.bo.InterrogateEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.InterrogateService;
 
 @Controller
@@ -34,19 +35,23 @@ public class InterrogateController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity save(@RequestBody InterrogateEntity address,
+	public @ResponseBody ResponseEntity save(@RequestBody InterrogateEntity address,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Interrogate" + " : " + "/save");
 		PatientEntity patientEntity = interrogateService.saveWithPatient(address, patientId);
-		return patientEntity;
+		ResponseEntity response = new ResponseEntity();
+		response.setResponseEntity(patientEntity);
+		return response;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity update(@RequestBody InterrogateEntity interrogate,
+	public @ResponseBody ResponseEntity update(@RequestBody InterrogateEntity interrogate,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Interrogate" + " : " + "/update");
+		ResponseEntity response = new ResponseEntity();
 		PatientEntity patient = interrogateService.update(interrogate, patientId);
-		return patient;
+		response.setResponseEntity(patient);
+		return response;
 	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)

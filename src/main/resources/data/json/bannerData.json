@@ -32,16 +32,31 @@
 				"disabled": false,
 				"hidden": false,
 				"path": "/patientSummary"		
+			},
+			"messages": {
+				"title": "Messages",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/messages"		
+			},
+			"messageSummary": {
+				"title": "Message Summary",
+				"active": false,
+				"disabled": false,
+				"hidden": false,
+				"path": "/messageSummary"		
 			}
 		}, 
-		"configNavData": [{
+		"configNavData": {
+			"signOut": {
 				"title": "Sign Out",
 				"active": false,
 				"disabled": false,
 				"hidden": false,
 				"isURL": true,
 				"path": "/portal/logout"		
-			}		
-		]
+			}
+		}
 	}
 }

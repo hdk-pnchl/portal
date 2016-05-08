@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.draakasheeshah.business.bo.ObservationEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.ObservationService;
 
 @Controller
@@ -35,19 +36,23 @@ public class ObservationController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity save(@RequestBody ObservationEntity observation,
+	public @ResponseBody ResponseEntity save(@RequestBody ObservationEntity observation,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Observation" + " : " + "/save");
 		PatientEntity patientEntity = observationService.saveWithPatient(observation, patientId);
-		return patientEntity;
+		ResponseEntity response = new ResponseEntity();
+		response.setResponseEntity(patientEntity);
+		return response;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody PatientEntity update(@RequestBody ObservationEntity observation,
+	public @ResponseBody ResponseEntity update(@RequestBody ObservationEntity observation,
 			@RequestParam("patientId") long patientId) {
 		System.out.println("/Observation" + " : " + "/update");
+		ResponseEntity response = new ResponseEntity();
 		PatientEntity patient = observationService.update(observation, patientId);
-		return patient;
+		response.setResponseEntity(patient);
+		return response;
 	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)

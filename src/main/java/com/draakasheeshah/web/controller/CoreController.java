@@ -19,11 +19,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.draakasheeshah.business.bo.BasicDetailEntity;
+import com.draakasheeshah.business.bo.MessageEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.BasicDetailService;
+import com.draakasheeshah.business.service.MessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -40,6 +44,9 @@ public class CoreController implements ResourceLoaderAware {
 	@Autowired
 	private BasicDetailService basicDetailService;
 
+	@Autowired
+	private MessageService messageService;
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("test:");
@@ -50,6 +57,8 @@ public class CoreController implements ResourceLoaderAware {
 			e.printStackTrace();
 		}
 	}
+
+	// -------------------------DATA------------------------
 
 	@RequestMapping(value = "/getBannerTest", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getBannerTest() throws IOException {
@@ -114,6 +123,8 @@ public class CoreController implements ResourceLoaderAware {
 		return patientWizzardData;
 	}
 
+	// -------------------------BUSINESS------------------------
+
 	/**
 	 * http://localhost:8080/portal/ctrl/core/signUp
 	 * 
@@ -130,7 +141,30 @@ public class CoreController implements ResourceLoaderAware {
 		return patientEntity;
 	}
 
-	// --- private
+	/**
+	 * http://localhost:8080/portal/ctrl/core/isEmailIdTaken?emailId=hdk.pnchl@gmail.com
+	 * 
+	 * @param emailId
+	 * @return
+	 */
+	@RequestMapping(value = "/isEmailIdTaken", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Boolean> isEmailIdTaken(@RequestParam("emailId") String emailId) {
+		BasicDetailEntity basicDetail = basicDetailService.get(emailId);
+		Map<String, Boolean> responseMap = new HashMap<String, Boolean>();
+		responseMap.put("isEmailIdTaken", (basicDetail != null) ? true : false);
+		return responseMap;
+	}
+
+	@RequestMapping(value = "/saveMessage", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity saveMessage(@RequestBody MessageEntity message) {
+		System.out.println("/Core" + " : " + "/save");
+		message = messageService.save(message);
+		ResponseEntity response = new ResponseEntity();
+		response.setResponseEntity(message);
+		return response;
+	}
+	
+	// -------------------------PRIVATE------------------------
 
 	private boolean isAuth() {
 		boolean isAuth = false;
