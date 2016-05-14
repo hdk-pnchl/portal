@@ -1,6 +1,12 @@
 package com.draakasheeshah.business.util;
 
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
+
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class CommonUtil {
 	protected static AtomicReference<Long> currentTime = new AtomicReference<>(System.currentTimeMillis());
@@ -33,7 +39,49 @@ public class CommonUtil {
 		return next;
 	}
 
-	public void populateRoles(){
-		
+	public void populateRoles() {
+
+	}
+
+	public static boolean isAdmin(Collection<SimpleGrantedAuthority> authorities) {
+		boolean isAdmin = false;
+		for (SimpleGrantedAuthority authority : authorities) {
+			if (authority.getAuthority().equals(Roles.ADMIN.getName())) {
+				isAdmin = true;
+			}
+		}
+		return isAdmin;
+	}
+
+	public static boolean isAdmin() {
+		boolean isAdmin = false;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			@SuppressWarnings("unchecked")
+			Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
+			for (SimpleGrantedAuthority authority : authorities) {
+				if (authority.getAuthority().equals(Roles.ADMIN.getName())) {
+					isAdmin = true;
+				}
+			}
+		}
+		return isAdmin;
+	}
+
+	public static boolean isAuth(Authentication auth) {
+		boolean isAuth = false;
+		if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
+			isAuth = true;
+		}
+		return isAuth;
+	}
+
+	public static boolean isAuth() {
+		boolean isAuth = false;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
+			isAuth = true;
+		}
+		return isAuth;
 	}
 }

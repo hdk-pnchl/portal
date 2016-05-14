@@ -26,11 +26,17 @@ import com.draakasheeshah.business.util.ResponseParam;
 @Controller
 @RequestMapping("/patients/basicDetail")
 public class BasicDetailController {
+	
+	//instance
+	
 	@Autowired
 	private BasicDetailService basicDetailService;
+	
 	@Autowired
 	private PatientService patientService;
 
+	//test
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("/basicDetail" + " : " + "/test");
@@ -41,6 +47,8 @@ public class BasicDetailController {
 		}
 	}
 
+	//web
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity save(@RequestBody BasicDetailEntity basicDetail) {
 		System.out.println("/basicDetail" + " : " + "/save");

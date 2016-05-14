@@ -16,3 +16,14 @@
 http://localhost:8080/portal-static/#/patients
 
 http://localhost:8080/portal-static/#/patients		
+
+
+
+pagination
+enc password
+mail
+	password
+	message reply
+web site
+
+aws

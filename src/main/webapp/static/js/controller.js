@@ -13,6 +13,7 @@ controllersM.controller('CoreController', ['$scope', '$http','$location','$rootS
     $scope.hashCore = $location.hash();
     */
     $scope.bannerdata= {};
+    $scope.currentUser;
     $rootScope.$on("$locationChangeSuccess", function(event, newUrl, oldUrl, newState, oldState){ 
         var xTabName= $location.path().split("/")[1];
         if(xTabName == 'home'){

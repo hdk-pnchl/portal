@@ -25,7 +25,7 @@ public class AddressEntity implements Serializable {
 	private String country;
 	private String state;
 	private String city;
-	private String pincode;
+	private int pincode;
 	private String addressLine1;
 	private String addressLine2;
 	private String addressLine3;
@@ -59,11 +59,11 @@ public class AddressEntity implements Serializable {
 		this.city = city;
 	}
 
-	public String getPincode() {
+	public int getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(String pincode) {
+	public void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
 

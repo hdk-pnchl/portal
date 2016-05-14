@@ -1,6 +1,7 @@
 package com.draakasheeshah.web.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +31,8 @@ import com.draakasheeshah.business.bo.PatientEntity;
 import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.BasicDetailService;
 import com.draakasheeshah.business.service.MessageService;
+import com.draakasheeshah.business.util.CommonUtil;
+import com.draakasheeshah.business.util.Roles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -46,7 +51,7 @@ public class CoreController implements ResourceLoaderAware {
 
 	@Autowired
 	private MessageService messageService;
-	
+
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("test:");
@@ -80,8 +85,14 @@ public class CoreController implements ResourceLoaderAware {
 	@RequestMapping(value = "/getBannerData", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getBannerData() throws IOException {
 		Resource bannerJson = null;
-		if (this.isAuth()) {
-			bannerJson = this.resourceLoader.getResource("classpath:data/json/bannerData.json");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (this.isAuth(auth)) {
+			Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
+			if (CommonUtil.isAdmin(authorities)) {
+				bannerJson = this.resourceLoader.getResource("classpath:data/json/bannerData.json");
+			} else {
+				bannerJson = this.resourceLoader.getResource("classpath:data/json/bannerDataMember.json");
+			}
 		} else {
 			bannerJson = this.resourceLoader.getResource("classpath:data/json/bannerDataGuest.json");
 		}
@@ -142,7 +153,8 @@ public class CoreController implements ResourceLoaderAware {
 	}
 
 	/**
-	 * http://localhost:8080/portal/ctrl/core/isEmailIdTaken?emailId=hdk.pnchl@gmail.com
+	 * http://localhost:8080/portal/ctrl/core/isEmailIdTaken?emailId=hdk.
+	 * pnchl@gmail.com
 	 * 
 	 * @param emailId
 	 * @return
@@ -163,14 +175,12 @@ public class CoreController implements ResourceLoaderAware {
 		response.setResponseEntity(message);
 		return response;
 	}
-	
+
 	// -------------------------PRIVATE------------------------
 
-	private boolean isAuth() {
+	private boolean isAuth(Authentication auth) {
 		boolean isAuth = false;
-		if (SecurityContextHolder.getContext().getAuthentication() != null
-				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
-				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
+		if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
 			isAuth = true;
 		}
 		return isAuth;

@@ -1,17 +1,22 @@
 package com.draakasheeshah.web.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.draakasheeshah.business.bo.MessageEntity;
 import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.MessageService;
+import com.draakasheeshah.business.util.CommonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -88,7 +94,13 @@ public class MessageController implements ResourceLoaderAware {
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public @ResponseBody List<MessageEntity> getAll() {
 		logger.info("Getting all ");
-		List<MessageEntity> messageList = messageService.loadAll();
+		List<MessageEntity> messageList = null;
+		if(CommonUtil.isAdmin()){
+			messageList = messageService.loadAll();
+		}else{
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			messageList = messageService.loadAllByEmailId(auth.getName());
+		}
 		return messageList;
 	}
 

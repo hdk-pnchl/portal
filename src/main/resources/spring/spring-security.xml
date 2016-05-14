@@ -10,8 +10,20 @@
 
 	<!--  -->
 	<http auto-config="true">
+		<!-- 
 		<intercept-url pattern="/ctrl/patients/**" access="hasRole('ROLE_ADMIN')" />
+		 -->
+		<intercept-url pattern="/ctrl/patients/address/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/basicDetail/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/family/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/interrogate/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/observation/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ctrl/patients/patient/**" access="hasRole('ROLE_ADMIN')" />
+		<!-- 
 		<intercept-url pattern="/ctrl/patients/message/**" access="hasRole('ROLE_MEMBER')" />
+		 -->
+		<intercept-url pattern="/ctrl/patients/message/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
+		
 		<form-login 
 			login-processing-url="/login" 
 		    login-page="/static/#/signIn" 
@@ -27,16 +39,6 @@
 		<csrf 
 			disabled="true"/>	
 	</http>
-
-<!-- 
-	<authentication-manager>
-	  <authentication-provider>
-	    <user-service>
-		<user name="hdk" password="hdk" authorities="ROLE_USER" />
-	    </user-service>
-	  </authentication-provider>
-	</authentication-manager>
--->
 	<authentication-manager alias="authenticationManager">
 	    <authentication-provider user-service-ref="basicDetailService"></authentication-provider>
 	</authentication-manager>
