@@ -52,6 +52,7 @@ directiveM.directive("portalTable",function(){
         templateUrl: "html/directive/portalTable.html",
         scope: {
             data: "=",
+            searchfn: '&',
             editfn: '&',
             viewfn: '&',
             deletefn: '&'
@@ -99,7 +100,14 @@ directiveM.directive("portalTable",function(){
                 if($scope.rowSelectionCheck()){
                     $scope.deleteRowUpdate($scope.selectedRow);
                 }
-            };                        
+            };               
+            $scope.searchData= function(pageNo, rowsPerPage){
+                var searchIp= {};
+                searchIp.pageNo= pageNo;
+                searchIp.rowsPerPage= rowsPerPage;
+                searchIp.searchData= {};                
+                $scope.searchDataUpdate(searchIp);
+            };                         
         },
         link: function($scope, element, attrs, controllers){
             $scope.editRowUpdate = function(editRow) {
@@ -119,7 +127,13 @@ directiveM.directive("portalTable",function(){
                 $scope.deletefn({
                     "deleteRow":deleteRow,
                 });
-            };                       
+            };             
+            $scope.searchDataUpdate = function(searchIp) {
+                //alert("deleteRowUpdate");
+                $scope.searchfn({
+                    "searchIp": searchIp,
+                });
+            };                        
         }        
     }; 
 });

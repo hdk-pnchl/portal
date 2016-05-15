@@ -3,6 +3,7 @@ package com.draakasheeshah.business.service;
 import java.util.List;
 
 import com.draakasheeshah.business.bo.MessageEntity;
+import com.draakasheeshah.business.util.SearchInput;
 
 public interface MessageService {
 
@@ -22,4 +23,7 @@ public interface MessageService {
 
 	List<MessageEntity> loadAllByEmailId(String emailId);
 
+	List<MessageEntity> getAll(SearchInput searchInput);
+
+	Long getTotalRowCount(SearchInput searchInput);
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.draakasheeshah.business.bo.MessageEntity;
 import com.draakasheeshah.business.dao.MessageDAO;
 import com.draakasheeshah.business.service.MessageService;
+import com.draakasheeshah.business.util.SearchInput;
 
 @Service
 @Transactional
@@ -40,6 +41,16 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public List<MessageEntity> loadAll() {
 		return messageDAO.loadAll();
+	}
+
+	@Override
+	public List<MessageEntity> getAll(SearchInput searchInput) {
+		return messageDAO.loadAll(searchInput);
+	}
+
+	@Override
+	public Long getTotalRowCount(SearchInput searchInput) {
+		return messageDAO.getTotalRowCount(searchInput);
 	}
 
 	@Override

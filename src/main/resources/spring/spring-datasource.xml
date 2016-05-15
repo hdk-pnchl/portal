@@ -37,7 +37,11 @@
 		com.draakasheeshah.business.service.impl" />	
 	-->
 	<context:annotation-config/>	
-    <context:property-placeholder location="classpath:spring/spring-config.properties" />
+	<!-- -->
+    
+    <!-- -->
+	<context:property-placeholder location="classpath:spring/spring-config.properties, classpath:spring/mail-config.properties"/>
+	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- 

@@ -3,6 +3,7 @@ package com.draakasheeshah.business.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
 import com.draakasheeshah.business.dao.AbstractDAO;
 import com.draakasheeshah.business.dao.BasicDetailDAO;
+import com.draakasheeshah.business.util.SearchInput;
 
 @Repository
 @Transactional
@@ -55,7 +57,7 @@ public class BasicDetailDAOImpl extends AbstractDAO implements BasicDetailDAO {
 			patient.setBasicDetail(basicDetail);
 			basicDetail.setPatient(patient);
 			this.getSession().merge(patient);
-			//this.getSession().merge(basicDetail);
+			// this.getSession().merge(basicDetail);
 		}
 		return patient;
 	}
@@ -88,7 +90,7 @@ public class BasicDetailDAOImpl extends AbstractDAO implements BasicDetailDAO {
 		}
 		return basicDetail;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BasicDetailEntity> loadAll() {
@@ -96,6 +98,25 @@ public class BasicDetailDAOImpl extends AbstractDAO implements BasicDetailDAO {
 		return criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BasicDetailEntity> loadAll(SearchInput searchInput) {
+		int beginIndx = (searchInput.getPageNo() * searchInput.getRowsPerPage()) - searchInput.getRowsPerPage();
+		Criteria criteria = this.getSession().createCriteria(BasicDetailEntity.class);
+		criteria.setFirstResult(beginIndx);
+		criteria.setMaxResults(searchInput.getRowsPerPage());
+		//criteria.addOrder(Order.asc("lastUpdatedOn"));
+		return criteria.list();
+	}
+
+	@Override
+	public Long getTotalRowCount(SearchInput searchInput) {
+		Criteria criteria = this.getSession().createCriteria(BasicDetailEntity.class);
+		criteria.setProjection(Projections.rowCount());
+		Long rowCount = (Long) criteria.uniqueResult();
+		return rowCount;
+	}
+	
 	@Override
 	public void delete(BasicDetailEntity basicDetail) {
 		// TODO Auto-generated method stub

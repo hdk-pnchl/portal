@@ -22,6 +22,7 @@ import com.draakasheeshah.business.dao.BasicDetailDAO;
 import com.draakasheeshah.business.service.AuthorityService;
 import com.draakasheeshah.business.service.BasicDetailService;
 import com.draakasheeshah.business.util.Roles;
+import com.draakasheeshah.business.util.SearchInput;
 
 @Service
 @Transactional
@@ -31,6 +32,7 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 	BasicDetailDAO basicDetailDAO;
 	@Autowired
 	AuthorityService authorityService;
+
 	@Override
 	public PatientEntity saveWithPatient(BasicDetailEntity basicDetail) {
 		RolesEntity role = authorityService.getAuthorityMap().get(Roles.MEMBER);
@@ -74,10 +76,21 @@ public class BasicDetailServiceImpl implements BasicDetailService, UserDetailsSe
 	public BasicDetailEntity get(String emailId) {
 		return basicDetailDAO.get(emailId);
 	}
-	
+
 	@Override
 	public List<BasicDetailEntity> getAll() {
 		return basicDetailDAO.loadAll();
+	}
+	
+	@Override
+	public Long getTotalRowCount(SearchInput searchInput) {
+		return basicDetailDAO.getTotalRowCount(searchInput);
+	}
+
+
+	@Override
+	public List<BasicDetailEntity> getAll(SearchInput searchInput) {
+		return basicDetailDAO.loadAll(searchInput);
 	}
 
 	@Override

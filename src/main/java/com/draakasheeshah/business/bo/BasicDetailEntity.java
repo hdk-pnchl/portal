@@ -1,6 +1,7 @@
 package com.draakasheeshah.business.bo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,6 +45,8 @@ public class BasicDetailEntity implements Serializable {
 	private boolean isAccountLocked = true;
 	private boolean isAccountEnabled = true;
 	private boolean isAccountCredentialsExpired = true;
+	private Date createdOn = new Date();
+	private Date lastUpdatedOn = new Date();
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -212,5 +215,21 @@ public class BasicDetailEntity implements Serializable {
 
 	public void setRoles(Set<RolesEntity> roles) {
 		this.roles = roles;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public Date getLastUpdatedOn() {
+		return lastUpdatedOn;
+	}
+
+	public void setLastUpdatedOn(Date lastUpdatedOn) {
+		this.lastUpdatedOn = lastUpdatedOn;
 	}
 }

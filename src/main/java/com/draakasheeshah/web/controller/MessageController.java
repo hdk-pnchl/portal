@@ -1,13 +1,12 @@
 package com.draakasheeshah.web.controller;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.basic.BasicGraphicsUtils;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.MessageEntity;
 import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.MessageService;
 import com.draakasheeshah.business.util.CommonUtil;
+import com.draakasheeshah.business.util.ResponseParam;
+import com.draakasheeshah.business.util.SearchInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -35,8 +36,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MessageController implements ResourceLoaderAware {
 	private static final Logger logger = Logger.getLogger(MessageController.class);
 
-	//instance
-	
+	// instance
+
 	@Autowired
 	private MessageService messageService;
 
@@ -45,15 +46,15 @@ public class MessageController implements ResourceLoaderAware {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	//setter-getter
-	
+	// setter-getter
+
 	@Override
 	public void setResourceLoader(ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
 	}
 
-	//web
-	
+	// web
+
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("/Message" + " : " + "/test");
@@ -95,13 +96,39 @@ public class MessageController implements ResourceLoaderAware {
 	public @ResponseBody List<MessageEntity> getAll() {
 		logger.info("Getting all ");
 		List<MessageEntity> messageList = null;
-		if(CommonUtil.isAdmin()){
+		if (CommonUtil.isAdmin()) {
 			messageList = messageService.loadAll();
-		}else{
+		} else {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			messageList = messageService.loadAllByEmailId(auth.getName());
 		}
 		return messageList;
+	}
+
+	@RequestMapping(value = "/getAllBySeach", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity getAllBySeach(@RequestBody SearchInput searchInput) {
+		System.out.println("/patient" + " : " + "/getAllBySeach");
+
+		if (!CommonUtil.isAdmin()) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			searchInput.getSearchData().put(ResponseParam.EMAIL_ID.getDesc(), auth.getName());
+		}
+
+		List<MessageEntity> messageList = messageService.getAll(searchInput);
+		long rowCount = messageService.getTotalRowCount(searchInput);
+
+		Map<String, String> respMap = new HashMap<String, String>();
+		respMap.put(ResponseParam.ROW_COUNT.getDesc(), String.valueOf(rowCount));
+		respMap.put(ResponseParam.CURRENT_PAGE_NO.getDesc(), String.valueOf(searchInput.getPageNo()));
+		respMap.put(ResponseParam.TOTAL_PAGE_COUNT.getDesc(),
+				String.valueOf(CommonUtil.calculateNoOfPages(rowCount, searchInput.getRowsPerPage())));
+		respMap.put(ResponseParam.ROWS_PER_PAGE.getDesc(), String.valueOf(searchInput.getRowsPerPage()));
+
+		ResponseEntity response = new ResponseEntity();
+		response.setResponseData(respMap);
+		response.setResponseEntity(messageList);
+
+		return response;
 	}
 
 	@RequestMapping(value = "/loadAllByEmailId", method = RequestMethod.GET)
@@ -126,7 +153,7 @@ public class MessageController implements ResourceLoaderAware {
 
 		return patientColumnData;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/getMessageFormData", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getMessageFormData() throws IOException {

@@ -32,7 +32,6 @@ import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.BasicDetailService;
 import com.draakasheeshah.business.service.MessageService;
 import com.draakasheeshah.business.util.CommonUtil;
-import com.draakasheeshah.business.util.Roles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller

@@ -26,24 +26,40 @@ controllersM.controller('CoreController', ['$scope', '$http','$location','$rootS
 
 //------------------------------------Banner
 
-controllersM.controller('BannerController', ['$scope', '$http', '$rootScope','$location', function($scope, $http, $rootScope, $location){
-	$http.get('http://localhost:8080/portal/ctrl/core/getBannerData').then(function(response){
-    	$scope.$parent.bannerdata = response.data;
-  	}, function(response){
-    	alert('something wrong with: http://localhost:8080/portal/ctrl/core/getBannerData');
-  	});
+controllersM.controller('BannerController', ['$scope', '$http', 'PatientService', '$rootScope','$location', function($scope, $http,patientService, $rootScope, $location){
+    patientService.core.get({
+            action: "getBannerData"
+        }, 
+        function(response){
+            $scope.$parent.bannerdata = response;
+        }, 
+        function(){ 
+            alert('core getBannerData failed');
+        }
+    );  
 }]);
 
 //------------------------------------Patients
 
-controllersM.controller('PatientsController', ['$scope', '$http', 'PatientService', '$location', function($scope, $http, patientService, $location){    
-    $http.get('http://localhost:8080/portal/ctrl/core/getPatientColumnData').then(function(response){
-        $scope.patientGridtData= {};
-        $scope.patientGridtData.columnData = response.data;
-        $scope.patientGridtData.rowData= patientService.basicDetail.query({action:"getAll"}); 
-    }, function(response){
-        alert('something wrong with: http://localhost:8080/portal/ctrl/core/getPatientColumnData');
-    });
+controllersM.controller('PatientsController', ['$scope', '$http', 'PatientService', '$location', function($scope, $http, patientService, $location){ 
+    patientService.core.query({
+            action: "getPatientColumnData"
+        }, 
+        function(response){
+            $scope.patientGridtData= {};
+            $scope.patientGridtData.columnData= response;
+
+            var searchIp= {};
+            searchIp.pageNo= 1;
+            searchIp.rowsPerPage= 1;
+            searchIp.searchData= {};
+
+            $scope.fetchPatients(searchIp); 
+        }, 
+        function(){ 
+            alert('core getPatientColumnData failed');
+        }
+    );       
     $scope.editPatient = function(editRow){
         var summaryPath= '/addPatient/'+editRow.basicDetailId;
         $location.path(summaryPath);
@@ -57,38 +73,70 @@ controllersM.controller('PatientsController', ['$scope', '$http', 'PatientServic
     $scope.deletePatient = function(deleteRow){ 
         alert("delete not possible");
     };
+
+    $scope.magic = function(deleteRow){ 
+        $scope.patientGridtData= {};
+    };
+    
+    $scope.fetchPatients = function(searchIp){
+        //return patientService.basicDetail.query({action:"getAll"}); 
+        //$scope.patientGridtData.rowData= patientService.basicDetail.query({action:"getAll"});         
+        patientService.basicDetail.save({
+                action: "getAllBySeach",
+                searchIp: searchIp
+            }, 
+            searchIp, 
+            function(response){
+                $scope.patientGridtData.rowData= response.responseEntity;
+                $scope.patientGridtData.totalRowCount= parseInt(response.responseData.ROW_COUNT);
+                $scope.patientGridtData.currentPageNo= parseInt(response.responseData.CURRENT_PAGE_NO);
+                $scope.patientGridtData.rowsPerPage= parseInt(response.responseData.ROWS_PER_PAGE);                
+                $scope.patientGridtData.pageAry= new Array(parseInt(response.responseData.TOTAL_PAGE_COUNT));                
+            },
+            function(response){
+                alert("patients getAllBySeach by ip failure");
+            }
+        );        
+    };
 }]);
 
 //------------------------------------Add Patient
 
 controllersM.controller('AddPatientController', ['$scope', '$route', '$routeParams', '$location', '$http','PatientService', function($scope, $route, $routeParams, $location, $http, patientService){
-    $http.get('http://localhost:8080/portal/ctrl/core/getPatientWizzardData').then(function(response){
-        $scope.patientWizzard = response.data;
-        
-        $scope.patientDetail= {};
-        if($routeParams.patientId){
-             patientService.patient.get({
-                action: "getFull",
-                patientid: $routeParams.patientId
-            }, function(patientDataResp){
-                $scope.patientDetail= patientDataResp;
+    patientService.core.get({
+            action: "getPatientWizzardData"
+        }, 
+        function(response){
+            $scope.patientWizzard = response;
+            
+            $scope.patientDetail= {};
+            if($routeParams.patientId){
+                 patientService.patient.get({
+                    action: "getFull",
+                    patientid: $routeParams.patientId
+                }, function(patientDataResp){
+                    $scope.patientDetail= patientDataResp;
+                    angular.forEach($scope.patientWizzard.wizzardData, function(formIpData, formName){
+                        formIpData.data= $scope.patientDetail[formName];
+                    });                
+                }, function(){
+                    alert("patient get failure");
+                });          
+            }else{
                 angular.forEach($scope.patientWizzard.wizzardData, function(formIpData, formName){
+                    $scope.patientDetail[formName]= {};
+                    angular.forEach(formIpData.fieldAry, function(field){
+                        $scope.patientDetail[formName][field.name]= "";
+                    });   
                     formIpData.data= $scope.patientDetail[formName];
-                });                
-            }, function(){
-                alert("patient get failure");
-            });          
-        }else{
-            angular.forEach($scope.patientWizzard.wizzardData, function(formIpData, formName){
-                $scope.patientDetail[formName]= {};
-                angular.forEach(formIpData.fieldAry, function(field){
-                    $scope.patientDetail[formName][field.name]= "";
-                });   
-                formIpData.data= $scope.patientDetail[formName];
-            });             
+                });             
+            }
+            $scope.patientDetail.isReady= true;
+        }, 
+        function(){ 
+            alert('core getPatientWizzardData failed');
         }
-        $scope.patientDetail.isReady= true;
-    }); 
+    );  
  
     $scope.selectWizzardStep= function(selectedWizzardStep){
         /*
@@ -269,12 +317,26 @@ controllersM.controller('ContactUsController', ['$scope', '$http', '$route', '$r
 
 controllersM.controller('MessageController', ['$scope', '$http', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
     function($scope, $http, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
-        $scope.messageGridtData= {};
-        $scope.messageGridtData.rowData= patientService.message.query({action:"getAll"});
-        $scope.messageGridtData.columnData= patientService.message.query({action:"getMessageColumnData"}); 
+        patientService.message.query({
+                action: "getMessageColumnData"
+            }, 
+            function(response){
+                $scope.messageGridtData= {};
+                $scope.messageGridtData.columnData= response;
 
+                var searchIp= {};
+                searchIp.pageNo= 1;
+                searchIp.rowsPerPage= 1;
+                searchIp.searchData= {};
+
+                $scope.fetchMessages(searchIp); 
+            }, 
+            function(){ 
+                alert('core getMessageColumnData failed');
+            }
+        );  
         $scope.editPatient = function(editRow){
-            var summaryPath= '/messageSummary/'+editRow.id;
+            var summaryPath = '/messageSummary/'+editRow.id;
             $location.path(summaryPath);
         };
         $scope.viewPatient = function(viewRow){ 
@@ -283,6 +345,24 @@ controllersM.controller('MessageController', ['$scope', '$http', '$route', '$rou
         $scope.deletePatient = function(deleteRow){ 
             alert("delete not possible");
         };
+        $scope.fetchMessages = function(searchIp){
+            patientService.message.save({
+                    action: "getAllBySeach",
+                    searchIp: searchIp
+                }, 
+                searchIp, 
+                function(response){
+                    $scope.messageGridtData.rowData= response.responseEntity;
+                    $scope.messageGridtData.totalRowCount= parseInt(response.responseData.ROW_COUNT);
+                    $scope.messageGridtData.currentPageNo= parseInt(response.responseData.CURRENT_PAGE_NO);
+                    $scope.messageGridtData.rowsPerPage= parseInt(response.responseData.ROWS_PER_PAGE);                
+                    $scope.messageGridtData.pageAry= new Array(parseInt(response.responseData.TOTAL_PAGE_COUNT));                
+                },
+                function(response){
+                    alert("patients getAllBySeach by ip failure");
+                }
+            );        
+        };        
     }
 ]);
 

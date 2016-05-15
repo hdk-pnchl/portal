@@ -22,10 +22,9 @@ public class MailService {
 	public MailService() {
 	}
 
-	public MailService(String to, String textMessage, String subject, String defaultFrom,
-			String mail_transport_protocol, String mail_smtp_host, String mail_smtp_port, String mail_smtp_auth,
-			String mail_smtp_starttls_enable, String mail_smtp_socketFactory_port, String mail_smtp_socketFactory_class,
-			String userName, String password) {
+	public MailService(String mail_smtp_host, String mail_smtp_port, String mail_transport_protocol,
+			String mail_smtp_auth, String mail_smtp_starttls_enable, String mail_smtp_socketFactory_port,
+			String mail_smtp_socketFactory_class, String defaultFrom, String userName, String password) {
 		MailService.userName = userName;
 		MailService.password = password;
 
@@ -90,9 +89,9 @@ public class MailService {
 		String user = "help@dr-aakashee-shah.com";
 		String password = "iAmA$$a89";
 
-		MailService mailService = new MailService(to, textMessage, subject, from, mail_transport_protocol,
-				mail_smtp_host, mail_smtp_port, mail_smtp_auth, mail_smtp_starttls_enable, mail_smtp_socketFactory_port,
-				mail_smtp_socketFactory_class, user, password);
+		MailService mailService = new MailService(mail_smtp_host, mail_smtp_port, mail_transport_protocol,
+				mail_smtp_auth, mail_smtp_starttls_enable, mail_smtp_socketFactory_port, mail_smtp_socketFactory_class,
+				from, user, password);
 		mailService.sendMail(subject, textMessage, mailService.defaultFrom, to);
 	}
 }

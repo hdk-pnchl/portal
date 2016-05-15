@@ -7,9 +7,9 @@
 		row selected {{ selectedRow }}
 	</div>
 	<div>
-		<button class="btn btn-primary btn-xs" type="submit" ng-click="viewRow()" >View</button>
-		<button class="btn btn-success btn-xs" type="submit" ng-click="editRow()">Edit</button>
-		<button class="btn btn-danger btn-xs" type="submit" ng-click="deleteRow()">Delete</button>
+		<button class="btn btn-primary btn-xs" type="button" ng-click="viewRow()" >View</button>
+		<button class="btn btn-success btn-xs" type="button" ng-click="editRow()">Edit</button>
+		<button class="btn btn-danger btn-xs" type="button" ng-click="deleteRow()">Delete</button>
 	</div>
 	<div>
 		<div id="tblData" ng-hide="summary.active" >
@@ -42,8 +42,24 @@
 				</div>	
 				<div>
 					<ul class="pagination">
-					  <li class="disabled"><a href="#">&laquo;</a></li>
-					  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+						<li>
+							<span ng-click="searchData(1, data.rowsPerPage)">
+								&laquo;
+							</span>							
+						</li>
+						<!--
+						<li class="active">
+							<a href="#">
+								1 
+								<span class="sr-only">
+									(current)
+								</span>
+							</a>
+						</li>
+						-->
+            			<li ng-repeat="i in data.pageAry track by $index">
+            				<span ng-click="searchData($index+1, data.rowsPerPage)">{{$index+1}}</span>
+            			</li>
 					</ul>				
 				</div>			
 			</div>	

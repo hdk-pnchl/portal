@@ -35,24 +35,23 @@
 	
 	<bean id="userService" class="com.draakasheeshah.business.service.impl.AuthorityServiceImpl" init-method="init"></bean>
 	-->
-	
+	<!-- 
     <context:property-placeholder location="classpath:spring/mail-config.properties" />
-	
+	-->
 	<!-- request and response translator -->
 	<bean 
 		id="mailService"
-		class="com.draakasheeshah.business.util.MailService" 
-		init-method="initProp">
-		<constructor-arg value="${mail.account.from}" />
-		<constructor-arg value="${mail.account.username}" />
-		<constructor-arg value="${mail.account.password}" />
-		<constructor-arg value="${mail.transport.protocol}" />
+		class="com.draakasheeshah.business.util.MailService">
 		<constructor-arg value="${mail.smtp.host}" />
 		<constructor-arg value="${mail.smtp.port}" />
+		<constructor-arg value="${mail.transport.protocol}" />
 		<constructor-arg value="${mail.smtp.auth}" />
 		<constructor-arg value="${mail.smtp.starttls.enable}" />
 		<constructor-arg value="${mail.smtp.socketFactory.port}" />
 		<constructor-arg value="${mail.smtp.socketFactory.class}" />
+		<constructor-arg value="${mail.account.from}" />
+		<constructor-arg value="${mail.account.username}" />
+		<constructor-arg value="${mail.account.password}" />		
 	</bean>	
 	
 </beans>

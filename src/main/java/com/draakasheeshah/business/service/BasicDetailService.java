@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.draakasheeshah.business.bo.BasicDetailEntity;
 import com.draakasheeshah.business.bo.PatientEntity;
+import com.draakasheeshah.business.util.SearchInput;
 
 public interface BasicDetailService {
 	PatientEntity saveWithPatient(BasicDetailEntity basicDetail);
@@ -25,5 +26,9 @@ public interface BasicDetailService {
 	PatientEntity update(BasicDetailEntity basicDetail, long basicDetailId);
 
 	BasicDetailEntity get(String emailId);
+
+	List<BasicDetailEntity> getAll(SearchInput searchInput);
+
+	Long getTotalRowCount(SearchInput searchInput);
 
 }
