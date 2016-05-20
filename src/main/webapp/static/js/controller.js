@@ -51,7 +51,7 @@ controllersM.controller('PatientsController', ['$scope', '$http', 'PatientServic
 
             var searchIp= {};
             searchIp.pageNo= 1;
-            searchIp.rowsPerPage= 1;
+            searchIp.rowsPerPage= 30;
             searchIp.searchData= {};
 
             $scope.fetchPatients(searchIp); 
@@ -326,7 +326,7 @@ controllersM.controller('MessageController', ['$scope', '$http', '$route', '$rou
 
                 var searchIp= {};
                 searchIp.pageNo= 1;
-                searchIp.rowsPerPage= 1;
+                searchIp.rowsPerPage= 30;
                 searchIp.searchData= {};
 
                 $scope.fetchMessages(searchIp); 
