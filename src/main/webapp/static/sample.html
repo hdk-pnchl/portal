@@ -1,0 +1,60 @@
+<div class="col-sm-2 col-xs-4">
+	<div id="tile1" class="tile" style="height: 185px;">
+	  <div class="carousel slide" data-ride="carousel" style="height: 185px;">
+	    <!-- Wrapper for slides -->
+	    <div class="carousel-inner">
+	      <div class="item" style="height: 185px;">
+	        <img src="images/picture/face-2/mark-zuckerberg-harvard-years-young-17-e1430433239817.jpg" class="img-responsive">
+	      </div>
+	      <div class="item active" style="height: 185px;">
+	        <img src="images/picture/face-2/young-mark-zuckerberg.jpg" class="img-responsive">
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+-----------------------------------------------------
+
+
+3.
+<div class="col-sm-2 col-xs-4 ng-scope" ng-repeat="(tileId, tile) in row.tileData">
+    <div class="tile" id="tile_1_4" style="height: 185px;">
+      	<div class="carousel slide" data-ride="carousel" style="height: 185px;">
+            <div class="carousel-inner">
+            		<div ng-repeat="ip in tile.data" style="height: 185px;" class="item ng-scope active" ng-class="{active: ip.active}">
+						<img ng-if="ip.type=='img'" ng-src="images/home/2/_3.jpg" class="img-responsive ng-scope" src="images/home/2/_3.jpg">
+					</div>
+					<div ng-repeat="ip in tile.data" style="height: 185px;" class="item ng-scope" ng-class="{active: ip.active}">
+						<img ng-if="ip.type=='img'" ng-src="images/home/2/_4.jpg" class="img-responsive ng-scope" src="images/home/2/_4.jpg">
+					</div>
+            </div>
+      	</div>
+    </div>
+</div>
+-----------------------------------------------------
+<div id="Carousel" class="carousel slide">
+	<ol class="carousel-indicators">
+	    <li data-target="Carousel" data-slide-to="0" class="active"></li>
+	    <li data-target="Carousel" data-slide-to="1"></li>
+	    <li data-target="Carousel" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner">
+	    <div class="item active">
+	        <img src="images/c.png" class="img-responsive">
+	    </div>
+	    <div class="item">
+	        <img src="images/b.png" class="img-responsive">
+	    </div>
+	    <div class="item">
+	        <img src="images/a.png" class="img-responsive">
+	    </div>
+	</div>
+	<span class="left carousel-control" data-target="#Carousel" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	</span>
+	<span class="right carousel-control" data-target="#Carousel" data-slide="next">
+	   <span class="glyphicon glyphicon-chevron-right"></span>
+	</span>
+</div>

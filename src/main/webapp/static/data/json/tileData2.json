@@ -2,11 +2,21 @@
 	"rowData": {
 		"row_1": {
 			"tileData": {
+				"tile_1_1": {
+					"id": "tile_1_1",
+					"data":[{
+							"text": "psychotherapy",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_1_2": {
 					"id": "tile_1_2",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",
 					"data":[{
 							"url": "images/home/2/_1.jpg",
 							"type": "img",
@@ -18,11 +28,21 @@
 						}
 					]
 				},
+				"tile_1_3": {
+					"id": "tile_1_3",
+					"data":[{
+							"text": "General consultation",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_1_4": {
 					"id": "tile_1_4",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",					
 					"data":[{
 							"url": "images/home/2/_3.jpg",
 							"type": "img",
@@ -34,11 +54,21 @@
 						}
 					]
 				},
+				"tile_1_5": {
+					"id": "tile_1_5",
+					"data":[{
+							"text": "work profile",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_1_6": {
 					"id": "tile_1_6",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_17.jpg",
 							"type": "img",
@@ -56,9 +86,6 @@
 			"tileData": {
 				"tile_2_1": {
 					"id": "tile_2_1",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_5.jpg",
 							"type": "img",
@@ -70,11 +97,21 @@
 						}
 					]
 				},
+				"tile_2_2": {
+					"id": "tile_2_2",
+					"data":[{
+							"text": "Pediatric psychiatry",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_2_3": {
 					"id": "tile_2_3",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_7.jpg",
 							"type": "img",
@@ -86,11 +123,21 @@
 						}
 					]
 				},
+				"tile_2_4": {
+					"id": "tile_2_4",
+					"data":[{
+							"text": "Corporate psychiatry",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_2_5": {
 					"id": "tile_2_5",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_19.jpg",
 							"type": "img",
@@ -101,16 +148,39 @@
 							"active": ""
 						}
 					]
-				}
+				},
+				"tile_2_6": {
+					"id": "tile_2_6",
+					"data":[{
+							"text": "KIDINTEL STUDIO Child growth & development",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				}				
 			}
 		},
 		"row_3": {
 			"tileData": {
+				"tile_3_1": {
+					"id": "tile_3_1",
+					"data":[{
+							"text": "Upcoming events",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_3_2": {
 					"id": "tile_3_2",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_9.jpg",
 							"type": "img",
@@ -122,11 +192,21 @@
 						}
 					]
 				},
+				"tile_3_3": {
+					"id": "tile_3_3",
+					"data":[{
+							"text": "M brain studio for Women mental health",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_3_4": {
 					"id": "tile_3_4",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_11.png",
 							"type": "img",
@@ -138,11 +218,21 @@
 						}
 					]
 				},
+				"tile_3_5": {
+					"id": "tile_3_5",
+					"data":[{
+							"text": "Online consultation",
+							"type": "text",
+							"active": "true"
+						},{
+							"text": "How that helps ..?",
+							"type": "text",
+							"active": ""
+						}
+					]
+				},
 				"tile_3_6": {
 					"id": "tile_3_6",
-					"active": "0",
-					"myInterval": "5000",
-					"noWrapSlides": "false",							
 					"data":[{
 							"url": "images/home/2/_15.jpg",
 							"type": "img",

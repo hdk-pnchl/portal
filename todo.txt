@@ -27,3 +27,9 @@ mail
 web site
 
 aws
+
+
+
+
+
+http://localhost:8080/portal/login

@@ -1,0 +1,45 @@
+
+
+<!--
+<tile tile-data="tileDataNew"></tile> 
+
+{{slides}}
+<div style="height: 305px">
+	<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+		<uib-slide ng-repeat="slide in slides" index="slide.id">
+			{{slide}}
+			<img ng-src="{{slide.image}}" style="margin:auto;">
+			<div class="carousel-caption">
+				<h4>Slide {{slide.id}}</h4>
+				<p>{{slide.text}}</p>
+			</div>
+		</uib-slide>
+	</uib-carousel>
+</div>
+ -->
+
+<!--
+<ul rn-carousel class="image">
+  	<li ng-repeat="slide in slides">
+    	<div class="layer">
+			<img ng-src="{{slide.image}}" style="margin:auto;">
+			<div class="carousel-caption">
+				<h4>Slide {{slide.id}}</h4>
+				<p>{{slide.text}}</p>
+			</div>
+  	</li>
+</ul>
+-->
+
+<!-- -->
+ <div style="height: 50px ">
+    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      	<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+	        <img ng-src="{{slide.image}}" style="margin:auto;">
+	        <div class="carousel-caption">
+	          	<h4>Slide {{slide.id}}</h4>
+	          	<p>{{slide.text}}</p>
+	        </div>
+      	</uib-slide>
+    </uib-carousel>
+</div>

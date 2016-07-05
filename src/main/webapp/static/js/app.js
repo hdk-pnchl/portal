@@ -1,4 +1,4 @@
-var portalM= angular.module('portalM', ['ngRoute', 'controllersM', 'servicesM', 'directiveM']);
+var portalM= angular.module('portalM', ['ngRoute', 'controllersM', 'servicesM', 'directiveM','ngAnimate', 'ui.bootstrap']);
 
 portalM.config(function($resourceProvider) {
   	//$resourceProvider.defaults.stripTrailingSlashes = false;
@@ -45,7 +45,7 @@ portalM.config(['$routeProvider',function($routeProvider){
 	//Home
 	$routeProvider.when('/home', {
 		//templateUrl: 'html/core/processing.html',
-		templateUrl: 'html/core/home.html',
+		templateUrl: 'html/core/home_001.html',
 		controller: 'HomeController'
 	});
 

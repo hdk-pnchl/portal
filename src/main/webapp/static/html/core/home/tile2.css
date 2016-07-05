@@ -1,0 +1,73 @@
+.dynamicTile .col-sm-2.col-xs-4 {
+  padding: 5px;
+}
+.dynamicTile .col-sm-4.col-xs-8 {
+  padding: 5px;
+}
+#tile_1_1 {
+  background: rgb(0, 172, 238);
+}
+#tile_1_2 {
+  background: rgb(243, 243, 243);
+}
+#tile_1_3 {
+  background: rgb(71, 193, 228);
+}
+#tile_1_4 {
+  background-image: url('../../../images/home/2/_2.png');
+  background-size: cover;
+}
+#tile_1_5 {
+  background: rgb(175, 26, 63);
+}
+#tile_1_6 {
+  background: rgb(62, 157, 215);
+}
+#tile_2_1 {
+  background: white;
+}
+#tile_2_2 {
+  background: rgb(209, 70, 37);
+}
+#tile_2_3 {
+  background: rgb(0, 142, 0);
+}
+#tile_2_4 {
+  background: rgb(0, 93, 233);
+}
+#tile_2_5 {
+  background: rgb(55, 12, 0);
+}
+#tile_2_6 {
+  background: rgb(11, 3, 13);
+}      
+#tile_3_1 {
+  background: white;
+}
+#tile_3_2 {
+  background: rgb(109, 20, 27);
+}
+#tile_3_3 {
+  background: rgb(2, 12, 77);
+}
+#tile_3_4 {
+  background: rgb(20, 33, 233);
+}
+#tile_3_5 {
+  background: rgb(77, 112, 20);
+}
+#tile_3_6 {
+  background: rgb(90, 13, 23);
+}       
+.tilecaption {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  margin: 0 !important;
+  text-align: center;
+  color: white;
+  font-family: Segoe UI;
+  font-weight: lighter;
+}

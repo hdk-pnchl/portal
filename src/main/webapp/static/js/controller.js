@@ -22,6 +22,15 @@ controllersM.controller('CoreController', ['$scope', '$http','$location','$rootS
             $scope.showHome= false;
         }
     });
+
+    /* 
+    $http.get('data/json/tileData.json').then(function(response){
+        $scope.tileData= response.data;
+        console.log($scope.tileData);
+    }, function(response){
+        alert('something wrong with: data/json/tileData.json');
+    });
+    */
 }]);
 
 //------------------------------------Banner
@@ -280,14 +289,14 @@ controllersM.controller('HomeController', ['$scope', '$http', '$route', '$routeP
     function($scope, $http, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
         //alert($scope.showHome);
         //alert($scope.$parent.showHome);
-    /*
-    $http.get('data/json/tileData.json').then(function(response){
-        $scope.tileDataNew= response.data;
-        console.log($scope.tileDataNew);
-    }, function(response){
-        alert('something wrong with: data/json/tileData.json');
-    });
-    */
+    /*        
+        $http.get('data/json/tileData.json').then(function(response){
+            $scope.tileDataNew= response.data;
+            console.log($scope.tileDataNew);
+        }, function(response){
+            alert('something wrong with: data/json/tileData.json');
+        });
+        */
 }]);
 
 //------------------------------------ContactUs
@@ -402,5 +411,60 @@ controllersM.controller('MessageAnswerController', ['$scope', '$http', '$route',
     }
 ]);
 
+
+/*
+    $scope.myInterval = 5000;
+    $scope.noWrapSlides = false;
+    $scope.active = 0;
+    var slides = $scope.slides = [];
+    var currIndex = 0;
+
+    $scope.addSlide = function() {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+            image: 'http://lorempixel.com/' + newWidth + '/300',
+            text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+            id: currIndex++
+        });
+    };
+
+    $scope.randomize = function() {
+        var indexes = generateIndexesArray();
+        assignNewIndexesToSlides(indexes);
+    };
+
+    for (var i = 0; i < 4; i++) {
+        $scope.addSlide();
+    }
+
+    // Randomize logic below
+    function assignNewIndexesToSlides(indexes) {
+        for (var i = 0, l = slides.length; i < l; i++) {
+            slides[i].id = indexes.pop();
+        }
+    }
+
+    function generateIndexesArray() {
+        var indexes = [];
+        for (var i = 0; i < currIndex; ++i) {
+            indexes[i] = i;
+        }
+        return shuffle(indexes);
+    }
+
+    // http://stackoverflow.com/questions/962802#962890
+    function shuffle(array) {
+        var tmp, current, top = array.length;
+        if(top) {
+            while (--top) {
+                current = Math.floor(Math.random() * (top + 1));
+                tmp = array[current];
+                array[current] = array[top];
+                array[top] = tmp;
+            }
+        }
+        return array;
+    }
+*/
 
 

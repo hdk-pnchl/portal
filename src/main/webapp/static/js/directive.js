@@ -192,8 +192,10 @@ directiveM.directive('tile', function(){
             tileData: '='
         },
         controller: function($scope, $rootScope, $location){          
+            console.log("from controller::: link:::: "+$scope.tileData);            
         },
-        link: function(scope, element, attrs, controllers){
+        link: function($scope, element, attrs, controllers){
+            console.log("from directive::: link:::: "+$scope.tileData);
         }
     };
 });

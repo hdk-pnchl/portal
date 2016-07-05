@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+	    options.async = true;
+	});	
 	$(".tile").height($("#tile1").width());
 	$(".carousel").height($("#tile1").width());
 	$(".item").height($("#tile1").width());

@@ -1,25 +1,38 @@
 <!--  -->
-<script type="text/javascript" src="html/core/home/tile.js"></script>
-<link rel="stylesheet" type="text/css" href="html/core/home/tile.css">
 
-<div class="container dynamicTile">
-	<div class="row ">
-      	<div ng-repeat="tile in tileData.tiles" class="col-sm-2 col-xs-4">
-	        <div id="{{tile.id}}" class="" style="height: 185px;">
-	          	<div class="carousel slide" data-ride="carousel" style="height: 185px;">
-		            <!-- Wrapper for slides -->
-		            <div class="carousel-inner">
-		                <div ng-repeat="img in tile.images"  ng-class="{active: img.active}" class="item" style="height: 185px;">
-		                	<img ng-src="{{img.url}}" class="img-responsive" />
-		                </div>
-		            </div>
+<script type="text/javascript" src="html/core/home/tile.js"></script>
+<link rel="stylesheet" type="text/css" href="html/core/home/tile2.css">
+
+<div class="container">
+
+	<!-- row -->
+	<div class="row" id="{{row.id}}" ng-repeat="(rowId, row) in tileData.rowData">
+
+		<!-- tile -->
+      	<div class="col-sm-2 col-xs-4" ng-repeat="(tileId, tile) in row.tileData">
+
+	        <div id="{{tile.id}}" style="height: 185px;">
+
+	          	<div style="height: 185px;">
+
+	          		<!-- data -->
+
+					<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+
+					  	<uib-slide ng-repeat="ip in tile.data">
+
+							<img ng-src="{{ip.url}}" style="margin:auto;">
+
+					  	</uib-slide>
+
+					</uib-carousel>
+
 	          	</div>
 	        </div>
+
       	</div>
     </div>
 </div>
-
-
 
 
 
