@@ -43,7 +43,7 @@ controllersM.controller('BannerController', ['$scope', '$http', 'PatientService'
             $scope.$parent.bannerdata = response;
         }, 
         function(){ 
-            alert('core getBannerData failed');
+            alert('Core getBannerData failed');
         }
     );  
 }]);
@@ -66,7 +66,7 @@ controllersM.controller('PatientsController', ['$scope', '$http', 'PatientServic
             $scope.fetchPatients(searchIp); 
         }, 
         function(){ 
-            alert('core getPatientColumnData failed');
+            alert('Core getPatientColumnData failed');
         }
     );       
     $scope.editPatient = function(editRow){
@@ -80,7 +80,7 @@ controllersM.controller('PatientsController', ['$scope', '$http', 'PatientServic
         //alert("viewPatient");      
     };
     $scope.deletePatient = function(deleteRow){ 
-        alert("delete not possible");
+        alert("Delete not possible");
     };
 
     $scope.magic = function(deleteRow){ 
@@ -103,7 +103,7 @@ controllersM.controller('PatientsController', ['$scope', '$http', 'PatientServic
                 $scope.patientGridtData.pageAry= new Array(parseInt(response.responseData.TOTAL_PAGE_COUNT));                
             },
             function(response){
-                alert("patients getAllBySeach by ip failure");
+                alert("Patients getAllBySeach by ip failure");
             }
         );        
     };
@@ -129,7 +129,7 @@ controllersM.controller('AddPatientController', ['$scope', '$route', '$routePara
                         formIpData.data= $scope.patientDetail[formName];
                     });                
                 }, function(){
-                    alert("patient get failure");
+                    alert("Patient get failure");
                 });          
             }else{
                 angular.forEach($scope.patientWizzard.wizzardData, function(formIpData, formName){
@@ -143,7 +143,7 @@ controllersM.controller('AddPatientController', ['$scope', '$route', '$routePara
             $scope.patientDetail.isReady= true;
         }, 
         function(){ 
-            alert('core getPatientWizzardData failed');
+            alert('Core getPatientWizzardData failed');
         }
     );  
  
@@ -205,7 +205,7 @@ controllersM.controller('AddPatientController', ['$scope', '$route', '$routePara
                 }
             },
             function(){
-                alert("patients save failure");
+                alert("Patients save failure");
             }
         );
     };
@@ -223,7 +223,7 @@ controllersM.controller('PatientSummaryController', ['$scope', '$route', '$route
             $scope.patientDetail= patientDataResp;
             PatientGlobleDataService['patientDetail']= patientDataResp;
         }, function(){
-            alert("patient get failure");
+            alert("Patient get failure");
         });
     } else{
         $scope.patientDetail= PatientGlobleDataService['patientDetail'];
@@ -304,20 +304,35 @@ controllersM.controller('HomeController', ['$scope', '$http', '$route', '$routeP
 
 controllersM.controller('ContactUsController', ['$scope', '$http', '$route', '$routeParams', '$location','PatientService','PatientGlobleDataService','$window', 
     function($scope, $http, $route, $routeParams, $location, patientService, PatientGlobleDataService, $window){
+        $scope.alerts= [];
+        $scope.closeAlert = function(index) {
+            $scope.alerts.splice(index, 1);
+        };        
         $scope.submitMessage = function(message){ 
-            patientService.core.save({
-                    action: "saveMessage"
-                }, 
-                message, 
-                function(persistedMessage){
-                    $scope.message= {};
-                    alert("We got your query. Will shell get back to you shortly :)");
-                    $location.path($scope.$parent.bannerdata.navData.mainNavData.home.path);
-                }, 
-                function(){
-                    alert("message save failure");
-                }
-            );        
+            $scope.alerts= [];
+            if(message && message.name && message.emailId && message.message){
+                patientService.core.save({
+                        action: "saveMessage"
+                    }, 
+                    message, 
+                    function(persistedMessage){
+                        $scope.message= {};
+                        $scope.alerts.push({ 
+                            type: "success", 
+                            msg: "We got your message and shortly will get back to you on it"
+                        });                        
+                        //$location.path($scope.$parent.bannerdata.navData.mainNavData.home.path);
+                    }, 
+                    function(){
+                        alert("Message send failure");
+                    }
+                );  
+            }else{
+                $scope.alerts.push({ 
+                    type: "danger", 
+                    msg: "Please enter valid Name, Email-ID and message."
+                });
+            }     
         };       
     }
 ]);
@@ -341,7 +356,7 @@ controllersM.controller('MessageController', ['$scope', '$http', '$route', '$rou
                 $scope.fetchMessages(searchIp); 
             }, 
             function(){ 
-                alert('core getMessageColumnData failed');
+                alert('Core getMessageColumnData failed');
             }
         );  
         $scope.editPatient = function(editRow){
@@ -368,7 +383,7 @@ controllersM.controller('MessageController', ['$scope', '$http', '$route', '$rou
                     $scope.messageGridtData.pageAry= new Array(parseInt(response.responseData.TOTAL_PAGE_COUNT));                
                 },
                 function(response){
-                    alert("patients getAllBySeach by ip failure");
+                    alert("Patients getAllBySeach by ip failure");
                 }
             );        
         };        
@@ -390,7 +405,7 @@ controllersM.controller('MessageAnswerController', ['$scope', '$http', '$route',
                 }, function(messageResp){
                     $scope.messageData.data= messageResp.responseEntity;
                 }, function(){
-                    alert("message get failure");
+                    alert("Message get failure");
                 });
             }
         }, function(){
@@ -403,9 +418,9 @@ controllersM.controller('MessageAnswerController', ['$scope', '$http', '$route',
             }, 
             data,
             function(messageResp){
-                 alert("Query answered :)");
+                 alert("Message answered :)");
             }, function(){
-                alert("message save failure");
+                alert("Message save failure");
             });        
         };
     }

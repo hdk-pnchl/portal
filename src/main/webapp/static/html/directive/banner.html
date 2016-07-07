@@ -2,16 +2,19 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-              <a style="color: white" class="navbar-brand" href="#{{bannerData.projectData.defaultPath}}">{{bannerData.projectData.projectName}}</a>
+                <a style="color: white" class="navbar-brand" href="#{{bannerData.projectData.defaultPath}}">{{bannerData.projectData.projectName}}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li ng-repeat="(tabName, tab) in bannerData.navData.mainNavData" ng-class="{active: tab.active}" ng-hide="tab.hidden">
-                  <a href="#{{tab.path}}">{{tab.title}}</a>
-                </li>
-              </ul>             
+                  <li ng-repeat="(tabName, tab) in bannerData.navData.mainNavData" ng-class="{active: tab.active}" ng-hide="tab.hidden">
+                    <a href="#{{tab.path}}">{{tab.title}}</a>
+                  </li>
+              </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="(tabName, tab) in bannerData.navData.configNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
+                  <li ng-show="bannerData.USER_DATA"> 
+                    <a>Hi, {{bannerData.USER_DATA.name}}</a>
+                  </li>
+                  <li ng-repeat="(tabName, tab) in bannerData.navData.configNavData" ng-click="selectTab(tab)" ng-class="{active: tab.active}" ng-hide="tab.hidden">
                     <a ng-if="tab.isURL" href="{{tab.path}}">{{tab.title}}</a>
                     <a ng-if="!tab.isURL" href="#{{tab.path}}">{{tab.title}}</a>
                 </li>

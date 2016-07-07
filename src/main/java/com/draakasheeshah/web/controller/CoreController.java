@@ -32,6 +32,7 @@ import com.draakasheeshah.business.bo.ResponseEntity;
 import com.draakasheeshah.business.service.BasicDetailService;
 import com.draakasheeshah.business.service.MessageService;
 import com.draakasheeshah.business.util.CommonUtil;
+import com.draakasheeshah.business.util.ResponseParam;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -83,6 +84,7 @@ public class CoreController implements ResourceLoaderAware {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/getBannerData", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getBannerData() throws IOException {
+		Map<String, Object> bannerData= null;
 		Resource bannerJson = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (this.isAuth(auth)) {
@@ -92,15 +94,34 @@ public class CoreController implements ResourceLoaderAware {
 			} else {
 				bannerJson = this.resourceLoader.getResource("classpath:data/json/bannerDataMember.json");
 			}
+			BasicDetailEntity basicDetail = basicDetailService.get(auth.getName());
+			bannerData = objectMapper.readValue(bannerJson.getFile(), Map.class);
+			bannerData.put(ResponseParam.USER_DATA.name(), basicDetail);
 		} else {
 			bannerJson = this.resourceLoader.getResource("classpath:data/json/bannerDataGuest.json");
+			bannerData = objectMapper.readValue(bannerJson.getFile(), Map.class);
 		}
-		Map<String, Object> bannerData = objectMapper.readValue(bannerJson.getFile(), Map.class);
 		logger.info("getBannerData: " + bannerData);
 
 		return bannerData;
 	}
 
+	/**
+	 * http://localhost:8080/portal/ctrl/core/getUserData
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/getUserData", method = RequestMethod.GET)
+	public @ResponseBody BasicDetailEntity getUserData() throws IOException {
+		BasicDetailEntity basicDetail = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (this.isAuth(auth)) {
+			basicDetail = basicDetailService.get(auth.getName());
+		} 
+		return basicDetail;
+	}
+	
 	/**
 	 * http://localhost:8080/portal/ctrl/core/getBanner
 	 * 

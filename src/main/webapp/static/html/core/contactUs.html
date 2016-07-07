@@ -21,15 +21,16 @@
 	    		</address>
 	    	</div>			
 		</div>
-
 		<div class="col-sm-8 contact-form">
+			<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+
 			<form id="contact" method="post" class="form" role="form">
 				<div class="row">
 					<div class="col-xs-6 col-md-6 form-group">
-						<input ng-model="message.name" name="name" class="form-control" id="name" placeholder="Name" type="text" required></input>
+						<input ng-model="message.name" ng-value="bannerdata.USER_DATA.name" name="name" class="form-control" id="name" placeholder="Name" type="text" required></input>
 					</div>
 					<div class="col-xs-6 col-md-6 form-group">
-						<input ng-model="message.emailId" name="emailId" class="form-control" id="emailId" placeholder="Email Id" type="email" required></input>
+						<input ng-model="message.emailId" ng-value="bannerdata.USER_DATA.emailId" name="emailId" class="form-control" id="emailId" placeholder="Email Id" type="email" required></input>
 					</div>
 				</div>
 				<textarea ng-model="message.message" name="message" class="form-control" id="message" placeholder="Message" rows="5"></textarea>
